@@ -1,12 +1,10 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { match as matchLocale } from '@formatjs/intl-localematcher';
+import Negotiator from 'negotiator';
+import { i18n } from './i18n-config';
 
-import { i18n } from "./i18n-config";
-
-import { match as matchLocale } from "@formatjs/intl-localematcher";
-import Negotiator from "negotiator";
-
-function getLocale(request: NextRequest): string | undefined {
+const getLocale = (request: NextRequest): string | undefined => {
   // Negotiator expects plain object so we need to transform headers
   const negotiatorHeaders: Record<string, string> = {};
   request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
@@ -17,20 +15,18 @@ function getLocale(request: NextRequest): string | undefined {
 
   // Use negotiator and intl-localematcher to get best locale
   let languages = new Negotiator({ headers: negotiatorHeaders }).languages();
-  console.log(languages);
 
   const locale = matchLocale(languages, locales, i18n.defaultLocale);
-  console.log(locale);
 
   return locale;
-}
+};
 
-export function middleware(request: NextRequest) {
+export const middleware = (request: NextRequest) => {
   const pathname = request.nextUrl.pathname;
 
   // Check if there is any supported locale in the pathname
   const pathnameIsMissingLocale = i18n.locales.every(
-    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+    locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   );
 
   // Redirect if there is no locale
@@ -42,22 +38,17 @@ export function middleware(request: NextRequest) {
     if (locale) {
       // Construct redirect URL with the determined locale
       return NextResponse.redirect(
-        new URL(
-          `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
-          request.url
-        )
+        new URL(`/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url)
       );
     } else {
       // Handle case where no suitable locale could be determined
       // For example, redirect to a default locale or display an error page
-      return NextResponse.redirect(
-        new URL(`/${i18n.defaultLocale}${pathname}`, request.url)
-      );
+      return NextResponse.redirect(new URL(`/${i18n.defaultLocale}${pathname}`, request.url));
     }
   }
-}
+};
 
 export const config = {
   // Matcher ignoring `/_next/` and `/api/`
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
 };

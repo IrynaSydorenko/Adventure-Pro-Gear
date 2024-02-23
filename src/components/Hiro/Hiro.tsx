@@ -1,7 +1,5 @@
-import React from "react";
+import React from 'react';
 
-function Hiro() {
-  return <div>Hiro</div>;
-}
+const Hiro = () => <div>Hiro</div>;
 
 export default Hiro;

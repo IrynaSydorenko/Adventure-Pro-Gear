@@ -1,8 +1,11 @@
 .langugeLink {
   padding: 5px;
-  border-right: solid black 1px;
 }
 
-.langugeLink:last-child {
-  border-right: none;
+.separator {
+  display: inline-block;
+  width: 1px;
+  height: 15px;
+  background-color: black;
+  /* margin: 0 5px; */
 }
