@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
-import { i18n, Locale } from "../../../../../i18n-config";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useNav } from "@/hooks/useNav";
-import styles from "./Header.module.css";
+import React from 'react';
+import Link from 'next/link';
+import useNav from '@/hooks/useNav';
+import { Locale } from '../../../../../i18n-config';
+import styles from './Header.module.css';
+// import { usePathname } from 'next/navigation';
 
 type HeaderProps = {
   translation: {
@@ -15,16 +15,16 @@ type HeaderProps = {
 };
 
 const Header = ({ translation, lang }: HeaderProps) => {
-  const pathName = usePathname();
+  // const pathName = usePathname();
   const { ukLink, enLink } = useNav();
   const langLinks = [
     {
       href: ukLink,
-      anchor: "UA",
+      anchor: 'UA',
     },
     {
       href: enLink,
-      anchor: "EN",
+      anchor: 'EN',
     },
   ];
 
@@ -34,16 +34,19 @@ const Header = ({ translation, lang }: HeaderProps) => {
   return (
     <header>
       <div>
-        Header <button>{translation.cart}</button>
+        Header
+        {/* <button>{translation.cart}</button> */}
         {langLinks.map((link, index) => (
-          <Link
-            className={styles.langugeLink}
-            key={index}
-            href={link.href}
-            onClick={() => handleLanguageChange(link.anchor)}
-          >
-            {link.anchor}
-          </Link>
+          <React.Fragment key={index}>
+            {index !== 0 && <span className={styles.separator} />}
+            <Link
+              className={styles.langugeLink}
+              href={link.href}
+              onClick={() => handleLanguageChange(link.anchor)}
+            >
+              {link.anchor}
+            </Link>
+          </React.Fragment>
         ))}
       </div>
     </header>

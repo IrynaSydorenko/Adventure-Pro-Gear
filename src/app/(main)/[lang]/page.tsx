@@ -1,7 +1,5 @@
-import React from "react";
+import React from 'react';
 
-function page() {
-  return <div>Adventure Pro Gear online shop</div>;
-}
+const Page = () => <div>Adventure Pro Gear online shop</div>;
 
-export default page;
+export default Page;
