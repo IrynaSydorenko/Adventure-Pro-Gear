@@ -1,0 +1,9 @@
+.container {
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 18px 16%;
+}
+
+@media screen and (min-width: 481px) {
+}
