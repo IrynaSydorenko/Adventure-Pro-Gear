@@ -1,4 +1,12 @@
 {
+  "nav": {
+    "logo": "Adventure Pro Gear",
+    "aboutUs": "About us",
+    "blog": "Blog",
+    "contacts": "Contacts",
+    "personalAccount": "Personal account",
+    "lang": ["Ua", "En"]
+  },
   "products": {
     "cart": "Add to Cart"
   }

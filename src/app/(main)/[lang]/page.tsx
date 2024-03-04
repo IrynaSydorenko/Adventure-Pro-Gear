@@ -1,5 +1,6 @@
 import React from 'react';
+import Hiro from '@/components/Hiro/Hiro';
 
-const Page = () => <div>Adventure Pro Gear online shop</div>;
+const Page = () => <Hiro />;
 
 export default Page;

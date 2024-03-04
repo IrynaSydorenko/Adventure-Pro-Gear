@@ -1,0 +1,56 @@
+.header {
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.h1 {
+  font-size: 30px;
+}
+
+.h1 > a {
+  text-decoration: none;
+  color: black;
+}
+
+.navList {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  align-items: center;
+}
+
+.navItem {
+  padding: 9px 15px;
+}
+.navItem > a {
+  text-decoration: none;
+  color: black;
+}
+
+.langLinks {
+  margin-left: 10px;
+  display: flex;
+  list-style-type: none;
+  align-items: center;
+  padding-inline-start: 0;
+}
+
+.langLink {
+  padding: 5px;
+  text-decoration: none;
+  color: black;
+}
+
+.separator {
+  display: inline-block;
+  width: 1px;
+  height: 15px;
+  background-color: black;
+}
+
+.personalAcc {
+}
