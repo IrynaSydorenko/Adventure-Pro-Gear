@@ -31,6 +31,8 @@
     "no-undef": "off",
     "react/function-component-definition": "off",
     "arrow-parens": "off",
-    "consistent-return": "off"
+    "consistent-return": "off",
+    "react/require-default-props": "off",
+    "array-callback-return": "off"
   }
 }
