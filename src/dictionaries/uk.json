@@ -1,4 +1,12 @@
 {
+  "nav": {
+    "logo": "Adventure Pro Gear",
+    "aboutUs": "Про нас",
+    "blog": "Блог",
+    "contacts": "Контакти",
+    "personalAccount": "Особистий кабінет",
+    "lang": ["Укр", "Англ"]
+  },
   "products": {
     "cart": "Додати в кошик"
   }
