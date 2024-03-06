@@ -4,7 +4,7 @@ import { i18n } from '@/i18n-config';
 const useNav = () => {
   const pathname = usePathname();
   const partsUrl = pathname.split('/');
-  const ukLink =
+  const uaLink =
     partsUrl.length > 2
       ? `/${i18n.locales[0]}/${partsUrl.slice(2).join('/')}`
       : `/${i18n.locales[0]}`;
@@ -14,7 +14,7 @@ const useNav = () => {
       : `/${i18n.locales[1]}`;
 
   return {
-    ukLink,
+    uaLink,
     enLink,
   };
 };

@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import ReduxProvider from '@/redux/provider';
 import { NextPage } from 'next';
 import { getAllTranslations, getTranslation } from '@/dictionaries/dictionaries';
-import { Inter } from '@next/font/google';
+import { Montserrat } from '@next/font/google';
 import { Locale } from '../../../i18n-config';
 import '@/app/styles/_normilize.css';
 import '@/app/styles/globals.css';
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description: 'Інтернет магазин туристоичного спорядження',
 };
 
-const inter = Inter({
+const inter = Montserrat({
   subsets: ['latin'],
   weight: ['400', '700'],
 });
@@ -34,7 +34,7 @@ const RootLayout: NextPage<RootLayoutProps> = async ({ params: { lang }, childre
     <ReduxProvider>
       <html lang="en">
         <body className={inter.className}>
-          <Header translation={translation('nav')} lang={lang} />
+          <Header translation={translation('nav')} locale={lang} />
           <main>{children}</main>
           <Footer />
         </body>

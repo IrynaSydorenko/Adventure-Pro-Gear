@@ -1,4 +1,6 @@
 .header {
+  background-color: var(--darkBlue);
+  color: var(--white);
 }
 
 .nav {
@@ -11,9 +13,13 @@
   font-size: 30px;
 }
 
-.h1 > a {
+.logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 .navList {
@@ -28,29 +34,19 @@
 }
 .navItem > a {
   text-decoration: none;
-  color: black;
+  color: var(--white);
 }
 
-.langLinks {
-  margin-left: 10px;
+.langSelect {
   display: flex;
-  list-style-type: none;
   align-items: center;
-  padding-inline-start: 0;
 }
 
-.langLink {
-  padding: 5px;
-  text-decoration: none;
-  color: black;
-}
-
-.separator {
-  display: inline-block;
-  width: 1px;
-  height: 15px;
-  background-color: black;
-}
-
-.personalAcc {
+.langSelect > select {
+  appearance: none;
+  margin-right: 5px;
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--white);
+  font-size: 16px;
 }
