@@ -1,45 +1,50 @@
-import React from 'react';
-import Link from 'next/link';
-import { Locale } from '@/i18n-config';
+import React, { useEffect, useState } from 'react';
 import useNav from '@/hooks/useNav';
+import Image from 'next/image';
+import { Locale } from '@/i18n-config';
+import World from '@/../public/icons/World.svg';
 import styles from '../Header.module.css';
 
 interface LangLinksProps {
-  language: string[];
+  languages: string[];
+  locale?: Locale;
 }
 
-const LangLinks: React.FC<LangLinksProps> = ({ language }) => {
-  const { ukLink, enLink } = useNav();
-  const langLinks = [
+const LangLinks: React.FC<LangLinksProps> = ({ languages, locale }) => {
+  const { uaLink, enLink } = useNav();
+  const defaultLanguage = locale || 'uk-UA';
+  const [selectedLanguage, setSelectedLanguage] = useState(defaultLanguage);
+
+  const options = [
     {
-      href: ukLink,
-      anchor: language[0],
+      value: 'uk-UA',
+      text: languages[0],
     },
     {
-      href: enLink,
-      anchor: language[1],
+      value: 'en-US',
+      text: languages[1],
     },
   ];
-  const handleLanguageChange = (selectedLanguage: string) => {
-    if (typeof document !== 'undefined') {
-      document.cookie = `preferredLanguage=${selectedLanguage}; path=/; max-age=31536000`;
-    }
+
+  const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = event.target.value;
+    // @ts-ignore
+    setSelectedLanguage(selectedValue);
+    // Update the URL based on the selected language
+    window.location.href = selectedValue === 'uk-UA' ? uaLink : enLink;
   };
+
   return (
-    <ul className={styles.langLinks}>
-      {langLinks.map((link, index) => (
-        <li key={index}>
-          {index !== 0 && <span className={styles.separator} />}
-          <Link
-            className={styles.langLink}
-            href={link.href}
-            onClick={() => handleLanguageChange(link.anchor)}
-          >
-            {link.anchor}
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <div className={styles.langSelect}>
+      <select value={selectedLanguage} onChange={handleLanguageChange}>
+        {options.map((option, index) => (
+          <option key={index} value={option.value}>
+            {option.text}
+          </option>
+        ))}
+      </select>
+      <Image src={World} alt="globus icon" width={22} height={22} />
+    </div>
   );
 };
 
