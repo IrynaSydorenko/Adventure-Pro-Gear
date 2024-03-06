@@ -5,7 +5,7 @@
     "blog": "Blog",
     "contacts": "Contacts",
     "personalAccount": "Personal account",
-    "lang": ["Ua", "En"]
+    "lang": ["Ukrainian", "English"]
   },
   "products": {
     "cart": "Add to Cart"
