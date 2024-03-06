@@ -1,0 +1,10 @@
+.catalog {
+  display: flex;
+  background-color: var(--mediumBlue);
+  padding: 17.5px 71px 17.5px 42px;
+  cursor: pointer;
+  align-items: center;
+}
+.icon {
+  margin-right: 8px;
+}
