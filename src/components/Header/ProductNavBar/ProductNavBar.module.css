@@ -2,8 +2,20 @@
   color: white;
 }
 
+.container {
+  padding-top: 0;
+}
+
 .productNavBarChildren {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.userInteractions {
+  display: flex;
+  flex-direction: row;
+  min-width: 96px;
   justify-content: space-between;
 }

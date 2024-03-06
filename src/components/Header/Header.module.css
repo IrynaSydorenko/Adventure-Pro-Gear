@@ -30,7 +30,10 @@
 }
 
 .navItem {
-  padding: 9px 15px;
+  padding: 9px 5px;
+  box-sizing: border-box;
+  min-width: 90px;
+  text-align: center;
 }
 .navItem > a {
   text-decoration: none;
@@ -43,8 +46,10 @@
 }
 
 .langSelect > select {
+  padding-left: 5px;
+  min-width: 85px;
+  text-align: right;
   appearance: none;
-  margin-right: 5px;
   background-color: transparent;
   border-color: transparent;
   color: var(--white);
