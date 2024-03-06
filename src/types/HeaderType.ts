@@ -9,5 +9,5 @@ export interface HeaderProps {
     personalAccount: string;
     lang: string[];
   };
-  lang: Locale;
+  locale?: Locale;
 }
