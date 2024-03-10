@@ -34,6 +34,7 @@
     "consistent-return": "off",
     "react/require-default-props": "off",
     "array-callback-return": "off",
-    "react/jsx-props-no-spreading": "off"
+    "react/jsx-props-no-spreading": "off",
+    "react/destructuring-assignment": "off"
   }
 }

@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.4",
-    "@next/font": "^14.1.0",
     "@reduxjs/toolkit": "^2.2.1",
     "clsx": "^2.1.0",
     "eslint-config-airbnb": "^19.0.4",
