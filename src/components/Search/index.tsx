@@ -1,21 +1,27 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
+import SearchIcon from '@/../public/icons/SearchIcon.svg';
 import styles from './Search.module.css';
 
-function Search() {
+interface SearchProps {
+  search: string;
+}
+
+const Search: React.FC<SearchProps> = ({ search }) => {
   const [value, setValue] = useState('');
   return (
     <div>
       <input
         className={styles.search}
-        placeholder="Search"
+        placeholder={`${search}`}
         type="text"
         value={value}
         onChange={e => setValue(e.target.value)}
       />
     </div>
   );
-}
+};
 
 export default Search;
