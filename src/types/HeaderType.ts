@@ -7,6 +7,8 @@ export interface HeaderProps {
     blog: string;
     contacts: string;
     personalAccount: string;
+    search: string;
+    catalog: string;
     lang: string[];
   };
   locale?: Locale;
