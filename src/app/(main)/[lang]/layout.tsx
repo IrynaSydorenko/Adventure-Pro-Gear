@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import ReduxProvider from '@/redux/provider';
 import { NextPage } from 'next';
 import { getAllTranslations, getTranslation } from '@/dictionaries/dictionaries';
-import { Montserrat } from '@next/font/google';
+import { Montserrat } from 'next/font/google';
 import { Locale } from '../../../i18n-config';
 import '@/app/styles/_normilize.css';
 import '@/app/styles/globals.css';

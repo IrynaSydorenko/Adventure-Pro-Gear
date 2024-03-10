@@ -1,8 +1,19 @@
 /*colors*/
 :root {
-  --darkBlue: #152a38;
   --white: #fff;
-  --black: #000;
-  --mediumBlue: #224256;
   --wight: #f4ffff;
+  --label: #e6e6e6;
+  --veryLightGray: #cccccc;
+  --lightGray: #b3b3b3;
+  --gray: #999999;
+  --darkerGray: #666666;
+  --darkGray: #333333;
+  --black: #000;
+  --lightYellow: #ffecce;
+  --yellow: #ffdba4;
+  --yellowForStars: #ffc670;
+  --greenForBtn: #1e5f72;
+  --blue: #376b8e;
+  --mediumBlue: #224256;
+  --darkBlue: #152a38;
 }

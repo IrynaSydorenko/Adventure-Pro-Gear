@@ -4,13 +4,14 @@
 
 .container {
   padding-top: 0;
+  padding-bottom: 0;
 }
 
 .productNavBarChildren {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .userInteractions {
@@ -18,4 +19,5 @@
   flex-direction: row;
   min-width: 96px;
   justify-content: space-between;
+  align-self: center;
 }
