@@ -9,7 +9,7 @@ interface PersonalAccProp {
 
 const PersonalAcc: React.FC<PersonalAccProp> = ({ personalAccount }) => (
   <div className={styles.personalAcc}>
-    <Image src={Person} alt="person icon" width={22} height={22} />
+    <Image src={Person} alt="person icon" width={24} height={24} />
   </div>
 );
 
