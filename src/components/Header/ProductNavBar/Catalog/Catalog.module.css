@@ -1,9 +1,10 @@
 .catalog {
   display: flex;
   background-color: var(--mediumBlue);
-  padding: 17.5px 71px 17.5px 42px;
+  padding: 17.5px 71px 20.5px 10px;
   cursor: pointer;
   align-items: center;
+  line-height: 30px;
 }
 .icon {
   margin-right: 8px;
