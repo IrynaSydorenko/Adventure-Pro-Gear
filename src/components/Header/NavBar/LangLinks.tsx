@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from 'react';
+'use client';
+
+import React, { useState } from 'react';
+import Select, { components } from 'react-select';
 import useNav from '@/hooks/useNav';
 import Image from 'next/image';
 import { Locale } from '@/i18n-config';
@@ -10,6 +13,13 @@ interface LangLinksProps {
   locale?: Locale;
 }
 
+const CustomSingleValue = (props: any) => (
+  <components.SingleValue {...props}>
+    <Image src={World} alt="globus icon" width={22} height={22} className={styles.globusIcon} />
+    {props.children}
+  </components.SingleValue>
+);
+
 const LangLinks: React.FC<LangLinksProps> = ({ languages, locale }) => {
   const { uaLink, enLink } = useNav();
   const defaultLanguage = locale || 'uk-UA';
@@ -18,32 +28,58 @@ const LangLinks: React.FC<LangLinksProps> = ({ languages, locale }) => {
   const options = [
     {
       value: 'uk-UA',
-      text: languages[0],
+      label: languages[0],
     },
     {
       value: 'en-US',
-      text: languages[1],
+      label: languages[1],
     },
   ];
 
-  const handleLanguageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedValue = event.target.value;
-    // @ts-ignore
-    setSelectedLanguage(selectedValue);
-    // Update the URL based on the selected language
-    window.location.href = selectedValue === 'uk-UA' ? uaLink : enLink;
+  const handleLanguageChange = (selectedOption: any) => {
+    setSelectedLanguage(selectedOption.value);
+    window.location.href = selectedOption.value === 'uk-UA' ? uaLink : enLink;
   };
 
   return (
     <div className={styles.langSelect}>
-      <select value={selectedLanguage} onChange={handleLanguageChange}>
-        {options.map((option, index) => (
-          <option key={index} value={option.value}>
-            {option.text}
-          </option>
-        ))}
-      </select>
-      <Image src={World} alt="globus icon" width={22} height={22} />
+      <Select
+        value={options.find(option => option.value === selectedLanguage)}
+        onChange={handleLanguageChange}
+        options={options}
+        isSearchable={false}
+        components={{ SingleValue: CustomSingleValue }}
+        styles={{
+          container: (baseStyles, state) => ({
+            ...baseStyles,
+          }),
+          control: (baseStyles, state) => ({
+            ...baseStyles,
+            borderRadius: 0,
+            border: 'none',
+            backgroundColor: '#152a38',
+            boxShadow: 'none',
+            minHeight: 40,
+          }),
+          valueContainer: (baseStyles, state) => ({
+            ...baseStyles,
+            padding: 0,
+            cursor: 'pointer',
+          }),
+          singleValue: (baseStyles, state) => ({
+            ...baseStyles,
+            display: 'flex',
+            alignItems: 'center',
+            color: 'white',
+            margin: 0,
+            paddingLeft: 30, // Adjust padding as needed
+          }),
+          indicatorsContainer: baseStyles => ({
+            ...baseStyles,
+            display: 'none',
+          }),
+        }}
+      />
     </div>
   );
 };
