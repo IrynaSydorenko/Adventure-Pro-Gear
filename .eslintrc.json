@@ -33,6 +33,7 @@
     "arrow-parens": "off",
     "consistent-return": "off",
     "react/require-default-props": "off",
-    "array-callback-return": "off"
+    "array-callback-return": "off",
+    "react/jsx-props-no-spreading": "off"
   }
 }
