@@ -8,5 +8,27 @@
     "search": "Пошук",
     "catalog": "Каталог товарів",
     "lang": ["Українська", "Англійська"]
+  },
+  "foot": {
+    "information": "Інформація",
+    "aboutus": "Про нас",
+    "promo": "Акції",
+    "blog": "Блог",
+    "producers": "Виробники",
+    "termsOfAgreement": "Умови Угоди",
+    "securityPolicy": "Політика безпеки",
+    "contacts": "Контакти",
+    "support": "Підтримка",
+    "guarantee": "Гарантія",
+    "delivery": "Доставка",
+    "payment": "Оплата",
+    "returnAndExchanges": "Повернення та обмін",
+    "ourContacts": "Наші контакти",
+    "socialNetworks": "Ми у соціальних мережах",
+    "beInCenterOfEvents": "Будьте в центрі подій - піпишіться на наші Новини! Новинки, знижки та акції",
+    "enterEmail": "Введіть Ваш e-mail",
+    "readAndAgreePolicyTerms": "Я прочитав і згоден з умовами Політики безпеки",
+    "subscribeButtonCaption": "Підписатися",
+    "footBottomContentText": "Тисячі товарів для яскравих пригод в онлайн магазині Adventure Pro Gear © 2024"
   }
 }
