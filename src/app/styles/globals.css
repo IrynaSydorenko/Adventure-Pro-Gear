@@ -1,7 +1,7 @@
 /*colors*/
 :root {
   --white: #fff;
-  --wight: #f4ffff;
+  --wight: #f5ffff;
   --label: #e6e6e6;
   --veryLightGray: #cccccc;
   --lightGray: #b3b3b3;
@@ -16,4 +16,5 @@
   --blue: #376b8e;
   --mediumBlue: #224256;
   --darkBlue: #152a38;
+  --primery-blu-700: #435968;
 }

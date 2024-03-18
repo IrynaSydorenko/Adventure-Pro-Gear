@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Footer from '@/components/Footer/Footer';
 import ReduxProvider from '@/redux/provider';
 import { NextPage } from 'next';
 import { getAllTranslations, getTranslation } from '@/dictionaries/dictionaries';
@@ -29,6 +29,7 @@ interface RootLayoutProps {
 const RootLayout: NextPage<RootLayoutProps> = async ({ params: { lang }, children }) => {
   const translations = await getAllTranslations(lang);
   const translation = getTranslation(translations);
+  // const translationFooter = getTranslation(translations);
 
   return (
     <ReduxProvider>
@@ -36,7 +37,7 @@ const RootLayout: NextPage<RootLayoutProps> = async ({ params: { lang }, childre
         <body className={inter.className}>
           <Header translation={translation('nav')} locale={lang} />
           <main>{children}</main>
-          <Footer />
+          <Footer translation={translation('foot')} locale={lang} />
         </body>
       </html>
     </ReduxProvider>
