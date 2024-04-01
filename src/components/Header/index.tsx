@@ -13,7 +13,7 @@ const Header: NextPage<HeaderProps> = ({ translation, locale }) => (
     <Container>
       <NavBar translation={translation} locale={locale} />
     </Container>
-    <ProductNavBar translation={translation} />
+    <ProductNavBar translation={translation} locale={locale} />
   </header>
 );
 

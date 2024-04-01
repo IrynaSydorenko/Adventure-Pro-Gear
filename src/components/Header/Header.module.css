@@ -35,9 +35,14 @@
   box-sizing: border-box;
   text-align: center;
 }
+
 .navItem > a {
   text-decoration: none;
   color: var(--white);
+}
+
+.navItem > a:hover {
+  color: var(--lightYellow);
 }
 
 .globusIcon {
