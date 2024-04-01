@@ -15,13 +15,13 @@ const NavList: React.FC<HeaderProps> = ({ translation, locale }) => {
       href: `/${locale}/about_us`,
       text: translation.aboutUs,
     },
-    { type: 'link', text: translation.blog, href: `/${locale}/blog` },
-    { type: 'link', text: translation.contacts, href: `/${locale}/contacts` },
+    { type: 'link', href: `/${locale}/blog`, text: translation.blog },
+    { type: 'link', href: `/${locale}/contacts`, text: translation.contacts },
     { type: 'langLink' },
   ];
   return (
     <ul className={styles.navList}>
-      {navLinks.map(({ type, text, href }, index) => {
+      {navLinks.map(({ type, href, text }, index) => {
         if (type === 'langLink') {
           return <LangLinks key={index} languages={translation.lang} locale={locale} />;
         }
