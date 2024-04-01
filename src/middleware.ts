@@ -4,6 +4,10 @@ import { match as matchLocale } from '@formatjs/intl-localematcher';
 import Negotiator from 'negotiator';
 import { i18n } from './i18n-config';
 
+export { default } from 'next-auth/middleware';
+
+export const configuration = { matcher: ['/blog', '/contacts'] };
+
 const getLocale = (request: NextRequest): string | undefined => {
   // Negotiator expects plain object so we need to transform headers
   const negotiatorHeaders: Record<string, string> = {};
