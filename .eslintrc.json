@@ -35,6 +35,15 @@
     "react/require-default-props": "off",
     "array-callback-return": "off",
     "react/jsx-props-no-spreading": "off",
-    "react/destructuring-assignment": "off"
+    "react/destructuring-assignment": "off",
+    "no-trailing-spaces": "warn",
+    "object-curly-newline": "warn",
+    "object-curly-spacing": "warn",
+    "no-console": "warn",
+    "jsx-a11y/label-has-associated-control": "warn",
+    "import/prefer-default-export": "warn",
+    "arrow-body-style": "warn",
+    "no-return-await": "warn",
+    "no-restricted-exports": "warn"
   }
 }
