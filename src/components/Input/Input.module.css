@@ -1,0 +1,10 @@
+.input {
+  display: flex;
+  outline: none;
+  padding: 12px;
+  padding-left: 16px;
+  margin-bottom: 32px;
+  min-width: 375px;
+  border: solid 1px var(--gray-300);
+  border-radius: 4px;
+}
