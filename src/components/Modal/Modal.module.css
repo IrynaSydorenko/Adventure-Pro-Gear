@@ -1,0 +1,22 @@
+.modal {
+  box-sizing: border-box;
+  display: flex;
+  background-color: var(--wightAuth);
+  position: absolute;
+  translate: 50% -50% 7px;
+  /* transform: translate(50%); */
+  top: 50%;
+  right: 50%;
+  border-radius: 5px;
+}
+
+.closeButton {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  display: block;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
