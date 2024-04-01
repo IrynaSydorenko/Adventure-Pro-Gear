@@ -1,0 +1,12 @@
+.authContaner {
+  cursor: pointer;
+  position: relative;
+}
+
+.authContaner > img {
+  padding: 8px;
+}
+
+.authContaner:hover > div {
+  display: flex !important;
+}
