@@ -7,6 +7,7 @@ import styles from './DropDown.module.css';
 
 interface DropDownProps {
   locale: string | undefined;
+  personalAccount?: string;
 }
 
 const DropDown: React.FC<DropDownProps> = ({ locale }) => (
