@@ -3,13 +3,12 @@ import Container from '@/components/Container';
 import Search from '@/components/Search';
 import { HeaderProps } from '@/types';
 import ShoppingCart from './ShoppingCart';
-import PersonalAcc from './PersonalAccount';
+import AuthContainer from './AuthContainer';
 import Likes from './Likes';
 import CatalogOfGoods from './Catalog';
-
 import styles from './ProductNavBar.module.css';
 
-const ProductNavBar: React.FC<HeaderProps> = ({ translation }) => (
+const ProductNavBar: React.FC<HeaderProps> = ({ translation, locale }) => (
   <div className={styles.background}>
     <Container className={styles.container}>
       <div className={styles.productNavBarChildren}>
@@ -18,7 +17,8 @@ const ProductNavBar: React.FC<HeaderProps> = ({ translation }) => (
         <div className={styles.userInteractions}>
           <Likes />
           <ShoppingCart />
-          <PersonalAcc personalAccount={translation.personalAccount} />
+          <AuthContainer personalAccount={translation.personalAccount} locale={locale} />
+          <div className={styles.overlay} />
         </div>
       </div>
     </Container>
