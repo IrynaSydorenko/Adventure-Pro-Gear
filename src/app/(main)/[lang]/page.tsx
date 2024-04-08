@@ -6,6 +6,7 @@ import AuthModal from '@/components/AuthModal';
 
 const Page = async ({ params }: { params: { lang: string } }) => {
   const session = await getServerSession(options);
+  console.log("session: ", session)
   return (
     <>
       {session ? (
@@ -19,7 +20,7 @@ const Page = async ({ params }: { params: { lang: string } }) => {
           <h2>Not Authenticated</h2>
         </>
       )}
-      <AuthModal />
+      <AuthModal locale={params.lang}/>
     </>
   );
 };
