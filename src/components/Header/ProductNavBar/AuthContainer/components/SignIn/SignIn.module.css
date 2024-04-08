@@ -1,0 +1,85 @@
+.formContainer {
+  display: flex;
+  justify-content: center;
+  margin: 40px 80px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form input[type='password']{
+  margin-bottom: 0;
+}
+
+.form > input[type='submit'] {
+  display: flex;
+  justify-content: center;
+  color: var(--white);
+  min-width: 375px;
+  padding: 16px;
+  background-color: var(--primaryBlue);
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.h4 {
+  display: flex;
+  align-self: start;
+  color: var(--greenForBtn);
+  font-weight: 700;
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+
+.restorePasswordLink {
+  color: var(--primaryBlue);
+  display:flex;
+  align-self: end;
+  margin-top: 8px;
+}
+
+/* .checkboxContainer{
+  display: flex;
+  align-self: start;
+  align-items: center;
+  margin-bottom: 32px;
+  margin-top: 16px;
+  
+}
+
+.checkboxContainer input[type='checkbox']{
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkboxContainer label{
+  cursor: pointer;
+  display: flex;
+}
+  
+.checkboxContainer label::before{
+   content: "";
+   width: 1em;
+   height: 1em;
+   border: 1px solid var(--primaryBlue);
+   margin-right: 5.5px;
+   border-radius: 2px;
+}
+
+.checkboxContainer input[type='checkbox']:hover + label::before {
+  background-color: lightgray;
+}
+
+.checkboxContainer input[type='checkbox']:checked + label::before {
+  content: '\002714';
+  background-color: var(--primaryBlue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+} */
