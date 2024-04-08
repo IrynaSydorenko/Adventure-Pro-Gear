@@ -3,9 +3,9 @@
 import React, { ChangeEvent } from 'react';
 import styles from './Input.module.css';
 
-interface TextInputProps {
-  placeholder: string;
-  name: string;
+interface InputProps {
+  placeholder?: string;
+  name?: string;
   value?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   error?: string;
@@ -14,7 +14,7 @@ interface TextInputProps {
   type?: string;
 }
 
-const TextInput: React.FC<TextInputProps> = ({
+const Input: React.FC<InputProps> = ({
   placeholder,
   name,
   value,
@@ -38,4 +38,4 @@ const TextInput: React.FC<TextInputProps> = ({
   </div>
 );
 
-export default TextInput;
+export default Input;
