@@ -5,7 +5,11 @@ import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Modal from '../Modal';
 import SignUp from '../Header/ProductNavBar/AuthContainer/components/SignUp';
-import Login from '../Header/ProductNavBar/AuthContainer/components/Login';
+import SignIn from '../Header/ProductNavBar/AuthContainer/components/SignIn';
+
+interface AuthModalProps {
+  locale: string
+}
 
 type AuthType =
   | 'signin'
@@ -16,7 +20,7 @@ type AuthType =
   | 'new-password'
   | null;
 
-const AuthModal = () => {
+const AuthModal: React.FC<AuthModalProps> = ({locale}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [authType, setAuthType] = useState<AuthType>(null);
   const searchParams = useSearchParams();
@@ -42,8 +46,13 @@ const AuthModal = () => {
   return (
     <div>
       {isModalOpen && session.status !== 'authenticated' && authType === 'signup' && (
-        <Modal closeModal={closeModal}>
+        <Modal closeModal={closeModal} locale={locale}>
           <SignUp />
+        </Modal>
+      )}
+      {isModalOpen && session.status !== 'authenticated' && authType === 'signin' && (
+        <Modal closeModal={closeModal} locale={locale}>
+          <SignIn />
         </Modal>
       )}
     </div>
