@@ -1,6 +1,6 @@
 import type { NextAuthOptions } from 'next-auth';
 import credentialsProvider from 'next-auth/providers/credentials';
-import { signUpService } from '@/services/axios';
+import { signInService } from '@/services/axios';
 import { Route } from '@/constants/routes';
 
 export const options: NextAuthOptions = {
@@ -8,44 +8,49 @@ export const options: NextAuthOptions = {
     credentialsProvider({
       name: 'Credentials',
       credentials: {
-        name: { label: 'Name', type: 'text', placeholder: 'Name' },
-        surname: { label: 'Surname', type: 'text', placeholder: 'Surname' },
         email: { label: 'Email', type: 'email', placeholder: 'Email' },
-        password: { label: 'Password', type: 'password', placeholder: 'Password' },
+        password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
+        if (!credentials) return;
+
+        const { email, password } = credentials;
+
         try {
-          // Call signUpService to register the user
-          const user = await signUpService(credentials);
-          // Return the user data upon successful registration
+          const user = await signInService({ email, password });
+          console.log("USER: ", user.data)
           return user.data;
         } catch (error) {
-          // Handle authentication failures
           console.error('Authentication failed:', error);
           return null;
         }
       },
     }),
   ],
-  secret: '', // Provide a secret for session encryption (keep it secure)
+  secret: 'by21t4673gr732eiw', // Provide a secret for session encryption (keep it secure)
   callbacks: {
-    async session({ session, user }) {
-      // Return the session data
+    async session({ session, token }) {
+      session.user = {
+        ...session.user,
+        role: token.role,
+      }
       return session;
     },
-    async jwt({ token, user, account, profile }) {
-      // Modify the JWT token if necessary
+    async jwt({ token, user }) {
+      if (user) {
+        token = { ...token, ...user }
+      }
       return token;
     },
   },
   session: {
-    strategy: 'jwt', // Use JWT for session management
-    maxAge: 30 * 24 * 60 * 60, // Set the session max age (in seconds)
+    strategy: 'jwt',
+    maxAge: 30 * 24 * 60 * 60,
   },
   pages: {
-    signIn: Route.SIGN_UP, // Specify the sign-in page route
+    signIn: Route.SIGNIN,
   },
   jwt: {
-    maxAge: 60 * 60 * 24 * 30, // Set the JWT max age (in seconds)
+    maxAge: 60 * 60 * 24 * 30,
   },
 };
