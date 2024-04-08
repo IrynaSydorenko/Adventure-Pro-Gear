@@ -6,18 +6,18 @@ const axiosInstance = axios.create({
   baseURL: 'https://prime-tax-production.up.railway.app/',
 });
 
-// axiosInstance.interceptors.request.use(
-//   async config => {
-//     const session = await getServerSession(options);
+axiosInstance.interceptors.request.use(
+  async config => {
+    const session = await getServerSession(options);
 
-//     if (!config.headers.Authorization) {
-//       config.headers.Authorization = `Bearer ${session?.user?.token.access}`;
-//     }
+    if (!config.headers.Authorization) {
+      config.headers.Authorization = `Bearer ${session?.user?.token.access}`;
+    }
 
-//     return config;
-//   },
-//   error => Promise.reject(error)
-// )
+    return config;
+  },
+  error => Promise.reject(error)
+)
 
 // const session = getServerSession(options);
 
