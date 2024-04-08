@@ -10,18 +10,6 @@
   align-items: center;
 }
 
-.form > input[type='submit'] {
-  display: flex;
-  justify-content: center;
-  color: var(--white);
-  min-width: 375px;
-  padding: 16px;
-  background-color: var(--primaryBlue);
-  border: none;
-  border-radius: 5px;
-  font-size: 20px;
-}
-
 .h4 {
   display: flex;
   align-self: start;
@@ -29,4 +17,12 @@
   font-weight: 700;
   font-size: 32px;
   margin-bottom: 24px;
+}
+
+.submitPolicy{
+  margin-bottom: 32px;
+}
+
+.submitPolicy >a{
+  color: var(--primaryBlue)
 }
