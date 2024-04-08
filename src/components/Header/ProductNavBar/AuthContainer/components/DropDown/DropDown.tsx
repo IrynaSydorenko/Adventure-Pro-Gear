@@ -15,7 +15,7 @@ const DropDown: React.FC<DropDownProps> = ({ locale }) => (
     <span />
     <ul>
       <li>
-        <Link href='/'>Log In</Link>
+        <Link href={`/${locale}${Route.SIGNIN}`}>Log In</Link>
       </li>
       <li>
         <Link href={`/${locale}${Route.SIGN_UP}`}>Sign Up</Link>
