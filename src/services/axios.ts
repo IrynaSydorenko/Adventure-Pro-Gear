@@ -2,16 +2,26 @@ import axios from 'axios';
 import { getServerSession } from 'next-auth';
 import {options} from '@/config'
 
+export const token: { access: string | null; refresh: string | null } = {
+  access: null,
+  refresh: null,
+};
+
 const axiosInstance = axios.create({
   baseURL: 'https://prime-tax-production.up.railway.app/',
 });
 
+axios.defaults.withCredentials = true;
+
 axiosInstance.interceptors.request.use(
   async config => {
     const session = await getServerSession(options);
+    const publicEndpoints = ['/api/public/auth/refresh-token', '/api/public/products', 'api/public/auth/login'];
+    const needsAuth = !publicEndpoints.some(endpoint => config?.url?.startsWith(endpoint));
 
-    if (!config.headers.Authorization) {
-      config.headers.Authorization = `Bearer ${session?.user?.token.access}`;
+    
+    if (needsAuth && !config.headers.Authorization) {
+      config.headers.Authorization = `Bearer ${session?.user?.token.accessToken}`;
     }
 
     return config;
@@ -19,10 +29,19 @@ axiosInstance.interceptors.request.use(
   error => Promise.reject(error)
 )
 
-// const session = getServerSession(options);
+export const refreshTokenService = async (refreshToken: string) => {
+  const response = await axios.post('/api/public/auth/refresh-token', {
+    refreshToken
+  });
+  console.log("RefreshToken Response: ", response)
+  if (response.status >= 400) {
+    throw new Error(`Refresh token error: ${response.status}`);
+  }
+  return response
+}
 
 export const getProducts = async () => {
-  /*return {data:undefined};*/ return await axiosInstance.get('/api/v1/products');
+  /*return {data:undefined};*/ return await axiosInstance.get('/api/public/products');
 };
 
 export const signUpService = async (credentials: any) => {
@@ -39,11 +58,23 @@ export const signUpService = async (credentials: any) => {
 };
 
 export const signInService = async (credentials: any) => {
-  return await axiosInstance.post('api/public/auth/signin', credentials)
+  const { email, password } = credentials;
+  return await axiosInstance.post('api/public/auth/login', { email, password })
 }
 
-export const getUserInfoService = async () => {
-   return await axiosInstance.get('/api/users/me')
+export const getUserInfoService = async (accessToken: any) => {
+  try {
+    const response = await axiosInstance.get('/api/users/me', {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    });
+    return response;
+  } catch (error) {
+    console.error('Failed to retrieve user information:', error);
+    throw error;  // Re-throw the error to handle it in the calling function
+  }
+  //  return await axiosInstance.get('/api/users/me')
 }
 
 export const getUsers = async () => {
