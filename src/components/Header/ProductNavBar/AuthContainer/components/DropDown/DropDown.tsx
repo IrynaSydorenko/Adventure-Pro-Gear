@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Route } from '@/constants/routes';
+import { Routes } from '@/constants/routes';
 import Link from 'next/link';
 import styles from './DropDown.module.css';
 
@@ -15,10 +15,10 @@ const DropDown: React.FC<DropDownProps> = ({ locale }) => (
     <span />
     <ul>
       <li>
-        <Link href={`/${locale}${Route.SIGNIN}`}>Log In</Link>
+        <Link href={`/${locale}${Routes.SIGNIN}`}>Log In</Link>
       </li>
       <li>
-        <Link href={`/${locale}${Route.SIGN_UP}`}>Sign Up</Link>
+        <Link href={`/${locale}${Routes.SIGN_UP}`}>Sign Up</Link>
       </li>
     </ul>
   </div>
