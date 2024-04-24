@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-// import { signInAction } from '@/app/actions';
-// import { signInService } from '@/services/axios';
 import { signIn } from 'next-auth/react';
+import Button from '@/components/Button';
+import { Routes } from '@/constants/routes'
 import Link from 'next/link';
 import Form from '@/components/Form'
 import Input from '@/components/Input'
@@ -37,17 +37,17 @@ function SignIn() {
   <div className={styles.formContainer}>
     <Form className={styles.form}>
       <h4 className={styles.h4}>SignIn</h4>
-      <Input placeholder='email' name='email' type='email' value={signInCredentials.email}
+      <Input required={true} placeholder='email' name='email' type='email' value={signInCredentials.email}
           onChange={handleChange}/>
-      <Input placeholder='password' name='password' type='password' value={signInCredentials.password}
+      <Input required={true} placeholder='password' name='password' type='password' value={signInCredentials.password}
           onChange={handleChange}/>
       <Link href='/forgotPassword' className={styles.restorePasswordLink}>forgot password?</Link>
       <Checkbox/>
-      <button onClick={(e) => {
+      <Button onClick={(e) => {
         e.preventDefault()
         signIn("credentials", {redirect: false, ...signInCredentials })}
-      }>Sign in</button>
-      <div>Зареєструватися</div>
+      } text='Sign in' color='primary' type='submit'/>
+      <Link className={styles.registerLink} href={'/uk-UA/' + Routes.SIGN_UP}>Зареєструватися</Link>
     </Form>
   </div>
  );
