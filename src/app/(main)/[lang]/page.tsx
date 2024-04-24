@@ -2,6 +2,7 @@ import React from 'react';
 import { options } from '@/config';
 import { getServerSession } from 'next-auth/next';
 import Hiro from '@/components/Hero/Hero';
+import SignOutButton from '@/components/SignOutButton';
 import AuthModal from '@/components/AuthModal';
 
 const Page = async ({ params }: { params: { lang: string } }) => {
@@ -13,6 +14,7 @@ const Page = async ({ params }: { params: { lang: string } }) => {
         <>
           <Hiro />
           <h2>Authenticated</h2>
+          <SignOutButton/>
         </>
       ) : (
         <>
