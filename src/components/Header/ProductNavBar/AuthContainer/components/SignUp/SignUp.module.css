@@ -26,3 +26,12 @@
 .submitPolicy >a{
   color: var(--primaryBlue)
 }
+
+.loginLink {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 27px;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--black);
+}

@@ -8,7 +8,7 @@ import Checkbox from '@/components/Checkbox/Checkbox';
 import { registerAction } from '@/app/actions';
 import {getAllTranslations, getTranslation} from '@/dictionaries/dictionaries';
 import {i18n, Locale} from '@/i18n-config';
-import { Route } from '@/constants/routes';
+import { Routes } from '@/constants/routes';
 import styles from './SignUp.module.css';
 import { signUpService } from '@/services/axios';
 import Link from 'next/link';
@@ -80,6 +80,7 @@ function SignUp() {
           onChange={handleChange}
           name='name'
           placeholder="Name"
+          required={true}
           error='incorrect name'
         />
         <Input
@@ -88,6 +89,7 @@ function SignUp() {
           value={credentials.surname}
           onChange={handleChange}
           placeholder="Surname"
+          required={true}
           error='Incorrect surname'
         />
         <Input
@@ -96,6 +98,7 @@ function SignUp() {
           value={credentials.email}
           onChange={handleChange}
           placeholder="Email"
+          required={true}
           error='incorrect imail'
         />
         <Input
@@ -104,12 +107,13 @@ function SignUp() {
           value={credentials.password}
           onChange={handleChange}
           placeholder="Password"
+          required={true}
           error='incorrect password'
         />
         <Checkbox/>
         <div className={styles.submitPolicy}>Реєструючись, ви погоджуєтеся з умовами<Link href="/policy"> положення про обробку і захист персональних даних та угодою користувача</Link></div>
         <Input type="submit" value="Register" />
-        <div>Я вже зареєстрований</div>
+        <Link className={styles.loginLink} href={'/uk-UA/' + Routes.SIGNIN}>Я вже зареєстрований</Link>
       </Form>
     </div>
   );
