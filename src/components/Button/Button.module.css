@@ -3,8 +3,23 @@
   justify-content: center;
   align-items: center;
   padding: 9px 63.5px;
+  border: none
 }
 
-/* .button[]{
+.primary {
+  background-color: var(--primaryBlue);
+  color: var(--white)
+}
 
-} */
+.secondary {
+  background-color: var(--gray);
+  color: var(--white)
+}
+
+.button[type='submit'] {
+  min-width: 375px;
+  border-radius: 5px;
+  font-size: 20px;
+  padding: 12px 12px 12px 16px;
+  box-sizing: unset;
+}
