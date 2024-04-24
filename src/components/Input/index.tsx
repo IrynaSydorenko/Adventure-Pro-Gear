@@ -12,6 +12,7 @@ interface InputProps {
   icon?: React.ReactNode;
   className?: string;
   type?: string;
+  required?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -23,10 +24,12 @@ const Input: React.FC<InputProps> = ({
   icon,
   className,
   type,
+  required
 }) => (
   <div>
     {/* <span className="input-icon">{iconComponent}</span> */}
     <input
+      required={required}
       type={type}
       name={name}
       value={value}
