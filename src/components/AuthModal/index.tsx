@@ -6,9 +6,10 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Modal from '../Modal';
 import SignUp from '../Header/ProductNavBar/AuthContainer/components/SignUp';
 import SignIn from '../Header/ProductNavBar/AuthContainer/components/SignIn';
+import styles from './AuthModal.module.css';
 
 interface AuthModalProps {
-  locale: string
+  locale: string;
 }
 
 type AuthType =
@@ -20,7 +21,7 @@ type AuthType =
   | 'new-password'
   | null;
 
-const AuthModal: React.FC<AuthModalProps> = ({locale}) => {
+const AuthModal: React.FC<AuthModalProps> = ({ locale }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [authType, setAuthType] = useState<AuthType>(null);
   const searchParams = useSearchParams();
@@ -28,7 +29,7 @@ const AuthModal: React.FC<AuthModalProps> = ({locale}) => {
   const session = useSession();
 
   const closeModal = () => {
-    router.replace('/');
+    router.replace(`/${locale}`);
   };
   useEffect(() => {
     const type = searchParams.get('auth') as AuthType;
@@ -46,13 +47,13 @@ const AuthModal: React.FC<AuthModalProps> = ({locale}) => {
   return (
     <div>
       {isModalOpen && session.status !== 'authenticated' && authType === 'signup' && (
-        <Modal closeModal={closeModal} locale={locale}>
-          <SignUp />
+        <Modal closeModal={closeModal} locale={locale} className={styles.authModal}>
+          <SignUp locale={locale} />
         </Modal>
       )}
       {isModalOpen && session.status !== 'authenticated' && authType === 'signin' && (
-        <Modal closeModal={closeModal} locale={locale}>
-          <SignIn />
+        <Modal closeModal={closeModal} locale={locale} className={styles.authModal}>
+          <SignIn locale={locale} />
         </Modal>
       )}
     </div>
