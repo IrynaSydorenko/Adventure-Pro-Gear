@@ -1,22 +1,44 @@
-.input {
+.inputContainer {
+  width: 100%;
+  position: relative;
+}
+
+.input,
+.input[type='submit'] {
   display: flex;
   outline: none;
-  padding: 12px 12px 12px 16px; 
-  margin-bottom: 32px;
-  min-width: 375px;
+  padding: 12px 12px 12px 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input {
+  /* margin-bottom: 32px; */
+  margin-top: 32px;
   border: solid 1px var(--gray-300);
   border-radius: 4px;
 }
 
-.input[type='submit']{
-  display: flex;
+.input[type='submit'] {
   justify-content: center;
   color: var(--white);
-  min-width: 375px;
-  padding: 12px 12px 12px 16px;
   background-color: var(--primaryBlue);
-  box-sizing: unset;
   border: transparent;
   border-radius: 5px;
   font-size: 20px;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  font-weight: var(--medium);
+  font-size: var(--medium-16);
+  margin-top: 4px;
+}
+
+.hideIcon {
+  position: absolute;
+  top: 43px;
+  right: 20px;
+  cursor: pointer;
 }

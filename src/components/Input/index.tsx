@@ -1,6 +1,8 @@
 'use client';
 
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useState } from 'react';
+import Image from 'next/image';
+import Eye from '@/../public/icons/eye.svg';
 import styles from './Input.module.css';
 
 interface InputProps {
@@ -24,21 +26,36 @@ const Input: React.FC<InputProps> = ({
   icon,
   className,
   type,
-  required
-}) => (
-  <div>
-    {/* <span className="input-icon">{iconComponent}</span> */}
-    <input
-      required={required}
-      type={type}
-      name={name}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-      className={` ${className} ${styles.input}`}
-    />
-    {/* {errorMessage} */}
-  </div>
-);
+  required,
+}) => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const handleEyeClick = () => {
+    setPasswordVisible(prev => !prev);
+  };
+  return (
+    <div className={styles.inputContainer}>
+      <input
+        required={required}
+        type={type === 'password' && passwordVisible ? 'text' : type}
+        name={name}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        className={` ${className} ${styles.input}`}
+      />
+      {type === 'password' && (
+        <Image
+          src={Eye}
+          className={styles.hideIcon}
+          alt="hide icon"
+          width={20}
+          height={20}
+          onClick={handleEyeClick}
+        />
+      )}
+      <p className={styles.error}>{error}</p>
+    </div>
+  );
+};
 
 export default Input;
