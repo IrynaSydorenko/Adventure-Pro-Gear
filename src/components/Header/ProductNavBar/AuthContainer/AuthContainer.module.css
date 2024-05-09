@@ -7,6 +7,33 @@
   padding: 8px;
 }
 
-.authContaner:hover > div {
+/* .authContaner:hover > div {
   display: flex !important;
+} */
+
+.dropDownContainerVisible {
+  display: flex;
 }
+
+.dropDownContainerInvisible {
+  display: none;
+}
+
+.overlay {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.3);
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.noOverlay {
+  display: none;
+}
+
+/* .userInteractions:last-child:hover .overlay {
+  display: block;
+} */

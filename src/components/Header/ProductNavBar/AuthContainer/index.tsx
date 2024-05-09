@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Person from '@/../public/icons/Person.svg';
 import DropDown from './components/DropDown/DropDown';
@@ -9,11 +11,51 @@ interface AuthContainerProps {
   personalAccount: string;
 }
 
-const AuthContainer: React.FC<AuthContainerProps> = ({ personalAccount, locale }) => (
-  <div className={styles.authContaner}>
-    <Image src={Person} alt="person icon" width={24} height={24} />
-    <DropDown locale={locale} personalAccount={personalAccount} />
-  </div>
-);
+const AuthContainer: React.FC<AuthContainerProps> = ({ personalAccount, locale }) => {
+  const [isDropdownOpen, setIsOpen] = useState(false);
+  const [isLinkClicked, setIsLinkClicked] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  console.log('Value returned by useRef: ', dropdownRef);
+
+  const toggleDropdown = () => setIsOpen(!isDropdownOpen);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        console.log('Event target: ', event.target);
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isLinkClicked) {
+      setIsOpen(false);
+      setIsLinkClicked(false);
+    }
+  }, [isLinkClicked]);
+
+  return (
+    <div>
+      <div className={isDropdownOpen ? styles.overlay : styles.noOverlay} />
+      <div className={styles.authContaner} ref={dropdownRef}>
+        <Image src={Person} alt="person icon" width={24} height={24} onClick={toggleDropdown} />
+        <DropDown
+          locale={locale}
+          personalAccount={personalAccount}
+          isLinkClicked={() => setIsLinkClicked(true)}
+          className={
+            isDropdownOpen ? styles.dropDownContainerVisible : styles.dropDownContainerInvisible
+          }
+        />
+      </div>
+    </div>
+  );
+};
 
 export default AuthContainer;

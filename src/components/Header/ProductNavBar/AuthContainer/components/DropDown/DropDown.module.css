@@ -4,16 +4,19 @@
   border-radius: 5px;
   color: black;
   position: absolute;
-  right: -80px;
-  display: none;
+  right: -9px;
   justify-content: center;
   box-shadow: 10px 9px 20px #4597af;
   z-index: 3;
 }
 
-.dropDown:hover {
+/* .dropDown:active {
   display: flex !important;
 }
+
+.dropDown:hover {
+  display: flex !important;
+} */
 
 .dropDown > ul {
   display: flex;
@@ -31,7 +34,12 @@
   padding-bottom: 13px;
 }
 
-.dropDown > ul > li:hover {
+.dropDown > ul > li > a {
+  text-decoration: none;
+  color: var(--black-900);
+}
+
+.dropDown > ul > li > a:hover {
   color: #4597af;
 }
 
