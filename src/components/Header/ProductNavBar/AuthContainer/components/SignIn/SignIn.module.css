@@ -1,16 +1,9 @@
 .formContainer {
   display: flex;
   justify-content: center;
-  margin: 40px 80px;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.form input[type='password']{
+.form input[type='password'] {
   margin-bottom: 0;
 }
 
@@ -18,16 +11,16 @@
   display: flex;
   justify-content: center;
   color: var(--white);
-  min-width: 375px;
   padding: 16px;
   background-color: var(--primaryBlue);
   border: none;
   border-radius: 5px;
   font-size: 20px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .h4 {
-  display: flex;
   align-self: start;
   color: var(--greenForBtn);
   font-weight: 700;
@@ -37,7 +30,7 @@
 
 .restorePasswordLink {
   color: var(--primaryBlue);
-  display:flex;
+  display: flex;
   align-self: end;
   margin-top: 8px;
 }

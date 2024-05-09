@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ReduxProvider from '@/redux/provider';
@@ -6,11 +8,9 @@ import { NextPage } from 'next';
 import { getAllTranslations, getTranslation } from '@/dictionaries/dictionaries';
 import AuthProvider from '@/components/AuthProvider';
 import { Montserrat } from 'next/font/google';
-import { getServerSession } from 'next-auth';
 import { Locale } from '../../../i18n-config';
 import '@/app/styles/_normilize.css';
 import '@/app/styles/globals.css';
-import { options } from '@/config';
 
 export const metadata: Metadata = {
   title: 'Adventure Pro Gear',
@@ -39,10 +39,11 @@ const RootLayout: NextPage<RootLayoutProps> = async ({ params: { lang }, childre
   return (
     <ReduxProvider>
       <html lang="en">
-        <AuthProvider >
+        <AuthProvider>
           <body className={inter.className}>
             <Header translation={translation('nav')} locale={lang} />
             <main>{children}</main>
+            <ToastContainer />
             <Footer />
           </body>
         </AuthProvider>

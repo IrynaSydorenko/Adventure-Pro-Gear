@@ -1,30 +1,27 @@
 .formContainer {
   display: flex;
   justify-content: center;
-  margin: 40px 80px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .h4 {
-  display: flex;
   align-self: start;
   color: var(--greenForBtn);
   font-weight: 700;
   font-size: 32px;
-  margin-bottom: 24px;
+  margin-bottom: -8px;
 }
 
-.submitPolicy{
+.submitPolicy {
   margin-bottom: 32px;
 }
 
-.submitPolicy >a{
-  color: var(--primaryBlue)
+.submitPolicy > a {
+  color: var(--primaryBlue);
+}
+
+.submitRegistration {
+  margin-top: 0;
+  margin-bottom: 29px;
 }
 
 .loginLink {
@@ -34,4 +31,11 @@
   cursor: pointer;
   text-decoration: none;
   color: var(--black);
+}
+
+.errorAlert {
+  position: fixed;
+  background-color: var(--white);
+  top: 0;
+  right: 0;
 }
