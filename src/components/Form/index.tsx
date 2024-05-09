@@ -8,27 +8,18 @@ interface FormProps {
   onSubmit?: (event: FormEvent<HTMLFormElement>) => void;
   action?: ((formData: FormData) => void) | string;
   className?: string;
-  method?: 'GET' | 'POST'
+  method?: 'GET' | 'POST';
 }
 
-const Form: React.FC<FormProps> = ({ 
-  children, 
-  className, 
-  onSubmit, 
-  action, 
-  method
-}) => {
-  const formClassNames = clsx(styles.authForm, className);
-  return (
-    <form 
-      className={formClassNames} 
-      onSubmit={onSubmit} 
-      action={action} 
-      method={method}
-    >
-      {children}
-    </form>
-  );
-};
+const Form: React.FC<FormProps> = ({ children, className, onSubmit, action, method }) => (
+  <form
+    className={clsx(styles.form, className)}
+    onSubmit={onSubmit}
+    action={action}
+    method={method}
+  >
+    {children}
+  </form>
+);
 
 export default Form;
