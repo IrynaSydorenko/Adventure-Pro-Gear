@@ -2,7 +2,7 @@
 
 import React, { ChangeEvent, useState } from 'react';
 import Image from 'next/image';
-import Eye from '@/../public/icons/eye.svg';
+import Eye from '@/../public/icons/Eye.svg';
 import styles from './Input.module.css';
 
 interface InputProps {
