@@ -83,6 +83,7 @@ const SignIn: React.FC<SignInProps> = ({ locale }) => {
             }
             const response = await signIn('credentials', { redirect: false, ...signInCredentials });
             if (response?.status && response.status >= 400) {
+              console.log('Response Error: ', response.error);
               setServerError(response.error);
               toast.error(serverError, {
                 position: 'top-right',

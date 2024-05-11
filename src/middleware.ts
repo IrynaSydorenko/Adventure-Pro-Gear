@@ -16,18 +16,18 @@ const publicRoutes = [
   '/policy/',
 ];
 
-const filterUserRoutes = (arrayOfRoutes: string[]) => {
-  return arrayOfRoutes.filter(
-    route => route !== `${AppRoutes.SIGNIN}` && route !== `${AppRoutes.SIGN_UP}`
-  );
-};
+// const filterUserRoutes = (arrayOfRoutes: string[]) => {
+//   return arrayOfRoutes.filter(
+//     route => route !== `${AppRoutes.SIGNIN}` && route !== `${AppRoutes.SIGN_UP}`
+//   );
+// };
 
-const filteredPublicRoutes = filterUserRoutes(publicRoutes);
+// const filteredPublicRoutes = filterUserRoutes(publicRoutes);
 
-console.log('filteredPublicRoutes: ', filteredPublicRoutes);
+console.log('filteredPublicRoutes: ', publicRoutes);
 
-const protectedUserRoutes = [...filteredPublicRoutes, '/user', '/blog/', '/personal_account/'];
-const protectedAdminRoutes = [...protectedUserRoutes, '/admin'];
+const protectedUserRoutes = [...publicRoutes, '/user', '/blog/', '/personal_account/'];
+const protectedAdminRoutes = ['/admin'];
 
 const convertToGetSessionParams = (req: NextRequest): GetSessionParams => ({
   req: {
@@ -62,7 +62,12 @@ export async function getSessionAndRole(req: NextRequest) {
 
 export function checkAccess(role: string, pathname: string) {
   if (role === 'ADMIN') return true;
-  if (role === 'USER' && protectedUserRoutes.includes(pathname)) return true;
+  if (role === 'USER' && protectedUserRoutes.includes(pathname)) {
+    if (pathname === AppRoutes.SIGNIN || pathname === AppRoutes.SIGN_UP) {
+      return false;
+    }
+    return true;
+  }
   if (publicRoutes.includes(pathname)) {
     console.log('Includes: ', publicRoutes.includes(pathname));
     return true;
@@ -72,8 +77,13 @@ export function checkAccess(role: string, pathname: string) {
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
-  const pathNameWithQueryParams = req.url;
-  console.log('pathNameWithQueryParams: ', pathNameWithQueryParams);
+  const fullUrl = req.url;
+  const urlObj = new URL(fullUrl);
+  const pathnameFromUrlObj = urlObj.pathname;
+  const searchParams = urlObj.search;
+  const fullPath = `${pathnameFromUrlObj}${searchParams}`;
+  console.log('FullPath: ', fullPath);
+  console.log('fullUrl: ', fullUrl);
   console.log('PATH_NAME: ', pathname); // PATH_NAME:  /uk-UA/contacts/;
 
   // Check access rights first
@@ -81,19 +91,17 @@ export async function middleware(req: NextRequest) {
   console.log('ROLE: ', role);
   const isLocale = hasLocale(pathname);
   console.log('Has locale: ', isLocale);
+
   let parts = pathname.split('/'); // [ '', 'uk-UA', 'contacts', '' ]
   console.log(parts);
   const locale = parts.splice(1, 1)[0];
-  let newPathname = parts.join('/');
-  newPathname = newPathname === '//' ? '/' : newPathname;
+  let newPathname = `${parts.join('/')}${searchParams}`;
+  newPathname = newPathname === `//` ? `/` : newPathname;
   console.log('NewPathName', newPathname);
-  const pathnameCleaned = isLocale ? newPathname : pathname;
-
+  const pathnameCleaned = isLocale ? newPathname : fullPath;
+  console.log('PathNameCleaned: ', pathnameCleaned);
   const isAllowed = checkAccess(role, pathnameCleaned);
   console.log('Is allowed: ', isAllowed);
-
-  // http://localhost:3000/uk-UA/?auth=signin
-  // http://localhost:3000/uk-UA/?auth=signin
 
   if (!isAllowed && isLocale) {
     const targetUrl = role === 'guest' ? `/${locale}${AppRoutes.SIGNIN}` : `/${locale}/error`;
@@ -109,7 +117,9 @@ export async function middleware(req: NextRequest) {
 
   // Then handle locale redirection for authorized users
   if (!isLocale) {
-    return NextResponse.redirect(new URL(`/${i18n.defaultLocale}/${pathname}`, req.url));
+    return NextResponse.redirect(
+      new URL(`${urlObj.origin}/${i18n.defaultLocale}${newPathname}`, req.url)
+    );
   }
 
   return NextResponse.next();
