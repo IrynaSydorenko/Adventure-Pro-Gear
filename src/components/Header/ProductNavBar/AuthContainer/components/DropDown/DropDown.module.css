@@ -1,0 +1,56 @@
+.dropDown {
+  box-sizing: border-box;
+  background-color: var(--wightAuth);
+  border-radius: 5px;
+  color: black;
+  position: absolute;
+  right: -9px;
+  justify-content: center;
+  box-shadow: 10px 9px 20px #4597af;
+  z-index: 3;
+}
+
+/* .dropDown:active {
+  display: flex !important;
+}
+
+.dropDown:hover {
+  display: flex !important;
+} */
+
+.dropDown > ul {
+  display: flex;
+  flex-direction: column;
+  padding-left: 40px;
+  padding-right: 40px;
+  min-width: 105px;
+}
+
+.dropDown > ul > li {
+  display: flex;
+  list-style-type: none;
+  text-align: start;
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+.dropDown > ul > li > a {
+  text-decoration: none;
+  color: var(--black-900);
+}
+
+.dropDown > ul > li > a:hover {
+  color: #4597af;
+}
+
+.dropDown > span {
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 8px;
+  background-color: var(--wightAuth);
+  border-top-right-radius: 8px;
+  transform: rotate(-45deg);
+  top: -8px;
+  right: 20px;
+}

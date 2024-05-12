@@ -52,6 +52,7 @@ const LangLinks: React.FC<LangLinksProps> = ({ languages, locale }) => {
         styles={{
           container: (baseStyles, state) => ({
             ...baseStyles,
+            color: state.isFocused ? '#FFDBA4' : 'white',
           }),
           control: (baseStyles, state) => ({
             ...baseStyles,
@@ -72,7 +73,9 @@ const LangLinks: React.FC<LangLinksProps> = ({ languages, locale }) => {
             alignItems: 'center',
             color: 'white',
             margin: 0,
-            paddingLeft: 30, // Adjust padding as needed
+            paddingLeft: 30,
+            backgroundColor: '#152a38',
+            // Adjust padding as needed
           }),
           indicatorsContainer: baseStyles => ({
             ...baseStyles,

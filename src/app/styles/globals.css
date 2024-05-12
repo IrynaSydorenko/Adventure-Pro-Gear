@@ -1,19 +1,29 @@
 /*colors*/
 :root {
+  /* font weight */
+  --medium: 500;
+
+  /* font size */
+  --medium-16: 16px;
+
+  /* colours */
   --white: #fff;
   --wight: #f4ffff;
+  --wightAuth: #f5ffff;
   --label: #e6e6e6;
   --veryLightGray: #cccccc;
   --lightGray: #b3b3b3;
+  --gray-300: #b8b8b8;
   --gray: #999999;
   --darkerGray: #666666;
   --darkGray: #333333;
+  --black-900: #353535;
   --black: #000;
   --lightYellow: #ffecce;
   --yellow: #ffdba4;
   --yellowForStars: #ffc670;
   --greenForBtn: #1e5f72;
-  --blue: #376b8e;
+  --primaryBlue: #376b8e;
   --mediumBlue: #224256;
   --darkBlue: #152a38;
 }

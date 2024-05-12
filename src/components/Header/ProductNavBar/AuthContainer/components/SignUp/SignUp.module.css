@@ -1,0 +1,41 @@
+.formContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.h4 {
+  align-self: start;
+  color: var(--greenForBtn);
+  font-weight: 700;
+  font-size: 32px;
+  margin-bottom: -8px;
+}
+
+.submitPolicy {
+  margin-bottom: 32px;
+}
+
+.submitPolicy > a {
+  color: var(--primaryBlue);
+}
+
+.submitRegistration {
+  margin-top: 0;
+  margin-bottom: 29px;
+}
+
+.loginLink {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 27px;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--black);
+}
+
+.errorAlert {
+  position: fixed;
+  background-color: var(--white);
+  top: 0;
+  right: 0;
+}
