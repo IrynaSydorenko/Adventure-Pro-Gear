@@ -106,6 +106,7 @@ export const options: NextAuthOptions = {
               }
             } catch (error) {
               console.error('Error refreshing token:', error);
+              // @ts-ignore
               token.token.error = 'Failed to refresh session.';
             }
           }

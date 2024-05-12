@@ -128,4 +128,12 @@ export async function middleware(req: NextRequest) {
 export const config = {
   // Matcher ignoring `/_next/` and `/api/`
   matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)'],
+  unstable_allowDynamic: [
+    // allows a single file
+    '/lib/utilities.js',
+    // use a glob to allow anything in the function-bind 3rd party module
+    '/node_modules/function-bind/**',
+    // Add a glob pattern for the problematic module
+    '/node_modules/@babel/runtime/regenerator/**',
+  ],
 };
