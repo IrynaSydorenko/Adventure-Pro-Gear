@@ -16,16 +16,6 @@ const publicRoutes = [
   '/policy/',
 ];
 
-// const filterUserRoutes = (arrayOfRoutes: string[]) => {
-//   return arrayOfRoutes.filter(
-//     route => route !== `${AppRoutes.SIGNIN}` && route !== `${AppRoutes.SIGN_UP}`
-//   );
-// };
-
-// const filteredPublicRoutes = filterUserRoutes(publicRoutes);
-
-console.log('filteredPublicRoutes: ', publicRoutes);
-
 const protectedUserRoutes = [...publicRoutes, '/user', '/blog/', '/personal_account/'];
 const protectedAdminRoutes = ['/admin'];
 
