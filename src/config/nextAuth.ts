@@ -81,7 +81,7 @@ export const options: NextAuthOptions = {
       },
     }),
   ],
-  secret: 'by21t4673gr732eiw', // Provide a secret for session encryption (keep it secure)
+  secret: process.env.SECRET, // Provide a secret for session encryption (keep it secure)
   callbacks: {
     async jwt({ token, user, session }) {
       console.log('JWT callback: ', { token, user, session });
