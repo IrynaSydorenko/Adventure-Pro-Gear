@@ -14,6 +14,7 @@ const publicRoutes = [
   '/contacts/',
   '/about_us/',
   '/policy/',
+  '/error/',
 ];
 
 const protectedUserRoutes = [...publicRoutes, '/user', '/blog/', '/personal_account/'];
