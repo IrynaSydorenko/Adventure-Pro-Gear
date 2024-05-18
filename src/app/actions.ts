@@ -4,12 +4,19 @@ import { redirect } from 'next/navigation';
 import axios, { AxiosError } from 'axios';
 import { signUpService } from '@/services/axios';
 import { AppRoutes } from '@/constants/routes';
+import { getAllTranslations, getTranslation } from '@/dictionaries/dictionaries';
+import { i18n, Locale } from '@/i18n-config';
 import { SignUpSchema } from '@/validation';
 export interface ErrorMessages {
   [key: string]: string[];
 }
 
-export const registerAction = async (formData: FormData, locale: string) => {
+export const registerAction = async (formData: FormData, locale: Locale) => {
+  const translations = await getAllTranslations(locale);
+  console.log('Translations: ', translations);
+  const translationFunction = getTranslation(translations);
+  const authTranslation = translationFunction('auth');
+  console.log('Auth Translations: ', authTranslation);
   console.log('EMAIL: ', formData.get('email'));
   console.log(`Email ${formData.get('email')} is already in use.`);
   const credentials = Object.fromEntries(formData);
@@ -35,7 +42,7 @@ export const registerAction = async (formData: FormData, locale: string) => {
     console.log('Form submitted successfully:', result.data);
     if (result?.data) {
       return {
-        success: 'Form submitted successfully!',
+        success: authTranslation.registration.success,
       };
     }
   } catch (error: unknown) {

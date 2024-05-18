@@ -43,7 +43,7 @@ const RootLayout: NextPage<RootLayoutProps> = async ({ params: { lang }, childre
           <body className={inter.className}>
             <Header translation={translation('nav')} locale={lang} />
             <main>{children}</main>
-            <ToastContainer />
+            <ToastContainer hideProgressBar={true} />
             <Footer />
           </body>
         </AuthProvider>
