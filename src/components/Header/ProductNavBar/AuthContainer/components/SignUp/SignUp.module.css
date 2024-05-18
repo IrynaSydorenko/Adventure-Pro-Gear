@@ -33,9 +33,19 @@
   color: var(--black);
 }
 
-.errorAlert {
-  position: fixed;
-  background-color: var(--white);
-  top: 0;
-  right: 0;
+.toastSuccessMessage {
+  background-color: var(--wightAuth);
+}
+
+.toastBody {
+  color: var(--black);
+  font-family: '__Montserrat_7dfeba';
+}
+
+.toastBody > div > div > p > a {
+  color: var(--primaryBlue);
+}
+
+.toastErrorMessage {
+  background-color: var(--wightAuth);
 }
