@@ -3,13 +3,14 @@
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { Locale } from '@/i18n-config';
 import Modal from '../Modal';
 import SignUp from '../Header/ProductNavBar/AuthContainer/components/SignUp';
 import SignIn from '../Header/ProductNavBar/AuthContainer/components/SignIn';
 import styles from './AuthModal.module.css';
 
 interface AuthModalProps {
-  locale: string;
+  locale: Locale;
 }
 
 type AuthType =

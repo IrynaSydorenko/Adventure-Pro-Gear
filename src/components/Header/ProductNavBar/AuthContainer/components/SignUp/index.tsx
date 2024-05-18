@@ -1,6 +1,6 @@
 'use client';
 
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useState, useEffect } from 'react';
 import { z } from 'zod';
 import { SignUpSchema } from '@/validation';
 import { useRouter, usePathname } from 'next/navigation';
@@ -24,7 +24,7 @@ export interface Credentials {
 }
 
 interface SignUpProps {
-  locale: string;
+  locale: Locale;
 }
 
 // type TSignInSchema = z.infer<typeof SignUpSchema>;
@@ -41,28 +41,57 @@ const SignUp: React.FC<SignUpProps> = ({ locale }) => {
 
   const router = useRouter();
 
-  // const getLocale = () => {
-  //   const pathName = usePathname();
-  //   const segmentsArray = pathName.split('/');
-  //   const locale = segmentsArray.find(segment => segment === (i18n.locales[0] || i18n.locales[1]))
-  //   console.log(locale);
-  //   return locale;
+  const callToaster = () => {
+    const message = [
+      'Thank you for registering!',
+      'To complete the process of activating your account, please check your email and follow the link in the email we sent. After that, you will be able to use all the features of our site.',
+      "If you did not receive the email, please check your spam folder. If you have any questions, don't hesitate to \nContact us. \nThank you!",
+    ];
+    const message2 = [
+      'Дякуємо за реєстрацію!',
+      'Для завершення процесу активації вашого облікового запису, будь ласка, перевірте свою електронну пошту та перейдіть за посиланням у листі, який ми відправили. Після цього ви зможете користуватися всіма можливостями нашого сайту.',
+      "Якщо ви не отримали листа, будь ласка, перевірте папку 'Спам'. Якщо у вас виникли будь-які питання, не соромтеся \nЗв'язатися з нами. \nДякуємо!",
+    ];
 
-  // }
+    toast.success(
+      <div>
+        {message2.map((line, index) => (
+          <React.Fragment key={index}>
+            {index === 0 ? (
+              <h4>{line}</h4>
+            ) : index === 2 ? (
+              <p>
+                {line
+                  .split('\n')
+                  .map(substring =>
+                    substring === 'Contact us. ' || substring === "Зв'язатися з нами. " ? (
+                      <Link href={`/${locale}${AppRoutes.HOME}`}>{substring}</Link>
+                    ) : (
+                      substring
+                    )
+                  )}
+              </p>
+            ) : (
+              <p>{line}</p>
+            )}
+            {index < message2.length - 1 && <br />}
+          </React.Fragment>
+        ))}
+      </div>,
+      {
+        position: 'top-right',
+        className: `${styles.toastSuccessMessage}`,
+        bodyClassName: `${styles.toastBody}`,
+        progressClassName: `${styles.toastProgressBar}`,
+        icon: false,
+        autoClose: 36000000,
+      }
+    );
+  };
 
-  // const locale = getLocale() as Locale;
-  // console.log(locale);
-
-  // const getTranslationOfRequest = () => {
-  //   if(locale){
-  //     const translationJsonFile = getAllTranslations(locale);
-  //     const translation = getTranslation(translationJsonFile);
-  //     const submitPolicy = translation('auth');
-  //     console.log(submitPolicy)
-  //   }
-
-  // };
-  // getTranslationOfRequest();
+  // useEffect(() => {
+  //   callToaster();
+  // }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
@@ -77,13 +106,47 @@ const SignUp: React.FC<SignUpProps> = ({ locale }) => {
     if (response?.submitError) {
       toast.error(response?.submitError, {
         position: 'top-right',
+        className: `${styles.toastErrorMessage}`,
+        autoClose: 36000000,
       });
     }
     if (response?.success) {
       router.push(`/${locale}${AppRoutes.SIGNIN}`);
-      toast.success(response?.success, {
-        position: 'top-right',
-      });
+      toast.success(
+        <div>
+          {response.success.map((line: string, index: number) => (
+            <React.Fragment key={index}>
+              {index === 0 ? (
+                <h4>{line}</h4>
+              ) : index === 2 ? (
+                <p>
+                  {line
+                    .split('\n')
+                    .map(substring =>
+                      substring === 'Contact us. ' || substring === "Зв'язатися з нами. " ? (
+                        <Link href={`/${locale}${AppRoutes.HOME}`}>{substring}</Link>
+                      ) : (
+                        substring
+                      )
+                    )}
+                </p>
+              ) : (
+                <p>{line}</p>
+              )}
+              {index < response.success.length - 1 && <br />}
+            </React.Fragment>
+          ))}
+        </div>,
+        {
+          //response?.success
+          position: 'top-right',
+          className: `${styles.toastSuccessMessage}`,
+          bodyClassName: `${styles.toastBody}`,
+          progressClassName: `${styles.toastProgressBar}`,
+          icon: false,
+          autoClose: 36000000,
+        }
+      );
     }
   };
 

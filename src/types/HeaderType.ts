@@ -13,3 +13,5 @@ export interface HeaderProps {
   };
   locale?: Locale;
 }
+
+export interface Token {}
