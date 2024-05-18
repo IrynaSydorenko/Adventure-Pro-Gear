@@ -6,6 +6,8 @@ import { AppRoutes } from '@/constants/routes';
 import { getSession, GetSessionParams } from 'next-auth/react';
 import { i18n } from './i18n-config';
 
+export { default } from 'next-auth/middleware';
+
 console.log('Middleware is called!');
 const publicRoutes = [
   `${AppRoutes.HOME}`,

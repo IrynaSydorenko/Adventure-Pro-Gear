@@ -81,7 +81,7 @@ export const options: NextAuthOptions = {
       },
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
+  // secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async jwt({ token, user, session }) {
       console.log('JWT callback: ', { token, user, session });
