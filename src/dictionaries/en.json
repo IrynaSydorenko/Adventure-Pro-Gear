@@ -8,5 +8,15 @@
     "search": "Search",
     "catalog": " Catalog of goods",
     "lang": ["Ukrainian", "English"]
+  },
+  "auth": {
+    "registration": {
+      "policy": "By registering, you agree to the terms of the provision on the processing and protection of personal data and the user agreement",
+      "success": [
+        "Thank you for registering!",
+        "To complete the process of activating your account, please check your email and follow the link in the email we sent. After that, you will be able to use all the features of our site.",
+        "If you did not receive the email, please check your spam folder. If you have any questions, don't hesitate to \nContact us. \nThank you!"
+      ]
+    }
   }
 }
