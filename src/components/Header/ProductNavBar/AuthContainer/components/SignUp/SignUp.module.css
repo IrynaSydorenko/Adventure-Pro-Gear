@@ -33,7 +33,7 @@
   color: var(--black);
 }
 
-.toastSuccessMessage {
+.toastMessage {
   background-color: var(--wightAuth);
 }
 
