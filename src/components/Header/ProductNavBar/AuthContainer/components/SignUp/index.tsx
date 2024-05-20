@@ -80,7 +80,7 @@ const SignUp: React.FC<SignUpProps> = ({ locale }) => {
       </div>,
       {
         position: 'top-right',
-        className: `${styles.toastSuccessMessage}`,
+        className: `${styles.toastMessage}`,
         bodyClassName: `${styles.toastBody}`,
         progressClassName: `${styles.toastProgressBar}`,
         icon: false,
@@ -107,6 +107,7 @@ const SignUp: React.FC<SignUpProps> = ({ locale }) => {
       toast.error(response?.submitError, {
         position: 'top-right',
         className: `${styles.toastErrorMessage}`,
+        bodyClassName: `${styles.toastBody}`,
         autoClose: 36000000,
       });
     }
@@ -140,9 +141,8 @@ const SignUp: React.FC<SignUpProps> = ({ locale }) => {
         {
           //response?.success
           position: 'top-right',
-          className: `${styles.toastSuccessMessage}`,
+          className: `${styles.toastMessage}`,
           bodyClassName: `${styles.toastBody}`,
-          progressClassName: `${styles.toastProgressBar}`,
           icon: false,
           autoClose: 36000000,
         }

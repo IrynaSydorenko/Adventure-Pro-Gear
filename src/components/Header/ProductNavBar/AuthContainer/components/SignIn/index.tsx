@@ -87,6 +87,9 @@ const SignIn: React.FC<SignInProps> = ({ locale }) => {
               setServerError(response.error);
               toast.error(serverError, {
                 position: 'top-right',
+                className: `${styles.signInToastErrorMessage}`,
+                bodyClassName: `${styles.signInToastBody}`,
+                autoClose: 36000000,
               });
             } else if (response?.ok) {
               router.push(`/${locale}${AppRoutes.PERSONAL_ACCOUNT}`);

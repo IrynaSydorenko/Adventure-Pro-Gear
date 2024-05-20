@@ -8,7 +8,7 @@ export const token: { access: string | null; refresh: string | null } = {
 };
 
 const axiosInstance = axios.create({
-  baseURL: 'https://prime-tax-production.up.railway.app/',
+  baseURL: 'https://disciplined-truth-production.up.railway.app/',
 });
 
 axios.defaults.withCredentials = true;
