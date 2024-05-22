@@ -6,7 +6,7 @@ import { signUpService } from '@/services/axios';
 import { AppRoutes } from '@/constants/routes';
 import { getAllTranslations, getTranslation } from '@/dictionaries/dictionaries';
 import { i18n, Locale } from '@/i18n-config';
-import { SignUpSchema } from '@/validation';
+import { getSignUpSchema } from '@/validation';
 export interface ErrorMessages {
   [key: string]: string[];
 }
@@ -76,6 +76,7 @@ export const registerAction = async (formData: FormData, locale: Locale) => {
   console.log(`Email ${formData.get('email')} is already in use.`);
   const credentials = Object.fromEntries(formData);
   console.log('CREDENTIALS:', credentials);
+  const SignUpSchema = getSignUpSchema(authTranslation);
   const validatedFields = SignUpSchema.safeParse({
     ...credentials,
   });
