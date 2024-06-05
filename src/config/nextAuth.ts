@@ -1,4 +1,5 @@
 import type { NextAuthOptions } from 'next-auth';
+import axios from 'axios';
 import { User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { jwtDecode, JwtPayload } from 'jwt-decode';
@@ -35,16 +36,7 @@ export const options: NextAuthOptions = {
         console.log('Email, Password: ', email, password);
         try {
           const token = await signInService({ email, password });
-
           console.log('TOKEN: ', token);
-
-          if (token.status >= 400) {
-            const errorMessage = token.data.message;
-            console.log('Log In Error: ', errorMessage);
-            throw new Error(
-              typeof errorMessage === 'string' ? errorMessage : JSON.stringify(errorMessage)
-            );
-          }
 
           apiToken.access = token.data.accessToken;
           apiToken.refresh = token.data.refreshToken;
@@ -53,9 +45,9 @@ export const options: NextAuthOptions = {
 
           const userInfo = await getUserInfoService(apiToken.access);
 
-          console.log('USER INFO: ', userInfo);
+          console.log('USER INFO: ', userInfo.data);
 
-          if (userInfo.status >= 400) {
+          if (userInfo.data.status >= 400) {
             const errorMessage = userInfo.data.message;
             throw new Error(
               typeof errorMessage === 'string' ? errorMessage : JSON.stringify(errorMessage)
@@ -76,12 +68,31 @@ export const options: NextAuthOptions = {
 
           return null;
         } catch (error) {
-          throw new Error((error as Error).message);
+          console.log(error, (error as Error).message);
+          if (axios.isAxiosError(error)) {
+            // This means the error is an Axios error and you can handle it accordingly
+            if (error.response) {
+              console.log('Error response data:', error.response.data);
+              const errorMessage =
+                error.response.data.message ||
+                error.response.data.errorMessage ||
+                'An unknown error occurred';
+              throw new Error(errorMessage);
+            } else {
+              console.log('Error without response data:', error);
+              throw new Error('No response received');
+            }
+          } else {
+            // Handle non-Axios errors
+            console.log('Non-Axios error:', error);
+            throw new Error((error as Error).message);
+          }
+          // return error;
         }
       },
     }),
   ],
-  // secret: process.env.NEXTAUTH_SECRET,
+  secret: 'by21t4673gr732eiwyufetrg764367fg',
   callbacks: {
     async jwt({ token, user, session }) {
       console.log('JWT callback: ', { token, user, session });
