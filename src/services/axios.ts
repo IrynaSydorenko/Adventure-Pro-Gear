@@ -59,7 +59,9 @@ export const signUpService = async (credentials: any) => {
 
 export const signInService = async (credentials: any) => {
   const { email, password } = credentials;
-  return await axiosInstance.post('api/public/auth/login', { email, password });
+  const response = await axiosInstance.post('api/public/auth/login', { email, password });
+  console.log('AxiosResponse: ', response);
+  return response;
 };
 
 export const getUserInfoService = async (accessToken: any) => {
