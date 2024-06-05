@@ -1,4 +1,4 @@
-import 'server-only';
+// import 'server-only';
 import { get } from 'lodash';
 import { i18n, Locale } from '../i18n-config';
 

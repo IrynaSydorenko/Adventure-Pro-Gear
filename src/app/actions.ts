@@ -6,9 +6,9 @@ import { signUpService } from '@/services/axios';
 import { AppRoutes } from '@/constants/routes';
 import { getAllTranslations, getTranslation } from '@/dictionaries/dictionaries';
 import { i18n, Locale } from '@/i18n-config';
-import { SignUpSchema } from '@/validation';
+import { getSignUpSchema } from '@/validation';
 export interface ErrorMessages {
-  [key: string]: string[];
+  [key: string]: string[] | undefined;
 }
 
 const specificClientErrorMessages: { [key: number]: string } = {
@@ -53,12 +53,14 @@ const specificServerErrorMessages: { [key: number]: string } = {
   511: 'Network Authentication Required: Indicates that the client needs to authenticate to gain network access.',
 };
 
-const generateErrorMessage = (statusCode: number) => {
+const generateErrorMessage = (statusCode: number, errorData: string) => {
   const clientErrorMessage = specificClientErrorMessages[statusCode];
   const serverErrorMessage = specificServerErrorMessages[statusCode];
 
   if (statusCode >= 400 && statusCode < 500) {
-    return clientErrorMessage || 'Client Error: Your request cannot be processed.';
+    return statusCode === 400
+      ? errorData
+      : clientErrorMessage || 'Client Error: Your request cannot be processed.';
   } else if (statusCode >= 500 && statusCode < 600) {
     return serverErrorMessage || 'Server Error: An error occurred on our server.';
   }
@@ -76,6 +78,7 @@ export const registerAction = async (formData: FormData, locale: Locale) => {
   console.log(`Email ${formData.get('email')} is already in use.`);
   const credentials = Object.fromEntries(formData);
   console.log('CREDENTIALS:', credentials);
+  const SignUpSchema = getSignUpSchema(authTranslation);
   const validatedFields = SignUpSchema.safeParse({
     ...credentials,
   });
@@ -86,7 +89,7 @@ export const registerAction = async (formData: FormData, locale: Locale) => {
       if (!errors[issue.path[0]]) {
         errors[issue.path[0]] = [];
       }
-      errors[issue.path[0]].push(issue.message);
+      errors[issue.path[0]]!.push(issue.message); // non-null assertion operator
     });
     console.log(validatedFields.error.issues);
     console.log(errors);
@@ -108,7 +111,7 @@ export const registerAction = async (formData: FormData, locale: Locale) => {
         console.log('Error data:', error.response.data);
         if (error.response.status >= 400) {
           console.log(error.response.data);
-          return { submitError: generateErrorMessage(error.response.status) };
+          return { submitError: generateErrorMessage(error.response.status, error.response.data) };
         }
       }
     } else {

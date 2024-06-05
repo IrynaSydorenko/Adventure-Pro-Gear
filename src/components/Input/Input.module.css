@@ -32,8 +32,17 @@
 .error {
   color: red;
   font-weight: var(--medium);
-  font-size: var(--medium-16);
+  font-size: 11px;
   margin-top: 4px;
+}
+
+.errorContainer {
+  display: flex;
+}
+
+.errorImage {
+  margin-top: 8px;
+  margin-right: 5px;
 }
 
 .hideIcon {

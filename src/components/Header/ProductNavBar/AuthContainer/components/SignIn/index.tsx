@@ -1,11 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { signIn } from 'next-auth/react';
 import { useRouter, usePathname, redirect } from 'next/navigation';
+import { Locale } from '@/i18n-config';
+import { getAllTranslations, getTranslation } from '@/dictionaries/dictionaries';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { logInSchema, LogInData } from '@/validation';
+import { getLogInSchema, LogInData } from '@/validation';
 import Button from '@/components/Button';
 import { AppRoutes } from '@/constants/routes';
 import Link from 'next/link';
@@ -18,17 +20,32 @@ export interface ErrorMessages {
 }
 
 interface SignInProps {
-  locale: string;
+  locale: Locale;
 }
 
 const SignIn: React.FC<SignInProps> = ({ locale }) => {
-  const [signInCredentials, setSignInCredentials] = useState<LogInData>({
+  const [signInCredentials, setSignInCredentials] = useState({
     email: '',
     password: '',
   });
 
   const [errors, setErrors] = useState<ErrorMessages>({});
   const [serverError, setServerError] = useState<string | null>('');
+  const [authTranslation, setAuthTranslation] = useState<any>(null);
+
+  useEffect(() => {
+    const loadTranslations = async () => {
+      const translations = await getAllTranslations(locale);
+      const translationFunction = getTranslation(translations);
+      setAuthTranslation(translationFunction('auth'));
+    };
+
+    loadTranslations();
+  }, [locale]);
+
+  useEffect(() => {
+    setErrors({});
+  }, [signInCredentials.email, signInCredentials.password]);
 
   const router = useRouter();
 
@@ -65,7 +82,9 @@ const SignIn: React.FC<SignInProps> = ({ locale }) => {
         <Button
           onClick={async e => {
             e.preventDefault();
-            const validatedFields = logInSchema.safeParse({
+            setErrors({});
+            setServerError('');
+            const validatedFields = getLogInSchema(authTranslation).safeParse({
               ...signInCredentials,
             });
             if (!validatedFields.success) {
@@ -81,18 +100,95 @@ const SignIn: React.FC<SignInProps> = ({ locale }) => {
               setErrors(validationInputErrors);
               return { errors: validationInputErrors };
             }
-            const response = await signIn('credentials', { redirect: false, ...signInCredentials });
-            if (response?.status && response.status >= 400) {
-              console.log('Response Error: ', response.error);
-              setServerError(response.error);
-              toast.error(serverError, {
+            try {
+              const response = await signIn('credentials', {
+                redirect: false,
+                ...signInCredentials,
+              });
+              console.log('Response from the server: ', response);
+              if (response?.status && response.status >= 400) {
+                if (
+                  response.error ===
+                    `The email address '${signInCredentials.email}' is not registered. Please register` &&
+                  locale === 'en-US'
+                ) {
+                  setErrors({
+                    ...errors,
+                    email: [
+                      `The email address '${signInCredentials.email}' is not registered. Please register`,
+                    ],
+                  });
+                } else if (
+                  response.error ===
+                    `The email address '${signInCredentials.email}' is not registered. Please register` &&
+                  locale === 'uk-UA'
+                ) {
+                  setErrors({
+                    ...errors,
+                    email: [
+                      `Імейл адреса '${signInCredentials.email}' не зареєстрована. Будь ласка зареєструйтеся`,
+                    ],
+                  });
+                } else if (
+                  response.error === 'The password is incorrect. Please check and try again'
+                ) {
+                  console.log(
+                    'Is equal: ',
+                    response.error === 'The password is incorrect. Please check and try again' &&
+                      locale === 'en-US'
+                  );
+                  setErrors({
+                    ...errors,
+                    password: ['The password is incorrect. Please check and try again.'],
+                  });
+                } else if (
+                  response.error === 'The password is incorrect. Please check and try again' &&
+                  locale === 'uk-UA'
+                ) {
+                  setErrors({
+                    ...errors,
+                    password: ['Неправильний пароль. Будь ласка, перевірте та спробуйте знову'],
+                  });
+                } else if (response.error === 'Your account is not active' && locale === 'en-US') {
+                  setErrors({
+                    ...errors,
+                    email: ['Your account is not active. Please check your email for more details'],
+                  });
+                } else if (response.error === 'Your account is not active' && locale === 'uk-UA') {
+                  setErrors({
+                    ...errors,
+                    email: [
+                      'Ваш обліковий запис не активний. Щоб отримати докладнішу інформацію, перевірте свою електронну пошту',
+                    ],
+                  });
+                } else {
+                  console.log(
+                    'Response Error: ',
+                    response.error,
+                    'Is equal: ',
+                    response.error === 'The password is incorrect. Please check and try again.'
+                  );
+                  setServerError(response.error);
+                  toast.error(serverError, {
+                    position: 'top-right',
+                    className: `${styles.signInToastErrorMessage}`,
+                    bodyClassName: `${styles.signInToastBody}`,
+                    autoClose: 36000000,
+                  });
+                }
+                return;
+              } else if (response?.ok) {
+                router.push(`/${locale}${AppRoutes.PERSONAL_ACCOUNT}`);
+              }
+            } catch (error) {
+              console.error('SignIn error:', error);
+              setServerError('An unexpected error occurred');
+              toast.error('An unexpected error occurred', {
                 position: 'top-right',
-                className: `${styles.signInToastErrorMessage}`,
-                bodyClassName: `${styles.signInToastBody}`,
+                className: styles.signInToastErrorMessage,
+                bodyClassName: styles.signInToastBody,
                 autoClose: 36000000,
               });
-            } else if (response?.ok) {
-              router.push(`/${locale}${AppRoutes.PERSONAL_ACCOUNT}`);
             }
           }}
           text="Sign in"

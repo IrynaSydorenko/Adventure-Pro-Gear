@@ -3,6 +3,7 @@
 import React, { ChangeEvent, useState } from 'react';
 import Image from 'next/image';
 import Eye from '@/../public/icons/Eye.svg';
+import Error from '@/../public/icons/Error.svg';
 import styles from './Input.module.css';
 
 interface InputProps {
@@ -10,6 +11,7 @@ interface InputProps {
   name?: string;
   value?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
   error?: string;
   icon?: React.ReactNode;
   className?: string;
@@ -22,6 +24,7 @@ const Input: React.FC<InputProps> = ({
   name,
   value,
   onChange,
+  onBlur,
   error,
   icon,
   className,
@@ -42,6 +45,7 @@ const Input: React.FC<InputProps> = ({
         onChange={onChange}
         placeholder={placeholder}
         className={` ${className} ${styles.input}`}
+        onBlur={onBlur}
       />
       {type === 'password' && (
         <Image
@@ -53,7 +57,18 @@ const Input: React.FC<InputProps> = ({
           onClick={handleEyeClick}
         />
       )}
-      <p className={styles.error}>{error}</p>
+      {error && (
+        <div className={styles.errorContainer}>
+          <Image
+            src={Error}
+            alt="error icon"
+            width={11}
+            height={11}
+            className={styles.errorImage}
+          />
+          <p className={styles.error}>{error}</p>
+        </div>
+      )}
     </div>
   );
 };

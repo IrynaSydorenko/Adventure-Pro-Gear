@@ -16,7 +16,42 @@
         "Thank you for registering!",
         "To complete the process of activating your account, please check your email and follow the link in the email we sent. After that, you will be able to use all the features of our site.",
         "If you did not receive the email, please check your spam folder. If you have any questions, don't hesitate to \nContact us. \nThank you!"
-      ]
+      ],
+      "zod": {
+        "name-errors-registration": {
+          "emptyField": "Please enter your name",
+          "minLength": "The mimimum number of characters is 2",
+          "maxLength": "The maximum number of characters is 64",
+          "onlyLetters": "Please check that the field contains only letters",
+          "noSpaces": "Please check that the field doesn't contain spaces"
+        },
+        "surname-errors-registration": {
+          "emptyField": "Please enter your surname",
+          "minLength": "The mimimum number of characters is 2",
+          "maxLength": "The maximum number of characters is 64",
+          "onlyLetters": "Please check that the field contains only letters",
+          "noSpaces": "Please check that the field doesn't contain spaces"
+        },
+        "email-errors-registration": { "invalidFormat": "Invalid syntax" },
+        "password-errors-registration": {
+          "quantity": "Password must be at least 8 characters",
+          "oneDigit": "Password must contain at least one number",
+          "oneUppercaseLetter": "Password must contain at least one uppercase letter",
+          "oneLowercaseLetter": "Password must contain at least one lowercase letter",
+          "oneSpecialCharacter": "Password must contain at least one special character"
+        }
+      }
+    },
+    "login": {
+      "zod": {
+        "email-errors-login": {
+          "incorrectEmail": "Check that the email address you entered is correct and try again"
+        }
+      },
+      "server-errors": {
+        "incorrect-email-server-error": "The email address is not registered. Please register",
+        "incorrect-password-server-error": "Incorrect password. Please check and try again"
+      }
     }
   }
 }
