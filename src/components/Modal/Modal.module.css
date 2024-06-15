@@ -1,27 +1,44 @@
-.modal {
-  box-sizing: border-box;
-  display: flex;
-  background-color: var(--wightAuth);
+.containerModal {
+  padding: 0;
+  width: fit-content;
   position: absolute;
-  translate: 50% -50% 7px;
-  /* transform: translate(50%); */
-  /* z-index: 3; */
+  transform: translate(50%, -50%);
   top: 50%;
   right: 50%;
+  z-index: 4;
+}
+
+.modal {
+  box-sizing: border-box;
+  background-color: var(--wightAuth);
   border-radius: 5px;
+  max-width: 400px;
+  min-width: 300px;
 }
 
 .closeButton {
   position: absolute;
-  right: 20px;
   top: 20px;
+  right: 20px;
   display: block;
   background-color: transparent;
   border: none;
   cursor: pointer;
 }
 
-.overlay {
+@media screen and (min-width: 768px) {
+  .modal {
+    max-width: 570px;
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 767px) {
+  .modal {
+    min-width: 423px;
+  }
+}
+
+/* .overlay {
   display: block;
   position: absolute;
   z-index: 3;
@@ -30,4 +47,4 @@
   top: 0;
   right: 0;
   bottom: 0;
-}
+} */

@@ -41,7 +41,7 @@ const AuthContainer: React.FC<AuthContainerProps> = ({ personalAccount, locale }
   }, [isLinkClicked]);
 
   return (
-    <div>
+    <>
       <div className={isDropdownOpen ? styles.overlay : styles.noOverlay} />
       <div className={styles.authContaner} ref={dropdownRef}>
         <Image src={Person} alt="person icon" width={24} height={24} onClick={toggleDropdown} />
@@ -54,7 +54,7 @@ const AuthContainer: React.FC<AuthContainerProps> = ({ personalAccount, locale }
           }
         />
       </div>
-    </div>
+    </>
   );
 };
 

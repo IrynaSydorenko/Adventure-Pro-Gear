@@ -45,6 +45,10 @@
   color: var(--black);
 }
 
+.checkboxSignIn {
+  font-size: var(--medium-16);
+}
+
 .signInToastBody {
   color: var(--black);
   font-family: '__Montserrat_7dfeba';
@@ -52,4 +56,10 @@
 
 .signInToastErrorMessage {
   background-color: var(--wightAuth);
+}
+
+@media screen and (max-width: 768px) {
+  .checkboxSignIn {
+    font-size: var(--small-14);
+  }
 }

@@ -78,7 +78,7 @@ const SignIn: React.FC<SignInProps> = ({ locale }) => {
         <Link href="/forgotPassword" className={styles.restorePasswordLink}>
           forgot password?
         </Link>
-        <Checkbox />
+        <Checkbox className={styles.checkboxSignIn} text="Remember me" />
         <Button
           onClick={async e => {
             e.preventDefault();
