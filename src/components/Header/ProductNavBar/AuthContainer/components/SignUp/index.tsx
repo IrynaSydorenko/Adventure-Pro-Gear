@@ -52,14 +52,6 @@ const SignUp: React.FC<SignUpProps> = ({ locale }) => {
   //     'Для завершення процесу активації вашого облікового запису, будь ласка, перевірте свою електронну пошту та перейдіть за посиланням у листі, який ми відправили. Після цього ви зможете користуватися всіма можливостями нашого сайту.',
   //     "Якщо ви не отримали листа, будь ласка, перевірте папку 'Спам'. Якщо у вас виникли будь-які питання, не соромтеся \nЗв'язатися з нами. \nДякуємо!",
   //   ];
-
-  //   const notUserFriendlyMessage =
-  //     "Дякуємо за реєстрацію! Для завершення процесу активації вашого облікового запису, будь ласка, перевірте свою електронну пошту та перейдіть за посиланням у листі, який ми відправили. Після цього ви зможете користуватися всіма можливостями нашого сайту. Якщо ви не отримали листа, будь ласка, перевірте папку 'Спам'. Якщо у вас виникли будь-які питання, не соромтеся \nЗв'язатися з нами. \nДякуємо!";
-  //   const UserFriendlyMessage = [
-  //     'Дякуємо за реєстрацію!',
-  //     'Для завершення процесу активації вашого облікового запису, будь ласка, перевірте свою електронну пошту та перейдіть за посиланням у листі, який ми відправили. Після цього ви зможете користуватися всіма можливостями нашого сайту.',
-  //     "Якщо ви не отримали листа, будь ласка, перевірте папку 'Спам'. Якщо у вас виникли будь-які питання, не соромтеся \nЗв'язатися з нами. \nДякуємо!",
-  //   ];
   //   toast.success(
   //     <div>
   //       {UserFriendlyMessage.map((line, index) => (
@@ -170,7 +162,7 @@ const SignUp: React.FC<SignUpProps> = ({ locale }) => {
     if (response?.success) {
       router.push(`/${locale}${AppRoutes.SIGNIN}`);
       toast.success(
-        <div>
+        <>
           {response.success.map((line: string, index: number) => (
             <React.Fragment key={index}>
               {index === 0 ? (
@@ -193,7 +185,7 @@ const SignUp: React.FC<SignUpProps> = ({ locale }) => {
               {index < response.success.length - 1 && <br />}
             </React.Fragment>
           ))}
-        </div>,
+        </>,
         {
           position: 'top-right',
           className: `${styles.toastMessage}`,
@@ -209,7 +201,7 @@ const SignUp: React.FC<SignUpProps> = ({ locale }) => {
   console.log('Console log!');
 
   return (
-    <div>
+    <>
       <div className={styles.formContainer}>
         <Form action={clientRegisterAction}>
           <h4 className={styles.h4}>Registration</h4>
@@ -253,7 +245,7 @@ const SignUp: React.FC<SignUpProps> = ({ locale }) => {
             required={true}
             error={validationErrors.password && validationErrors.password.join(', ')}
           />
-          <Checkbox />
+          <Checkbox text={'Remember me'} className={styles.checkboxRegistration} />
           <p className={styles.submitPolicy}>
             Реєструючись, ви погоджуєтеся з умовами
             <Link href={`/${locale}/policy`}>
@@ -267,7 +259,7 @@ const SignUp: React.FC<SignUpProps> = ({ locale }) => {
           </Link>
         </Form>
       </div>
-    </div>
+    </>
   );
 };
 

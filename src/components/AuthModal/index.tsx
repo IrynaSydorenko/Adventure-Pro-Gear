@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import Container from '../Container';
 import { Locale } from '@/i18n-config';
 import Modal from '../Modal';
 import SignUp from '../Header/ProductNavBar/AuthContainer/components/SignUp';
@@ -25,6 +26,7 @@ type AuthType =
 const AuthModal: React.FC<AuthModalProps> = ({ locale }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [authType, setAuthType] = useState<AuthType>(null);
+  const [isOverlayOpen, setIsOverlayOpen] = useState(false);
   const searchParams = useSearchParams();
   const router = useRouter();
   const session = useSession();
@@ -32,6 +34,15 @@ const AuthModal: React.FC<AuthModalProps> = ({ locale }) => {
   const closeModal = () => {
     router.replace(`/${locale}`);
   };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      setIsOverlayOpen(true);
+    } else {
+      setIsOverlayOpen(false);
+    }
+  }, [isModalOpen]);
+
   useEffect(() => {
     const type = searchParams.get('auth') as AuthType;
     setAuthType(type);
@@ -46,7 +57,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ locale }) => {
   }, [searchParams]);
 
   return (
-    <div>
+    <>
       {isModalOpen && session.status !== 'authenticated' && authType === 'signup' && (
         <Modal closeModal={closeModal} locale={locale} className={styles.authModal}>
           <SignUp locale={locale} />
@@ -57,7 +68,8 @@ const AuthModal: React.FC<AuthModalProps> = ({ locale }) => {
           <SignIn locale={locale} />
         </Modal>
       )}
-    </div>
+      {isOverlayOpen && <div className={styles.overlay} />}
+    </>
   );
 };
 

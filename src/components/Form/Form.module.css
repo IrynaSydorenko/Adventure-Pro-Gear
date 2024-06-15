@@ -4,4 +4,11 @@
   align-items: center;
   min-width: 375px;
   max-width: 400px;
+  /* width: 100%; */
+}
+
+@media screen and (max-width: 768px) {
+  .form {
+    min-width: 100%;
+  }
 }

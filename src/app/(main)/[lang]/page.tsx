@@ -1,6 +1,7 @@
 import React from 'react';
 import { options } from '@/config';
 import { Locale } from '@/i18n-config';
+import Container from '@/components/Container';
 import { getServerSession } from 'next-auth/next';
 import Hiro from '@/components/Hero/Hero';
 import SignOutButton from '@/components/SignOutButton';

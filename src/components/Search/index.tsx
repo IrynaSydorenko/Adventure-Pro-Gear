@@ -12,15 +12,13 @@ interface SearchProps {
 const Search: React.FC<SearchProps> = ({ search }) => {
   const [value, setValue] = useState('');
   return (
-    <div>
-      <input
-        className={styles.search}
-        placeholder={`${search}`}
-        type="text"
-        value={value}
-        onChange={e => setValue(e.target.value)}
-      />
-    </div>
+    <input
+      className={styles.search}
+      placeholder={`${search}`}
+      type="text"
+      value={value}
+      onChange={e => setValue(e.target.value)}
+    />
   );
 };
 
