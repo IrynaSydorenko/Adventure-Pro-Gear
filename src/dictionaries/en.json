@@ -53,5 +53,11 @@
         "incorrect-password-server-error": "Incorrect password. Please check and try again"
       }
     }
+  },
+  "breadcrumbsData": {
+    "breadcrumbs": {
+      "personal_account": "Personal Account",
+      "update_password": "Update the Password"
+    }
   }
 }

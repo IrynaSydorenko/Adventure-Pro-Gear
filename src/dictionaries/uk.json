@@ -56,5 +56,11 @@
         "incorrect-password-server-error": "Неправильний пароль. Будь ласка, перевірте та спробуйте знову"
       }
     }
+  },
+  "breadcrumbsData": {
+    "breadcrumbs": {
+      "personal_account": "Особистий Кабінет",
+      "update_password": "Відновлення Паролю"
+    }
   }
 }

@@ -1,13 +1,21 @@
 import SignOutButton from '@/components/SignOutButton';
+import { Locale } from '@/i18n-config';
+import BreadcrumbNavigation from '@/components/BreadcrumbNavigation';
 import React from 'react';
 
-function page() {
-  return (
-    <div>
-      <p>Welcome! This is your personal account.</p>
-      <SignOutButton />
-    </div>
-  );
+interface PersonalAccountProps {
+  params: {
+    lang: Locale;
+  };
 }
 
-export default page;
+const PersonalAccount: React.FC<PersonalAccountProps> = ({ params }) => {
+  return (
+    <>
+      <p>Welcome! This is your personal account.</p>
+      <SignOutButton />
+    </>
+  );
+};
+
+export default PersonalAccount;

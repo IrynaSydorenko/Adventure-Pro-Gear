@@ -1,0 +1,26 @@
+.breadcrumbsList {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  align-items: center;
+  background-color: var(--wightAuth);
+}
+
+.homeIcon {
+  margin-right: 8px;
+  margin-left: 143px;
+}
+
+.breadcrumbsList > img {
+  margin-right: 8px;
+}
+
+.listItem > img {
+  margin-right: 8px;
+}
+
+.listItem > a {
+  color: var(--black);
+}
