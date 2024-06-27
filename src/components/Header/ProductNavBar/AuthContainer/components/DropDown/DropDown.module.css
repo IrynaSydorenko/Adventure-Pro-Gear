@@ -1,7 +1,7 @@
 .dropDown {
   box-sizing: border-box;
   background-color: var(--wightAuth);
-  border-radius: 5px;
+  border-radius: 7px;
   color: black;
   position: absolute;
   right: -9px;
@@ -53,4 +53,12 @@
   transform: rotate(-45deg);
   top: -8px;
   right: 20px;
+}
+
+.dropdownSpan {
+  background-color: var(--mediumBlue) !important;
+}
+
+.profileMenu {
+  margin-left: 0px !important;
 }
