@@ -60,7 +60,13 @@
   "breadcrumbsData": {
     "breadcrumbs": {
       "personal_account": "Особистий Кабінет",
+      "orders": "Замовлення",
+      "edit_data": "Редагувати дані",
+      "favourites": "Улюблені",
       "update_password": "Відновлення Паролю"
     }
+  },
+  "profile": {
+    "menuData": ["Замовлення", "Редагувати дані", "Улюблені", "Вихід"]
   }
 }
