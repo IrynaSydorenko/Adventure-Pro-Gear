@@ -19,7 +19,16 @@ const publicRoutes = [
   '/error/',
 ];
 
-const protectedUserRoutes = [...publicRoutes, '/user', '/blog/', '/personal_account/'];
+const protectedUserRoutes = [
+  ...publicRoutes,
+  '/user',
+  '/blog/',
+  '/personal_account/',
+  '/personal_account/edit_data/',
+  '/personal_account/favourites/',
+  '/personal_account/orders/',
+  '/personal_account/exit/',
+];
 const protectedAdminRoutes = ['/admin'];
 
 const convertToGetSessionParams = (req: NextRequest): GetSessionParams => ({
