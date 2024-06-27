@@ -8,7 +8,10 @@ const languages = {
 };
 
 export const getAllTranslations = async (locale: Locale) => {
-  const result = (await languages[locale]?.()) ?? languages['uk-UA']();
+  let result;
+  if (locale) {
+    result = (await languages[locale]?.()) ?? languages['uk-UA']();
+  }
   return result;
 };
 
