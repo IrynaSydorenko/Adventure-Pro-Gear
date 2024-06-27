@@ -1,0 +1,23 @@
+.personalAccountLayout {
+  background-image: url('../../../../../public/images/PersonalAccBackground.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+}
+
+.dashboardWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profileMenuLayout {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .profileMenuLayout {
+    display: none;
+  }
+}

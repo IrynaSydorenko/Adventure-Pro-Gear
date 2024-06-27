@@ -57,7 +57,13 @@
   "breadcrumbsData": {
     "breadcrumbs": {
       "personal_account": "Personal Account",
+      "orders": "Orders",
+      "edit_data": "Edit Data",
+      "favourites": "Favourites",
       "update_password": "Update the Password"
     }
+  },
+  "profile": {
+    "menuData": ["Orders", "Edit Data", "Favourites", "Exit"]
   }
 }

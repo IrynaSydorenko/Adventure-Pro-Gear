@@ -1,0 +1,70 @@
+.profileMenu {
+  min-width: 309px;
+  max-width: 355px;
+  box-sizing: border-box;
+}
+
+.profileInfo {
+  background-color: var(--mediumBlue);
+  color: var(--white);
+  padding-left: 16px;
+  padding-top: 18.5px;
+  padding-bottom: 18.5px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+  text-decoration-line: none;
+  align-items: center;
+  min-width: 309px;
+}
+
+.profileInfo > a {
+  color: var(--white);
+  display: flex;
+  flex-direction: row;
+  text-decoration-line: none;
+  align-items: center;
+}
+
+.profilePhoto {
+  margin-right: 16px;
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  background-color: orange;
+  display: flex;
+  justify-content: center;
+  border-radius: 50px;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.menuList {
+  background-color: var(--wightAuth);
+  list-style: none;
+  border-radius: 0 0 5px 5px;
+}
+
+.menuItem:hover {
+  background-color: var(--greenForBtn);
+}
+
+.menuItem > a {
+  display: flex;
+  align-items: center;
+  padding: 16px 119px 16px 0px;
+  cursor: pointer;
+  text-decoration-line: none;
+  color: var(--black);
+}
+
+.menuItem > a:hover {
+  color: var(--white);
+  background-color: var(--greenForBtn);
+}
+
+.menuItem > a > img {
+  margin-right: 16px;
+  margin-left: 16px;
+}

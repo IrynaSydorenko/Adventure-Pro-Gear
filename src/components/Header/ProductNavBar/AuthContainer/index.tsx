@@ -2,12 +2,13 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
+import { Locale } from '@/i18n-config';
 import Person from '@/../public/icons/Person.svg';
 import DropDown from './components/DropDown/DropDown';
 import styles from './AuthContainer.module.css';
 
 interface AuthContainerProps {
-  locale: string | undefined;
+  locale: Locale;
   personalAccount: string;
 }
 

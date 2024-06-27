@@ -2,13 +2,14 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { Locale } from '@/i18n-config';
 import Close from '@/../public/icons/Close.svg';
 import Container from '@/components/Container';
 import styles from './Modal.module.css';
 
 interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
-  locale: string;
+  locale: Locale;
   closeModal: () => void;
   className?: string;
 }

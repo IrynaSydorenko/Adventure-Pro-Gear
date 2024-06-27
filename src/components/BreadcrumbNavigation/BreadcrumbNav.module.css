@@ -1,3 +1,7 @@
+.breadcrumbsContainer {
+  background-color: var(--wightAuth);
+}
+
 .breadcrumbsList {
   display: flex;
   flex-direction: row;
@@ -5,22 +9,27 @@
   padding-top: 40px;
   padding-bottom: 20px;
   align-items: center;
-  background-color: var(--wightAuth);
 }
 
 .homeIcon {
   margin-right: 8px;
-  margin-left: 143px;
 }
 
 .breadcrumbsList > img {
   margin-right: 8px;
 }
 
+.listItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .listItem > img {
   margin-right: 8px;
 }
 
-.listItem > a {
+.listItem > li > a {
   color: var(--black);
+  margin-right: 8px;
 }
