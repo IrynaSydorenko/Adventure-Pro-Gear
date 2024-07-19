@@ -13,6 +13,8 @@ const publicRoutes = [
   `${AppRoutes.HOME}`,
   `${AppRoutes.SIGNIN}`,
   `${AppRoutes.SIGN_UP}`,
+  `${AppRoutes.FORGOT_PASSWORD}`,
+  `/?auth=reset-password&token=*`,
   '/contacts/',
   '/about_us/',
   '/policy/',
@@ -77,6 +79,14 @@ export function checkAccess(role: string, pathname: string) {
   return false;
 }
 
+// export function getToken(req: NextRequest){
+//   const fullUrl = req.url;
+//   const urlObj = new URL(fullUrl);
+//   const token = urlObj.searchParams.get('token');
+//   console.log('Token from URL: ', token);
+//   return token
+// }
+
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const fullUrl = req.url;
@@ -87,6 +97,10 @@ export async function middleware(req: NextRequest) {
   console.log('FullPath: ', fullPath);
   console.log('fullUrl: ', fullUrl);
   console.log('PATH_NAME: ', pathname); // PATH_NAME:  /uk-UA/contacts/;
+
+  const token = urlObj.searchParams.get('token');
+  const auth = urlObj.searchParams.get('auth');
+  console.log('Token from URL: ', token);
 
   // Check access rights first
   const role = await getSessionAndRole(req);
@@ -104,6 +118,14 @@ export async function middleware(req: NextRequest) {
   console.log('PathNameCleaned: ', pathnameCleaned);
   const isAllowed = checkAccess(role, pathnameCleaned);
   console.log('Is allowed: ', isAllowed);
+
+  // Handle access for reset-password route with token
+  if (auth === 'reset-password' && token) {
+    // Perform your token validation here
+    console.log('Reset password token found: ', token);
+    // Assuming token validation passes, allow the request to proceed
+    return NextResponse.next();
+  }
 
   if (!isAllowed && isLocale) {
     const targetUrl = role === 'guest' ? `/${locale}${AppRoutes.SIGNIN}` : `/${locale}/error`;

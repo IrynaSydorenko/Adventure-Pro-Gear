@@ -75,7 +75,7 @@ const SignIn: React.FC<SignInProps> = ({ locale }) => {
           onChange={handleChange}
           error={errors.password && errors.password.join(', ')}
         />
-        <Link href="/forgotPassword" className={styles.restorePasswordLink}>
+        <Link href={AppRoutes.FORGOT_PASSWORD} className={styles.restorePasswordLink}>
           forgot password?
         </Link>
         <Checkbox className={styles.checkboxSignIn} text="Remember me" />

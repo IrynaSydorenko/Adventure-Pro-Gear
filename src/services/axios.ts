@@ -8,7 +8,7 @@ export const token: { access: string | null; refresh: string | null } = {
 };
 
 const axiosInstance = axios.create({
-  baseURL: 'https://disciplined-truth-production.up.railway.app/',
+  baseURL: 'https://incredible-creation-production.up.railway.app/',
 });
 
 axios.defaults.withCredentials = true;
@@ -18,6 +18,8 @@ axiosInstance.interceptors.request.use(
     const session = await getServerSession(options);
     const publicEndpoints = [
       '/api/public/auth/refresh-token',
+      '/api/public/password-reset/request',
+      '/api/public/password-reset/reset',
       '/api/public/products',
       'api/public/auth/login',
     ];
@@ -44,7 +46,8 @@ export const refreshTokenService = async (refreshToken: string) => {
 };
 
 export const getProducts = async () => {
-  /* return {data:undefined}; */ return await axiosInstance.get('/api/public/products');
+  /* return {data:undefined}; */ const products = await axiosInstance.get('/api/public/products');
+  return products.data;
 };
 
 export const signUpService = async (credentials: any) => {
@@ -78,8 +81,37 @@ export const getUserInfoService = async (accessToken: any) => {
   }
 };
 
+export const forgotPasswordService = async (email: FormDataEntryValue) => {
+  try {
+    const sendEmail = await axiosInstance.post('/api/public/password-reset/request', {
+      email,
+    });
+    return sendEmail.status;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const resetPasswordService = async (
+  token: FormDataEntryValue | null,
+  newPassword: FormDataEntryValue,
+  confirmPassword: FormDataEntryValue
+) => {
+  try {
+    const resetPassword = await axiosInstance.post('/api/public/password-reset/reset', {
+      token,
+      newPassword,
+      confirmPassword,
+    });
+    console.log(resetPassword);
+    return resetPassword.status;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const getUsers = async () => {
-  /* return {data:undefined}; */ await axiosInstance.get('/api/users');
+  /* return {data:undefined}; */ return await axiosInstance.get('/api/users');
 };
 
 export const deletePost = async (id: string) => {

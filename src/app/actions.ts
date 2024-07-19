@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation';
 import axios, { AxiosError } from 'axios';
-import { signUpService } from '@/services/axios';
+import { signUpService, forgotPasswordService, resetPasswordService } from '@/services/axios';
 import { AppRoutes } from '@/constants/routes';
 import { getAllTranslations, getTranslation } from '@/dictionaries/dictionaries';
 import { i18n, Locale } from '@/i18n-config';
@@ -118,4 +118,24 @@ export const registerAction = async (formData: FormData, locale: Locale) => {
       console.error('Unexpected error:', error);
     }
   }
+};
+
+export const forgotPaswordAction = async (formData: FormData) => {
+  const email = formData.get('email');
+  if (email) {
+    const result = await forgotPasswordService(email);
+    return result;
+  }
+  return;
+};
+
+export const resetPaswordAction = async (formData: FormData) => {
+  const newPassword = formData.get('newPassword');
+  const confirmPassword = formData.get('confirmPassword');
+  const token = formData.get('token');
+  if (newPassword && confirmPassword) {
+    const result = await resetPasswordService(token, newPassword, confirmPassword);
+    return result;
+  }
+  return;
 };

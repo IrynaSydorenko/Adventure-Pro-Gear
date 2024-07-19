@@ -23,7 +23,7 @@ interface ProfileTranslations {
 const DropDown: React.FC<DropDownProps> = ({ locale, className, isLinkClicked }) => {
   const session = useSession();
   const [menuDataTranslation, setMenuDataTranslation] = useState<ProfileTranslations | undefined>();
-  console.log(session);
+  // console.log(session);
   useEffect(() => {
     const loadTranslations = async () => {
       const translations = await getAllTranslations(locale);
