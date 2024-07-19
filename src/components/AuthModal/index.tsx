@@ -8,6 +8,8 @@ import { Locale } from '@/i18n-config';
 import Modal from '../Modal';
 import SignUp from '../Header/ProductNavBar/AuthContainer/components/SignUp';
 import SignIn from '../Header/ProductNavBar/AuthContainer/components/SignIn';
+import ForgotPassword from '../Header/ProductNavBar/AuthContainer/components/ForgotPassword';
+import ResetPassword from '../Header/ProductNavBar/AuthContainer/components/ResetPassword';
 import styles from './AuthModal.module.css';
 
 interface AuthModalProps {
@@ -68,7 +70,17 @@ const AuthModal: React.FC<AuthModalProps> = ({ locale }) => {
           <SignIn locale={locale} />
         </Modal>
       )}
-      {isOverlayOpen && <div className={styles.overlay} />}
+      {isModalOpen && session.status !== 'authenticated' && authType === 'forgot-password' && (
+        <Modal closeModal={closeModal} locale={locale} className={styles.authModal}>
+          <ForgotPassword locale={locale} />
+        </Modal>
+      )}
+      {isModalOpen && session.status !== 'authenticated' && authType === 'reset-password' && (
+        <Modal closeModal={closeModal} locale={locale} className={styles.authModal}>
+          <ResetPassword locale={locale} />
+        </Modal>
+      )}
+      {/* {isOverlayOpen && <div className={styles.overlay} />} */}
     </>
   );
 };
