@@ -16,7 +16,7 @@ interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const Modal: React.FC<ModalProps> = ({ children, className, closeModal, locale }) => (
   <>
-    {/* <div className={styles.overlay} /> */}
+    <div className={styles.overlay} />
     <Container className={styles.containerModal}>
       <div className={`${className} ${styles.modal}`}>
         {children}
