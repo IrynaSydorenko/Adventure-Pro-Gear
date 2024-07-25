@@ -71,7 +71,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ locale }) => {
         </Modal>
       )}
       {isModalOpen && session.status !== 'authenticated' && authType === 'forgot-password' && (
-        <Modal closeModal={closeModal} locale={locale} className={styles.authModal}>
+        <Modal closeModal={closeModal} locale={locale} className={styles.authModalForgotPassword}>
           <ForgotPassword locale={locale} />
         </Modal>
       )}
