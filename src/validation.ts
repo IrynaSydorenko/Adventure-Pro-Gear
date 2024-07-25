@@ -69,5 +69,28 @@ export const getSignUpSchema = (authTranslation: any) =>
       }),
   });
 
+export const getResetPasswordSchema = (authTranslation: any) =>
+  z.object({
+    newPassword: z
+      .string()
+      .min(8, authTranslation.registration.zod['password-errors-registration'].quantity)
+      .refine(value => /\d/.test(value), {
+        message: authTranslation.registration.zod['password-errors-registration'].oneDigit,
+      })
+      .refine(value => /[A-Z]/.test(value), {
+        message:
+          authTranslation.registration.zod['password-errors-registration'].oneUppercaseLetter,
+      })
+      .refine(value => /[a-z]/.test(value), {
+        message:
+          authTranslation.registration.zod['password-errors-registration'].oneLowercaseLetter,
+      })
+      .refine(value => /[!@#$%^&*()_+[\]{};':"\\|,.<>/?]/.test(value), {
+        message:
+          authTranslation.registration.zod['password-errors-registration'].oneSpecialCharacter,
+      }),
+  });
+
 export type SignUpData = z.infer<ReturnType<typeof getSignUpSchema>>;
 export type LogInData = z.infer<ReturnType<typeof getLogInSchema>>;
+export type ResetPasswordData = z.infer<ReturnType<typeof getResetPasswordSchema>>;
