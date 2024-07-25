@@ -52,7 +52,8 @@
         "incorrect-email-server-error": "The email address is not registered. Please register",
         "incorrect-password-server-error": "Incorrect password. Please check and try again"
       }
-    }
+    },
+    "confirmPassword": "Password is not matching!"
   },
   "breadcrumbsData": {
     "breadcrumbs": {
