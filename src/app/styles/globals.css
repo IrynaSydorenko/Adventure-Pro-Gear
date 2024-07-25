@@ -2,10 +2,12 @@
 :root {
   /* font weight */
   --medium: 500;
+  --large: 700;
 
   /* font size */
   --medium-16: 16px;
   --small-14: 14px;
+  --large: 32px;
 
   /* colours */
   --white: #fff;
@@ -23,6 +25,7 @@
   --lightYellow: #ffecce;
   --yellow: #ffdba4;
   --yellowForStars: #ffc670;
+  --greem: #1e5f72;
   --greenForBtn: #1e5f72;
   --primaryBlue: #376b8e;
   --mediumBlue: #224256;
