@@ -17,6 +17,7 @@ interface InputProps {
   className?: string;
   type?: string;
   required?: boolean;
+  disabled?: boolean;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -30,6 +31,7 @@ const Input: React.FC<InputProps> = ({
   className,
   type,
   required,
+  disabled,
 }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const handleEyeClick = () => {
@@ -46,6 +48,7 @@ const Input: React.FC<InputProps> = ({
         placeholder={placeholder}
         className={` ${className} ${styles.input}`}
         onBlur={onBlur}
+        disabled={disabled}
       />
       {type === 'password' && (
         <Image
