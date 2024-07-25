@@ -36,19 +36,25 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({ locale }) => {
 
   return (
     <>
-      <Form action={handleSubmit}>
-        <p>Forgot password?</p>
+      <Form action={handleSubmit} className={styles.forgotPasswordForm}>
+        <h4 className={styles.formHeading}>Відновлення паролю</h4>
         <br />
-        <p>Write your email below</p>
-        <Input
-          required={true}
-          placeholder="email"
-          name="email"
-          type="email"
-          value={email}
-          onChange={handleChange}
-        />
-        <Input type="submit" value="Send" />
+        <p>
+          Забули пароль? Не хвилюйтеся, ми тут, щоб допомогти! Будь ласка, введіть свою адресу
+          електронної пошти нижче, і ми надішлемо вам посилання для відновлення паролю.
+        </p>
+        <div className={styles.inputAndButtobBlock}>
+          <Input
+            className={styles.emailInput}
+            required={true}
+            placeholder="E-mail"
+            name="email"
+            type="email"
+            value={email}
+            onChange={handleChange}
+          />
+          <Input type="submit" value="Send" className={styles.sybmitEmailInput} />
+        </div>
       </Form>
       {isModalOpen && (
         <Modal closeModal={closeModal} locale={locale} className={styles.setntEmailmodal}>
