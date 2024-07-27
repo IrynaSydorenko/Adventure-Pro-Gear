@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Locale } from '@/i18n-config';
 import { forgotPaswordAction } from '@/app/actions';
+import { getAllTranslations, getTranslation } from '@/dictionaries/dictionaries';
 import IllustrationSendEmail from '@/../public/icons/IllustrationSendEmail.svg';
 import Form from '@/components/Form';
 import Input from '@/components/Input';
@@ -17,6 +18,7 @@ interface ForgotPasswordProps {
 const ForgotPassword: React.FC<ForgotPasswordProps> = ({ locale }) => {
   const [email, setEmail] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [authTranslation, setAuthTranslation] = useState<any>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -34,15 +36,25 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({ locale }) => {
     setIsModalOpen(false);
   };
 
+  useEffect(() => {
+    const loadTranslations = async () => {
+      const translations = await getAllTranslations(locale);
+      console.log(translations);
+      const translationFunction = getTranslation(translations);
+      setAuthTranslation(translationFunction('auth'));
+    };
+
+    loadTranslations();
+  }, [locale]);
+
   return (
     <>
       <Form action={handleSubmit} className={styles.forgotPasswordForm}>
-        <h4 className={styles.formHeading}>Відновлення паролю</h4>
+        <h4 className={styles.formHeading}>
+          {authTranslation && authTranslation.forgotPasswordModal.heading}
+        </h4>
         <br />
-        <p>
-          Забули пароль? Не хвилюйтеся, ми тут, щоб допомогти! Будь ласка, введіть свою адресу
-          електронної пошти нижче, і ми надішлемо вам посилання для відновлення паролю.
-        </p>
+        <p>{authTranslation && authTranslation.forgotPasswordModal.info}</p>
         <div className={styles.inputAndButtobBlock}>
           <Input
             className={styles.emailInput}
@@ -53,17 +65,16 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({ locale }) => {
             value={email}
             onChange={handleChange}
           />
-          <Input type="submit" value="Send" className={styles.sybmitEmailInput} />
+          <Input
+            type="submit"
+            value={authTranslation && authTranslation.forgotPasswordModal['submit-button']}
+            className={styles.sybmitEmailInput}
+          />
         </div>
       </Form>
       {isModalOpen && (
         <Modal closeModal={closeModal} locale={locale} className={styles.setntEmailmodal}>
-          <p>
-            Ваш запит на відновлення паролю оброблено. Будь ласка, перевірте вашу електронну пошту.
-            Ми надіслали вам лист з посиланням для зміни пароля. Якщо ви не отримаєте листа протягом
-            5 хвилин, перевірте папку «Спам», або спробуйте знову ввести свою електронну адресу.
-            Дякуємо за ваше терпіння та розуміння.
-          </p>
+          <p>{authTranslation && authTranslation.forgotPasswordModal['email-directing-modal']}</p>
           <Image src={IllustrationSendEmail} alt="sent email icon" width={180} height={180} />
         </Modal>
       )}

@@ -53,6 +53,18 @@
         "incorrect-password-server-error": "Incorrect password. Please check and try again"
       }
     },
+    "forgotPasswordModal": {
+      "heading": "Reset password",
+      "info": "Forgot your password? Don't worry, we're here to help! Please enter your email address below, and we will send you a link to reset your password.",
+      "submit-button": "Send",
+      "email-directing-modal": "Your password reset request has been processed. Please check your email. We have sent you an email with a link to change your password. If you do not receive the email within 5 minutes, check your Spam folder, or try re-entering your email address. Thank you for your patience and understanding."
+    },
+    "resetPasswordModal": {
+      "heading": "Reset password",
+      "info": "Enter new password",
+      "placeholder": ["New Password", "Confirm new password"],
+      "submit-button": "Save"
+    },
     "confirmPassword": "Password is not matching!"
   },
   "breadcrumbsData": {
