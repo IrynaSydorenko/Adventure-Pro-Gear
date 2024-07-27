@@ -3,6 +3,12 @@
   padding: 40px 80px;
 }
 
+.authModalForgotPassword {
+  z-index: 3;
+  padding: 40px 80px;
+  min-width: 960px;
+}
+
 .overlay {
   display: block;
   position: absolute;
