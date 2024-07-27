@@ -26,6 +26,7 @@ interface Credentials {
 // http://localhost:3000/uk-UA/?auth=reset-password&token=071947f8-bd6b-43ea-a8d5-3786f0cbd30e
 
 const ResetPassword: React.FC<ResetPasswordProps> = ({ locale }) => {
+  console.log('LOCALE: ', locale);
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
   console.log(searchParams, 'Token: ', token);
@@ -93,7 +94,7 @@ const ResetPassword: React.FC<ResetPasswordProps> = ({ locale }) => {
 
   const handleConfirmPasswordBlur = () => {
     if (credentials.newPassword !== credentials.confirmPassword) {
-      setConfirmPasswordErrorMessage('Password is not matching!');
+      setConfirmPasswordErrorMessage(authTranslation.confirmPassword);
     } else {
       setConfirmPasswordErrorMessage('');
     }
@@ -102,6 +103,7 @@ const ResetPassword: React.FC<ResetPasswordProps> = ({ locale }) => {
   useEffect(() => {
     const loadTranslations = async () => {
       const translations = await getAllTranslations(locale);
+      console.log(translations);
       const translationFunction = getTranslation(translations);
       setAuthTranslation(translationFunction('auth'));
     };
@@ -128,12 +130,16 @@ const ResetPassword: React.FC<ResetPasswordProps> = ({ locale }) => {
     <>
       <Form action={handleSubmit}>
         <div className={styles.resetPasswordInfoContainer}>
-          <h4 className={styles.resetPasswordHeading}>Reset Password</h4>
+          <h4 className={styles.resetPasswordHeading}>
+            {authTranslation && authTranslation.resetPasswordModal.heading}
+          </h4>
           <br />
-          <p className={styles.resetPasswordSubHeading}>Write new password</p>
+          <p className={styles.resetPasswordSubHeading}>
+            {authTranslation && authTranslation.resetPasswordModal.info}
+          </p>
         </div>
         <Input
-          placeholder={'New password'}
+          placeholder={authTranslation && authTranslation.resetPasswordModal.placeholder[0]}
           name="newPassword"
           type="password"
           value={credentials.newPassword}
@@ -142,7 +148,7 @@ const ResetPassword: React.FC<ResetPasswordProps> = ({ locale }) => {
           error={validationErrors.newPassword && validationErrors.newPassword.join(', ')} //validationErrors.name && validationErrors.name.join(', ')
         />
         <Input
-          placeholder={'Confirm new password'}
+          placeholder={authTranslation && authTranslation.resetPasswordModal.placeholder[1]}
           name="confirmPassword"
           type="password"
           value={credentials.confirmPassword}
@@ -151,7 +157,10 @@ const ResetPassword: React.FC<ResetPasswordProps> = ({ locale }) => {
           onBlur={handleConfirmPasswordBlur}
           error={confirmPasswordErrorMessage}
         />
-        <Input type="submit" value="Save" />
+        <Input
+          type="submit"
+          value={authTranslation && authTranslation.resetPasswordModal['submit-button']}
+        />
       </Form>
       {/* {isModalOpen && (
         <Modal locale={locale} closeModal={closeModal}>
