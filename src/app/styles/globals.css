@@ -2,9 +2,12 @@
 :root {
   /* font weight */
   --medium: 500;
+  --wight-600: 600;
   --large: 700;
 
   /* font size */
+  --large-28: 28px;
+  --large-20: 20px;
   --medium-16: 16px;
   --small-14: 14px;
   --large: 32px;
@@ -30,4 +33,5 @@
   --primaryBlue: #376b8e;
   --mediumBlue: #224256;
   --darkBlue: #152a38;
+  --erro-100: #ac0000;
 }
