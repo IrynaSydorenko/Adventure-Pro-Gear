@@ -47,7 +47,7 @@ export const refreshTokenService = async (refreshToken: string) => {
 
 export const getProducts = async () => {
   /* return {data:undefined}; */ const products = await axiosInstance.get('/api/public/products');
-  return products.data;
+  return products;
 };
 
 export const signUpService = async (credentials: any) => {
@@ -116,4 +116,21 @@ export const getUsers = async () => {
 
 export const deletePost = async (id: string) => {
   /* return {data:undefined}; */ return await axiosInstance.delete(`/api/v1/products/${id}`);
+};
+
+export const updateUserData = async (personalData: any) => {
+  const { name, surname, phone, street, city, email } = personalData;
+  try {
+    const response = await axiosInstance.put('/api/users/me/update', {
+      name,
+      surname,
+      phone,
+      street,
+      city,
+      email,
+    });
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
 };
