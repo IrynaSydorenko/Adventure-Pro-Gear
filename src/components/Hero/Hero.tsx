@@ -1,14 +1,14 @@
 import React from 'react';
+import { Locale } from '@/i18n-config';
 import { getProducts, getUsers, deletePost } from '@/services/axios';
 import styles from './Hero.module.css';
 
 interface HeroProps {
+  locale: Locale;
   data: any[];
 }
 
-const Hero: React.FC<HeroProps> = ({ data }) => {
-  // const { data } = await getProducts();
-  // console.log('Data: ', data);
+const Hero: React.FC<HeroProps> = ({ data, locale }) => {
   // const users = await getUsers();
 
   // const handleDeletePost = async (postId: string) => {
@@ -24,7 +24,12 @@ const Hero: React.FC<HeroProps> = ({ data }) => {
       Hero!
       <ul>
         {/* @ts-ignore */}
-        {data && data.map((product: any) => <li key={product.id}>{product?.productNameUa}</li>)}
+        {data &&
+          data.map((product: any) => (
+            <li key={product.id}>
+              {locale === 'uk-UA' ? product?.productNameUa : product?.productNameEn}
+            </li>
+          ))}
       </ul>
       {/* @ts-ignore */}
       {/* <ul>{users && users.map((user, index) => <li key={user.id}>{user?.name}</li>)}</ul> */}

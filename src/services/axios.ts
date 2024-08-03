@@ -46,8 +46,12 @@ export const refreshTokenService = async (refreshToken: string) => {
 };
 
 export const getProducts = async () => {
-  /* return {data:undefined}; */ const products = await axiosInstance.get('/api/public/products');
-  return products;
+  try {
+    /* return {data:undefined}; */ const products = await axiosInstance.get('/api/public/products');
+    return products;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const signUpService = async (credentials: any) => {

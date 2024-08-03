@@ -11,19 +11,19 @@ import AuthModal from '@/components/AuthModal';
 const Page = async ({ params }: { params: { lang: Locale } }) => {
   const session = await getServerSession(options);
   console.log('session: ', session);
-  const { data } = await getProducts();
-  console.log('Data: ', data);
+  const res = await getProducts();
+  console.log('Result: ', res);
   return (
     <>
       {session ? (
         <>
-          <Hero data={data} />
+          <Hero data={res && res.data} locale={params.lang} />
           <h2>Authenticated</h2>
           <SignOutButton />
         </>
       ) : (
         <>
-          <Hero data={data} />
+          <Hero data={res && res.data} locale={params.lang} />
           <h2>Not Authenticated</h2>
         </>
       )}
