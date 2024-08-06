@@ -7,7 +7,7 @@
 .profileInfo {
   background-color: var(--mediumBlue);
   color: var(--white);
-  padding-left: 16px;
+  /* padding-left: 16px; */
   padding-top: 18.5px;
   padding-bottom: 18.5px;
   display: flex;
@@ -29,6 +29,7 @@
 
 .profilePhoto {
   margin-right: 16px;
+  margin-left: 16px;
   box-sizing: border-box;
   width: 32px;
   height: 32px;
@@ -66,5 +67,9 @@
 
 .menuItem > a > img {
   margin-right: 16px;
+  margin-left: 16px;
+}
+
+.loaddingProfilePicture {
   margin-left: 16px;
 }

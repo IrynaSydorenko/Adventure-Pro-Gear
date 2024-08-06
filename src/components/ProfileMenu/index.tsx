@@ -33,7 +33,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({ menuData, className, locale }
       <div className={styles.profileInfo}>
         {/* <Loading /> */}
         {session.status === 'loading' ? (
-          <Loading />
+          <Loading className={styles.loaddingProfilePicture} />
         ) : (
           <Link href={`http://localhost:3000/${locale}/personal_account/`}>
             <div className={styles.profilePhoto}>{`${session && session.data?.user.name[0]}`}</div>
