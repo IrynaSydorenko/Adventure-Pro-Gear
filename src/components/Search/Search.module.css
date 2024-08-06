@@ -11,10 +11,33 @@
   line-height: 24px;
   min-width: 641px;
 }
+
 .search::placeholder {
   color: var(--wight);
 }
 
 .search:focus {
   outline: none;
+}
+
+.dropdown {
+  background-color: var(--white);
+  border: 1px solid var(--mediumBlue);
+  border-radius: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  position: absolute;
+  width: calc(100% - 22px);
+  z-index: 1000;
+}
+
+.dropdown_li {
+  padding: 10px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.dropdown_li:hover {
+  background-color: var(--mediumBlue);
+  color: var(--white);
 }
