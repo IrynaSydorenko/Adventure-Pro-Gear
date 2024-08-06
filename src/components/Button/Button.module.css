@@ -7,6 +7,12 @@
   cursor: pointer;
 }
 
+.transparent {
+  background-color: var(--wightAuth);
+  color: var(--primaryBlue);
+  border: 1px solid var(--primaryBlue);
+}
+
 .primary {
   background-color: var(--primaryBlue);
   color: var(--white);
