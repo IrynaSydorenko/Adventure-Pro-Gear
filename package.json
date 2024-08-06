@@ -11,7 +11,7 @@
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.4",
     "@reduxjs/toolkit": "^2.2.1",
-    "axios": "^1.6.7",
+    "axios": "^1.7.3",
     "clsx": "^2.1.0",
     "eslint-config-airbnb": "^19.0.4",
     "jwt-decode": "^4.0.0",
