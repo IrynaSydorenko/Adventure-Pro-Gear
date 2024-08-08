@@ -16,35 +16,96 @@ interface EditDataProps {
   };
 }
 
+type FormDataGroup = 'personalData' | 'newPassword' | 'newEmail';
+
+interface FormData {
+  personalData: {
+    name: string;
+    surname: string;
+    phoneNumber: string;
+    streetAndHouseNumber: string;
+    city: string;
+    postalCode: string;
+  };
+  newPassword: {
+    password: string;
+    confirmPassword: string;
+  };
+  newEmail: {
+    email: string;
+    password: string;
+    confirmPassword: string;
+  };
+}
+
 const EditData: React.FC<EditDataProps> = ({ params }) => {
   console.log('Params: ', params);
-  const [personalData, setPersonalData] = useState({
-    name: '',
-    surname: '',
-    phoneNumber: '',
-    streetAndHouseNumber: '',
-    city: '',
-    postalCode: '',
-  });
-
-  const [newPassword, setNewPassword] = useState({
-    password: '',
-    confirmPassword: '',
-  });
-
-  const [newEmail, setNewEmail] = useState({
-    email: '',
-    password: '',
-    confirmPassword: '',
+  const [formData, setFormData] = useState<FormData>({
+    personalData: {
+      name: '',
+      surname: '',
+      phoneNumber: '',
+      streetAndHouseNumber: '',
+      city: '',
+      postalCode: '',
+    },
+    newPassword: {
+      password: '',
+      confirmPassword: '',
+    },
+    newEmail: {
+      email: '',
+      password: '',
+      confirmPassword: '',
+    },
   });
 
   const [actionType, setActionType] = useState<string | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPersonalData({ ...personalData, [e.target.name]: e.target.value });
+  const handleChange = (group: FormDataGroup) => (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prevData => ({
+      ...prevData,
+      [group]: {
+        ...prevData[group],
+        [e.target.name]: e.target.value,
+      },
+    }));
   };
+
+  const filterEmptyFields = (data: Record<string, string>) => {
+    const formData = new FormData();
+    Object.entries(data).forEach(([key, value]) => {
+      if (value.trim() !== '') {
+        formData.append(key, value);
+      }
+    });
+    console.log('Filtered form Data:', formData);
+    return formData;
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    switch (actionType) {
+      case 'updatePersonalData':
+        const filteredPersonalData = filterEmptyFields(formData.personalData);
+        await updatePersonalData(filteredPersonalData);
+        break;
+      case 'updatePassword':
+        const filteredPasswordData = filterEmptyFields(formData.newPassword);
+        await updatePassword(filteredPasswordData);
+        break;
+      case 'updateEmail':
+        const filteredEmailData = filterEmptyFields(formData.newEmail);
+        await updateEmail(filteredEmailData);
+        break;
+      default:
+        console.error('Unknown action type');
+    }
+  };
+
   return (
-    <Form className={styles.editDataForm} action={updatePersonalData}>
+    <Form className={styles.editDataForm} onSubmit={handleSubmit}>
       <div className={styles.heading}>
         <h4 className={styles.formHeader}>Редагувати дані</h4>
         <Link className={styles.deleteAccount} href="/">
@@ -59,25 +120,19 @@ const EditData: React.FC<EditDataProps> = ({ params }) => {
               placeholder="Імʼя"
               name="name"
               type="text"
-              onChange={e => {
-                handleChange(e);
-              }}
+              onChange={handleChange('personalData')}
             />
             <Input
               placeholder="Прізвище"
               name="surname"
               type="text"
-              onChange={e => {
-                handleChange(e);
-              }}
+              onChange={handleChange('personalData')}
             />
             <Input
               type="text"
               placeholder="Телефон"
               name="phoneNumber"
-              onChange={e => {
-                handleChange(e);
-              }}
+              onChange={handleChange('personalData')}
             />
             {/* <Input placeholder="Вулиця та номер будинку" />
           <Input placeholder="Місто" />
@@ -88,25 +143,19 @@ const EditData: React.FC<EditDataProps> = ({ params }) => {
               placeholder="Вулиця та номер будинку"
               name="streetAndHouseNumber"
               type="text"
-              onChange={e => {
-                handleChange(e);
-              }}
+              onChange={handleChange('personalData')}
             />
             <Input
               placeholder="Місто"
               name="city"
               type="text"
-              onChange={e => {
-                handleChange(e);
-              }}
+              onChange={handleChange('personalData')}
             />
             <Input
               placeholder="Поштовий індекс"
               name="postalCode"
               type="text"
-              onChange={e => {
-                handleChange(e);
-              }}
+              onChange={handleChange('personalData')}
             />
           </div>
         </div>
@@ -124,31 +173,55 @@ const EditData: React.FC<EditDataProps> = ({ params }) => {
         text="Зберегти дані"
         type="submit"
         color="transparent"
+        onClick={() => setActionType('updatePersonalData')}
       />
       {/* <Input type="submit" value="Зберегти дані" /> */}
       <br />
       <h6 className={styles.spam}>Змінити пароль</h6>
       <div className={styles.EditPassword}>
-        <Input placeholder="Новий пароль" type="password" />
-        <Input placeholder="Повторити пароль" type="password" />
+        <Input
+          placeholder="Новий пароль"
+          type="password"
+          value={formData.newPassword.password}
+          onChange={handleChange('newPassword')}
+        />
+        <Input
+          placeholder="Повторити пароль"
+          type="password"
+          value={formData.newPassword.confirmPassword}
+          onChange={handleChange('newPassword')}
+        />
       </div>
       <Button
         className={styles.submitButton}
         text="Змінити пароль"
         type="submit"
         color="transparent"
-        onClick={async () => {
-          console.log('Clicked!');
-        }}
+        onClick={() => setActionType('updatePassword')}
       />
       <br />
 
       <h6 className={styles.spam}>Змінити імейл</h6>
       <div className={styles.EditEmailContainer}>
         <div className={styles.editEmail}>
-          <Input placeholder="E-mail" type="email" />
-          <Input placeholder="Пароль" type="password" />
-          <Input placeholder="Повторити пароль" type="password" />
+          <Input
+            placeholder="E-mail"
+            type="email"
+            value={formData.newEmail.email}
+            onChange={handleChange('newEmail')}
+          />
+          <Input
+            placeholder="Пароль"
+            type="password"
+            value={formData.newEmail.password}
+            onChange={handleChange('newEmail')}
+          />
+          <Input
+            placeholder="Повторити пароль"
+            type="password"
+            value={formData.newEmail.confirmPassword}
+            onChange={handleChange('newEmail')}
+          />
         </div>
         <p className={styles.emailChangeInfo}>
           Після того як натиснете кнопку "Змінити E-mail", необхідно підтвердити новий e-mail. Будь
@@ -162,9 +235,7 @@ const EditData: React.FC<EditDataProps> = ({ params }) => {
         text="Змінити E-mail"
         color="transparent"
         type="submit"
-        onClick={async () => {
-          console.log('Clicked!');
-        }}
+        onClick={() => setActionType('updateEmail')}
       />
     </Form>
   );
