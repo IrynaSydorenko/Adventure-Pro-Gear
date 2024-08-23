@@ -12,6 +12,7 @@ export interface HeaderProps {
     lang: string[];
   };
   locale?: Locale;
+  products?: any;
 }
 
 export interface Token {}

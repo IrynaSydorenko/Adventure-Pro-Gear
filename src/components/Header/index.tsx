@@ -8,12 +8,12 @@ import Container from '../Container';
 import ProductNavBar from './ProductNavBar';
 import styles from './Header.module.css';
 
-const Header: NextPage<HeaderProps> = ({ translation, locale }) => (
+const Header: NextPage<HeaderProps> = ({ translation, locale, products }) => (
   <header className={styles.header}>
     <Container>
       <NavBar translation={translation} locale={locale} />
     </Container>
-    <ProductNavBar translation={translation} locale={locale} />
+    <ProductNavBar translation={translation} locale={locale} products={products} />
   </header>
 );
 

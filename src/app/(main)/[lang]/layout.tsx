@@ -11,6 +11,7 @@ import { Montserrat } from 'next/font/google';
 import { Locale } from '../../../i18n-config';
 import '@/app/styles/_normilize.css';
 import '@/app/styles/globals.css';
+import { getProducts } from '@/services/axios';
 
 export const metadata: Metadata = {
   title: 'Adventure Pro Gear',
@@ -33,6 +34,8 @@ interface RootLayoutProps {
 const RootLayout: NextPage<RootLayoutProps> = async ({ params: { lang }, children, auth }) => {
   const translations = await getAllTranslations(lang);
   const translation = getTranslation(translations);
+  const res = await getProducts();
+  console.log('Result: ', res);
   // const session = await getServerSession(options);
   // console.log("session: ",session);
 
@@ -41,7 +44,7 @@ const RootLayout: NextPage<RootLayoutProps> = async ({ params: { lang }, childre
       <html lang="en">
         <AuthProvider>
           <body className={inter.className}>
-            <Header translation={translation('nav')} locale={lang} />
+            <Header translation={translation('nav')} locale={lang} products={res && res.data} />
             <main>{children}</main>
             <ToastContainer hideProgressBar={true} />
             <Footer />
