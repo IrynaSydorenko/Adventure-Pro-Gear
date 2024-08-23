@@ -8,7 +8,7 @@ export const token: { access: string | null; refresh: string | null } = {
 };
 
 const axiosInstance = axios.create({
-  baseURL: 'https://incredible-creation-production.up.railway.app/',
+  baseURL: 'https://authentic-laughter-production.up.railway.app/',
 });
 
 axios.defaults.withCredentials = true;
