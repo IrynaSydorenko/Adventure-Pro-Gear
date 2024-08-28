@@ -2,7 +2,14 @@
 
 import { redirect } from 'next/navigation';
 import axios, { AxiosError } from 'axios';
-import { signUpService, forgotPasswordService, resetPasswordService } from '@/services/axios';
+import {
+  signUpService,
+  forgotPasswordService,
+  resetPasswordService,
+  updateUserDataService,
+  updatePasswordService,
+  updateEmailService,
+} from '@/services/axios';
 import { AppRoutes } from '@/constants/routes';
 import { getAllTranslations, getTranslation } from '@/dictionaries/dictionaries';
 import { i18n, Locale } from '@/i18n-config';
@@ -138,4 +145,40 @@ export const resetPaswordAction = async (formData: FormData) => {
     return result;
   }
   return;
+};
+
+export const updatePersonalData = async (formData: FormData) => {
+  const userData = Object.fromEntries(formData);
+  console.log('User Data: ', userData);
+  try {
+    const response = await updateUserDataService(userData);
+    console.log('Server Response: ', response?.statusText);
+    return response?.status;
+  } catch (e) {
+    console.log('Error from Client!', e);
+  }
+};
+
+export const updatePassword = async (formData: FormData) => {
+  const newPassword = Object.fromEntries(formData);
+  console.log('New Password: ', newPassword);
+  try {
+    const response = await updatePasswordService(newPassword);
+    console.log('Server Response: ', response?.statusText);
+    return response?.status;
+  } catch (e) {
+    console.log('Error from Client!', e);
+  }
+};
+
+export const updateEmail = async (formData: FormData) => {
+  const newEmail = Object.fromEntries(formData);
+  console.log('New Password: ', newEmail);
+  try {
+    const response = await updateEmailService(newEmail);
+    console.log('Server Response: ', response?.statusText);
+    return response?.status;
+  } catch (e) {
+    console.log('Error from Client!', e);
+  }
 };

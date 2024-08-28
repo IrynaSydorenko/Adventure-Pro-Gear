@@ -27,7 +27,7 @@ const DashboardLayout: React.FC<RootLayoutProps> = async ({ children, params }) 
           locale={params.lang}
           className={styles.profileMenuLayout}
         />
-        <main>{children}</main>
+        <section>{children}</section>
       </Container>
     </div>
   );

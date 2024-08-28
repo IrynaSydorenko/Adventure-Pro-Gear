@@ -96,7 +96,7 @@ export async function middleware(req: NextRequest) {
   const fullPath = `${pathnameFromUrlObj}${searchParams}`;
   console.log('FullPath: ', fullPath);
   console.log('fullUrl: ', fullUrl);
-  console.log('PATH_NAME: ', pathname); // PATH_NAME:  /uk-UA/contacts/;
+  console.log('PATH_NAME: ', pathname);
 
   const token = urlObj.searchParams.get('token');
   const auth = urlObj.searchParams.get('auth');
@@ -110,7 +110,10 @@ export async function middleware(req: NextRequest) {
 
   let parts = pathname.split('/'); // [ '', 'uk-UA', 'contacts', '' ]
   console.log(parts);
-  const locale = parts.splice(1, 1)[0];
+  let locale;
+  if (isLocale) {
+    locale = parts.splice(1, 1)[0];
+  }
   let newPathname = `${parts.join('/')}${searchParams}`;
   newPathname = newPathname === `//` ? `/` : newPathname;
   console.log('NewPathName', newPathname);

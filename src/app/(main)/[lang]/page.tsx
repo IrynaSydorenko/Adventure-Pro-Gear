@@ -12,7 +12,7 @@ const Page = async ({ params }: { params: { lang: Locale } }) => {
   const session = await getServerSession(options);
   console.log('session: ', session);
   const res = await getProducts();
-  console.log('Result: ', res);
+  // console.log('Result: ', res);
   return (
     <>
       {session ? (

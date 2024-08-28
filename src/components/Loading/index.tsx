@@ -5,8 +5,8 @@ interface LoadingProps {
   className?: string;
 }
 
-const Loading: React.FC<LoadingProps> = () => {
-  return <div className={styles.spinner}></div>;
+const Loading: React.FC<LoadingProps> = ({ className }) => {
+  return <div className={`${styles.spinner} ${className}`}></div>;
 };
 
 export default Loading;

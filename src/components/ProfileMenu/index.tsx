@@ -33,9 +33,9 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({ menuData, className, locale }
       <div className={styles.profileInfo}>
         {/* <Loading /> */}
         {session.status === 'loading' ? (
-          <Loading />
+          <Loading className={styles.loaddingProfilePicture} />
         ) : (
-          <Link href={`http://localhost:3000/${locale}/personal_account/`}>
+          <Link href={`${window.location.origin}/${locale}/personal_account/`}>
             <div className={styles.profilePhoto}>{`${session && session.data?.user.name[0]}`}</div>
             <div>{`${session && session.data?.user.name} ${session && session.data?.user.surname}`}</div>
           </Link>
@@ -44,7 +44,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({ menuData, className, locale }
       <ul className={styles.menuList}>
         <li className={styles.menuItem}>
           <Link
-            href={`http://localhost:3000/${locale}/personal_account/orders/`}
+            href={`${window.location.origin}/${locale}/personal_account/orders/`}
             onMouseEnter={() => setOrdersHover(true)}
             onMouseLeave={() => setOrdersHover(false)}
           >
@@ -58,7 +58,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({ menuData, className, locale }
         </li>
         <li className={styles.menuItem}>
           <Link
-            href={`http://localhost:3000/${locale}/personal_account/edit_data/`}
+            href={`${window.location.origin}/${locale}/personal_account/edit_data/`}
             onMouseEnter={() => setEditDataHover(true)}
             onMouseLeave={() => setEditDataHover(false)}
           >
@@ -72,7 +72,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({ menuData, className, locale }
         </li>
         <li className={styles.menuItem}>
           <Link
-            href={`http://localhost:3000/${locale}/personal_account/favourites/`}
+            href={`${window.location.origin}/${locale}/personal_account/favourites/`}
             onMouseEnter={() => setFavouritesHover(true)}
             onMouseLeave={() => setFavouritesHover(false)}
           >
@@ -86,7 +86,7 @@ const ProfileMenu: React.FC<ProfileMenuProps> = ({ menuData, className, locale }
         </li>
         <li className={styles.menuItem}>
           <Link
-            href={`http://localhost:3000/${locale}/personal_account/exit/`}
+            href={`${window.location.origin}/${locale}/personal_account/exit/`}
             onMouseEnter={() => setExitHover(true)}
             onMouseLeave={() => setExitHover(false)}
           >
