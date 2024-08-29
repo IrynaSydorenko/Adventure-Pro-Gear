@@ -7,7 +7,9 @@
     "personalAccount": "Personal account",
     "search": "Search",
     "catalog": " Catalog of goods",
-    "lang": ["Ukrainian", "English"]
+    "lang": ["Ukrainian", "English"],
+    "unavailable": "Nothing was found for your request. Try again.", 
+    "showall": "Show all"
   },
   "auth": {
     "registration": {

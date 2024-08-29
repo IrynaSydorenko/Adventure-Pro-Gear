@@ -8,12 +8,17 @@ import Likes from './Likes';
 import CatalogOfGoods from './Catalog';
 import styles from './ProductNavBar.module.css';
 
-const ProductNavBar: React.FC<HeaderProps> = ({ translation, locale }) => (
+const ProductNavBar: React.FC<HeaderProps> = ({ translation, locale, products }) => (
   <div className={styles.background}>
     <Container className={styles.container}>
       <div className={styles.productNavBarChildren}>
         <CatalogOfGoods catalog={translation.catalog} />
-        <Search search={translation.search} />
+        <Search 
+          products={products} 
+          unavailable={translation.unavailable} 
+          showall={translation.showall} 
+          locale={locale} 
+          search={translation.search} />
         <div className={styles.userInteractions}>
           <Likes />
           <ShoppingCart />

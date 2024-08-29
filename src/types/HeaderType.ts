@@ -10,6 +10,8 @@ export interface HeaderProps {
     search: string;
     catalog: string;
     lang: string[];
+    unavailable: string; 
+    showall: string;
   };
   locale?: Locale;
   products?: any;

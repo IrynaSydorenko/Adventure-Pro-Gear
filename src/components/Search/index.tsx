@@ -1,73 +1,74 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import SearchIcon from '@/../public/icons/SearchIcon.svg';
 import styles from './Search.module.css';
 import { getProducts } from '@/services/axios';
+import Button from '../Button';
+import { AppRoutes } from '@/constants/routes';
+import App from 'next/app';
+import { Locale } from '@/i18n-config';
 
 interface SearchProps {
   search: string;
+  unavailable: string;
+  showall: string;
+  products: any[];
+  locale: Locale;
 }
 
 interface Product {
-  id: string;
-  name: string;
+  productId: string;
+  productNameUa: string;
+  productNameEn: string;
+  basePrice: number;
 }
 
-const productsList: Product[] = [
-  { id: '1', name: 'Apple' },
-  { id: '2', name: 'Banana' },
-  { id: '3', name: 'Cherry' },
-  { id: '4', name: 'Apple11' },
-  { id: '5', name: 'Banana11' },
-  { id: '6', name: 'Cherry11' },
-  { id: '7', name: 'Apple22' },
-  { id: '8', name: 'Banana22' },
-  { id: '9', name: 'Cherry22' },
-  { id: '10', name: 'Apple33' },
-  { id: '11', name: 'Banana33' },
-  { id: '12', name: 'Cherry33' },
-  { id: '13', name: 'Apple44' },
-  { id: '14', name: 'Banana44' },
-  { id: '15', name: 'Cherry44' },
-  { id: '16', name: 'Apple55' },
-  { id: '17', name: 'Banana55' },
-  { id: '18', name: 'Cherry55' },
-  { id: '19', name: 'Cherry67' },
-  { id: '20', name: 'Watermelon' },
-];
-
-
-const Search: React.FC<SearchProps> = ({ search }) => {
+const Search: React.FC<SearchProps> = ({ search, products, unavailable, showall, locale }) => {
   const [value, setValue] = useState<string>('');
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
   const router = useRouter();
 
   const handlerOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
-    console.log("value", value);
+  };
+
+  const handleFocus = () => {
+    setIsDropdownVisible(true);
+  };
+  
+  const handleBlur = () => {
+    setTimeout(() => setIsDropdownVisible(false), 200);
+  };
+
+  const handleProductClick = (productId: string) => {
+    router.push(`/products/${productId}`);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      router.push(`${AppRoutes.PRODUCTS}`);
+    }
   };
 
   useEffect(() => {
     try {
       if (value.length >= 1) {
-        console.log("productsList", productsList);
-        const filtered = productsList.filter(product =>
-          product.name.toLowerCase().startsWith(value.toLowerCase()));
+        const filtered = products.filter(product =>
+          (locale === 'uk-UA' ? product.productNameUa : product.productNameEn)
+            .toLowerCase()
+            .startsWith(value.toLowerCase()));
         setFilteredProducts(filtered);
       } else {
         setFilteredProducts([]);
       }
     } catch (error) {
-      console.log(error);
-    };
-  }, [value]);
-
-  const handleProductClick = (productId: string) => {
-    router.push(`/products/${productId}`);
-  };
+      console.error(error);
+    }
+  }, [value, products, locale]);
 
   return (
     <div className={styles.search_box}>
@@ -76,23 +77,48 @@ const Search: React.FC<SearchProps> = ({ search }) => {
         placeholder={search}
         value={value}
         onChange={handlerOnChange}
+        onKeyDown={handleKeyDown}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
       />
+      <span className={styles.search_icon}>
+        <Image src={SearchIcon} alt="Search Icon" width={22} height={22} priority  />
+      </span>
 
-      {value.length >= 1 && (
+      {isDropdownVisible && value.length >= 1 && (
         <ul className={styles.dropdown}>
           {filteredProducts.length > 0 ? (
-            filteredProducts.map(product => (
-              <li className={styles.dropdown_li} key={product.id} onClick={() => handleProductClick(product.id)}>
-                {product.name}
+            <>
+              {filteredProducts.slice(0, 5).map((product) => (
+                <li className={styles.dropdown_li} key={product.productId}
+                  onClick={() => handleProductClick(product.productId)}>
+                    <span className={styles.smallcard_icon}>
+                      Icon
+                    </span>
+                  <div className={styles.smallcard_main}>
+                    <span className={styles.smallcard_name}>
+                      {locale === 'uk-UA' ? product.productNameUa : product.productNameEn}
+                    </span>
+                    <span className={styles.smallcard_price}>{product.basePrice} ₴</span>
+                  </div>
+                </li>
+              ))}
+              <li key='dropdown-button' className={styles.dropdown_li_end}
+                onClick={() => router.push(`${AppRoutes.PRODUCTS}`)}>
+                <Button 
+                  className={styles.dropdown_button} 
+                  text={showall}
+                  border= '1px solid #1E5F72' />
               </li>
-            ))
+            </>
           ) : (
-            <li>Такого товару нема</li>
+            <li className={styles.smallcard_noproduct} key="no-product-found">{unavailable}</li>
           )}
         </ul>
       )}
     </div>
   );
 };
+
 
 export default Search;
