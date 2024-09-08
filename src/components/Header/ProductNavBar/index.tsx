@@ -13,12 +13,13 @@ const ProductNavBar: React.FC<HeaderProps> = ({ translation, locale, products })
     <Container className={styles.container}>
       <div className={styles.productNavBarChildren}>
         <CatalogOfGoods catalog={translation.catalog} />
-        <Search 
-          products={products} 
-          unavailable={translation.unavailable} 
-          showall={translation.showall} 
-          locale={locale} 
-          search={translation.search} />
+        <Search
+          products={products}
+          unavailable={translation.unavailable}
+          showall={translation.showall}
+          locale={locale}
+          search={translation.search}
+        />
         <div className={styles.userInteractions}>
           <Likes />
           <ShoppingCart />

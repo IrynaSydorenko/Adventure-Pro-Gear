@@ -51,11 +51,12 @@
   display: flex;
   border: 2px solid transparent;
   transition: 0.5s;
+  width: 100%;
 }
 
 .dropdown_li:hover {
   /* border: 4px solid #406074; */
-  box-shadow: inset 0px 0px 25px 2px #1E5F72;
+  box-shadow: inset 0px 0px 17px 2px #9bb3c1;
 }
 
 .smallcard_icon {
@@ -96,5 +97,5 @@
 }
 
 .dropdown_button:hover {
-  box-shadow: inset 0px 0px 10px 2px #1E5F72;
+  box-shadow: inset 0px 0px 10px 2px #9bb3c1;
 }
