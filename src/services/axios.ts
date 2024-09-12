@@ -22,6 +22,7 @@ axiosInstance.interceptors.request.use(
       '/api/public/password-reset/reset',
       '/api/public/products',
       'api/public/auth/login',
+      'api/public/product',
     ];
     const needsAuth = !publicEndpoints.some(endpoint => config?.url?.startsWith(endpoint));
 
@@ -51,6 +52,15 @@ export const getProducts = async () => {
     return products;
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const getProductById = async (productId: number) => {
+  try {
+    /* return {data:undefined}; */ const product = await axiosInstance.get(`/api/public/products/${productId}`);
+    return product;
+  } catch (error) {
+    console.log('from getProductById');
   }
 };
 

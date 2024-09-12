@@ -5,28 +5,31 @@
   align-items: flex-start;
   padding: 8px;
   gap: 16px;
-
-  /* Wight/wight 100% */
   background: var(--wightAuth);
   border-radius: 5px;
 }
 
 .imageWrapper {
+  position: relative;
   width: 164px;
   height: 160px;
-  position: relative;
   font-style: normal;
   font-weight: var(--medium);
-  font-size: 11px;
+  font-size: 12px;
   line-height: 150%;
-  /* identical to box height, or 16px */
   letter-spacing: 0.04em;
-
-  /* Wight/wight 100% */
   color: var(--wightAuth);
+  outline: 1px solid lightgray;
 }
 
-.spacialWrapper {
+.productImage {
+  /* position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1; */
+}
+
+.specialWrapper {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -34,10 +37,11 @@
   gap: 4px;
 
   position: absolute;
+  top: 0;
+  left: 0;
   width: 62px;
   height: 46px;
-  left: 0px;
-  top: 0px;
+  z-index: 2;
 }
 
 .sale {
@@ -46,6 +50,7 @@
   height: 21px;
   background: #c83c33;
   border-radius: 5px;
+  text-align: center;
 }
 
 .new {
@@ -54,14 +59,17 @@
   height: 21px;
   background: #40898e;
   border-radius: 5px;
+  text-align: center;
 }
 
 .following {
   position: absolute;
+  bottom: 0;
+  right: 0;
   width: 24px;
   height: 24px;
-  left: 140px;
-  top: 136px;
+  padding: 3px 2px;
+  z-index: 2;
 }
 
 .cardContent {
@@ -72,7 +80,6 @@
   gap: 8px;
 
   width: 164px;
-  height: 182px;
 }
 
 .cardInfo {
@@ -83,7 +90,6 @@
   gap: 16px;
 
   width: 164px;
-  height: 153px;
 }
 
 .productName {
@@ -121,9 +127,16 @@
   align-items: center;
   padding: 0px;
   gap: 2px;
-
   width: 32px;
   height: 18px;
+
+  .text {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 150%;
+    letter-spacing: 0.04em;
+    color: #353535;
+  }
 }
 
 .price {
@@ -148,8 +161,8 @@
   padding: 0px;
   gap: 4px;
 
-  width: 96px;
-  height: 21px;
+  /* width: 96px;
+  height: 21px; */
   /* expired price */
   font-style: normal;
   font-weight: 400;
@@ -169,8 +182,8 @@
   padding: 0px 6px;
   gap: 10px;
 
-  width: 39px;
-  height: 18px;
+  /* width: 39px;
+  height: 18px; */
   background: #c83c33;
   border-radius: 5px;
 }
@@ -187,11 +200,14 @@
 }
 
 .available {
-  width: 88px;
-  height: 21px;
+  /* width: 88px;
+  height: 21px; */
   font-style: normal;
   font-weight: var(--wight-600);
   font-size: var(--small-14);
   line-height: 150%;
   color: var(--greenForBtn);
+}
+.buySection {
+  padding: 12px 30px;
 }
