@@ -57,10 +57,19 @@ export const getProducts = async () => {
 
 export const getProductById = async (productId: number) => {
   try {
-    /* return {data:undefined}; */ const product = await axiosInstance.get(`/api/public/products/${productId}`);
+    const product = await axiosInstance.get(`/api/public/products/${productId}`);
     return product;
   } catch (error) {
     console.log('from getProductById');
+  }
+};
+
+export const getReviewsById = async (id: number) => {
+  try {
+    const review = await axiosInstance.get(`/api/public/products/reviews/${id}`);
+    return review;
+  } catch (error) {
+    console.log('from getReviewsById');
   }
 };
 

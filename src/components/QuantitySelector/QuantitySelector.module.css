@@ -1,0 +1,117 @@
+.quantityWrapper {
+  display: flex;
+  align-items: flex-start;
+  padding: 0px;
+  border-radius: 5px;
+  border: 1px solid var(--label);
+
+  width: 123px;
+  height: 48px;
+}
+
+.quantityWrapper.admin {
+  width: 110px;
+  height: 40px;
+
+  border: 1px solid var(--adminBorder);
+}
+
+.quantityWrapper.small {
+  width: 110px;
+  height: 40px;
+}
+
+.quantityWrapper:hover {
+  border: 1px solid var(--gray-300);
+}
+
+.quantityWrapper.admin:hover {
+  border: 1px solid var(--disabled);
+  background: rgba(245, 255, 255, 0.1);
+}
+
+.quantityWrapper:hover .value {
+  border-width: 0px 1px;
+  border-style: solid;
+  border-color: var(--gray-300);
+}
+
+.quantityWrapper.admin:hover .value {
+  border-color: var(--disabled);
+}
+
+.operation {
+  box-sizing: border-box;
+  width: 35px;
+  height: 48px;
+  border: none;
+  background-color: inherit;
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: var(--medium);
+  font-size: 22px;
+  line-height: 150%;
+}
+
+.operation.subt {
+  color: var(--darkBlue);
+}
+
+.operation.plus {
+  color: var(--greenForBtn);
+}
+
+.operation.admin {
+  height: 40px;
+  color: var(--adminBorder);
+}
+
+.operation.small {
+  height: 40px;
+}
+
+.operation:disabled {
+  background: rgba(0, 0, 0, 0.02);
+  color: var(--gray-300);
+}
+
+.operation:active:not(:disabled) {
+  background: var(--greenForBtn);
+  color: var(--wightAuth);
+}
+
+.operation.admin:active:not(:disabled) {
+  background: var(--adminDarkBlue);
+}
+
+.value {
+  box-sizing: border-box;
+  width: 53px;
+  height: 48px;
+  border-width: 0px 1px;
+  border-style: solid;
+  border-color: var(--label);
+  color: var(--greenForBtn);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 150%;
+}
+.value.admin {
+  height: 40px;
+  font-size: var(--medium-16);
+  line-height: 24px;
+  color: var(--adminBorder);
+}
+
+.value.small {
+  height: 40px;
+  font-size: var(--medium-16);
+  line-height: 24px;
+}

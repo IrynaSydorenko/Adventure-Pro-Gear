@@ -4,43 +4,64 @@ import Image from 'next/image';
 import { Locale } from '@/i18n-config';
 import FollowinIcon from '@/../public/icons/Following.svg';
 import Reviews from '@/../public/icons/Reviews.svg';
+import Comercial from '@/../public/icons/Comercial.svg';
+import NotAvailable from '@/../public/images/soldout.png';
 import styles from './Card.module.css';
+import Button from '../Button';
 
 interface CardProps {
     product: {
+        productId: number,
         productNameUa: string,
         productNameEn: string,
         basePrice: number,
         attributes: [
             {
                 priceDeviation: number,
-                quantity: number
+                quantity: number,
+                label: string | null
             }
         ],
         contents: [
             { source: string }
         ],
     };
+    attrInd?: number;
     locale: Locale;
+    screenOption?: string;
+    /* onBuyClick: (productId: number) => void; */
 }
 
-const Card: React.FC<CardProps> = ({ product, locale }) => {
-    const [newPrice, setNewPrice] = useState(0);
-    const [productName, setProductName] = useState('');
-
+const Card: React.FC<CardProps> = ({ product, attrInd = 1, locale, /* onBuyClick, */ screenOption = 'standart' }) => {
+    const [newPrice, setNewPrice] = useState<number>(0);
+    const [isAvailable, setIsAvailable] = useState(true);
+    const [productName, setProductName] = useState<string>('');
+    const [classNameBuy, setClassNameBuy] = useState<string>(styles.buySectionHide);
+    console.log(product)
+    console.log('!label', !product.attributes[attrInd].label)
     useEffect(() => {
-        setNewPrice(product.basePrice + product.basePrice * (product.attributes[0].priceDeviation / 100));
-        setProductName(locale === 'uk-UA' ? product.productNameUa : product.productNameEn);
+        setNewPrice(product.basePrice + product.basePrice * (product.attributes[attrInd].priceDeviation / 100));
+        setProductName(locale == 'uk-UA' ? product.productNameUa : product.productNameEn);
+        setIsAvailable(product.attributes[attrInd].quantity > 0 ? true : false);
     }, [product, locale]);
 
+    const handleMouseOver: (event: any) => void = () => {
+        setClassNameBuy(styles.buySectionShow)
+    }
+    const handleMouseLeave: (event: any) => void = () => {
+        setClassNameBuy(styles.buySectionHide)
+    }
+
     return (
-        <section className={styles.cardWrapper}>
+        <section className={styles.cardWrapper} onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
             <div className={styles.imageWrapper}>
                 <Image className={styles.productImage} src="https://dummyimage.com/164x164" width={164} height={160} alt={productName} />
                 <div className={styles.specialWrapper}>
-                    {product.basePrice !== newPrice &&
+                    {!isAvailable && <Image className={styles.saleOut} src={NotAvailable} alt='not available' width={105} height={49} />}
+                    {product.basePrice > newPrice &&
                         <div className={styles.sale}>Акція</div>}
-                    <div className={styles.new}>Нове</div>
+                    {product.attributes[0].label &&
+                        <div className={styles.new}>Нове</div>}
                 </div>
                 <div className={styles.following}>
                     <Image src={FollowinIcon} width={20} height={18} alt='following' />
@@ -76,16 +97,18 @@ const Card: React.FC<CardProps> = ({ product, locale }) => {
                     </div>
                     {product.basePrice !== newPrice ?
                         (<div className={styles.price}>
-                            <div className={styles.oldPrice}><span>{product.basePrice} ₴</span><span className={styles.deviation}>{product.attributes[0].priceDeviation} %</span></div>
+                            <div className={styles.oldPrice}>
+                                <span>{product.basePrice} ₴</span>
+                                <span className={styles.deviation}>{product.attributes[attrInd].priceDeviation} %</span>
+                            </div>
                             <div className={styles.newPrice}>{newPrice} ₴</div>
                         </div>)
                         : (<div className={styles.newPrice}>{product.basePrice} ₴</div>)}
                 </div>
-                <div className={styles.available}>{product.attributes[0].quantity > 0 ? "В наявності" : "Нема в наявності"}</div>
+                <div className={styles.available}>{isAvailable ? "В наявності" : "Нема в наявності"}</div>
             </div>
-            <div className={styles.buySection}>
-                <span>Купити</span>
-                <button></button>
+            <div className={classNameBuy}>
+                <Button /* onClick={() => onBuyClick(product.productId)} */ text={'Купити'} className={styles.buyButton} disabled={!isAvailable} icon={<Image src={Comercial} width={20} height={20} alt='Comercial' />} />
             </div>
         </section>
     );

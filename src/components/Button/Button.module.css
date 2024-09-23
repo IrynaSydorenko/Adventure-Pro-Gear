@@ -7,6 +7,10 @@
   cursor: pointer;
 }
 
+.button:disabled {
+  background-color: var(--disabled);
+}
+
 .transparent {
   background-color: var(--wightAuth);
   color: var(--primaryBlue);

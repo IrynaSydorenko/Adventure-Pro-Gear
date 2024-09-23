@@ -7,6 +7,17 @@
   gap: 16px;
   background: var(--wightAuth);
   border-radius: 5px;
+  width: 180px;
+  box-sizing: border-box;
+  box-shadow: none;
+  transition: box-shadow 0.5s;
+}
+
+.cardWrapper:hover {
+  box-shadow:
+    0px -1px 20px rgba(30, 95, 114, 0.2),
+    -9px 4px 20px rgba(50, 109, 126, 0.2),
+    10px 9px 20px rgba(69, 151, 175, 0.2);
 }
 
 .imageWrapper {
@@ -22,13 +33,6 @@
   outline: 1px solid lightgray;
 }
 
-.productImage {
-  /* position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1; */
-}
-
 .specialWrapper {
   display: flex;
   flex-direction: column;
@@ -42,6 +46,11 @@
   width: 62px;
   height: 46px;
   z-index: 2;
+}
+
+.saleOut {
+  padding-left: 8px;
+  padding-top: 8px;
 }
 
 .sale {
@@ -70,6 +79,20 @@
   height: 24px;
   padding: 3px 2px;
   z-index: 2;
+}
+
+.addToFollowing {
+  position: absolute;
+  padding: 10px 8px;
+  background: var(--darkBlue);
+  color: var(--wightAuth);
+  font-size: 12px;
+  line-height: 150%;
+  letter-spacing: 0.04em;
+}
+
+.poligon {
+  position: absolute;
 }
 
 .cardContent {
@@ -193,21 +216,32 @@
   font-weight: var(--wight-600);
   font-size: var(--large-20);
   line-height: 150%;
-  /* identical to box height, or 30px */
 
-  /* Blu- primery/blu 900 */
   color: var(--darkBlue);
 }
 
 .available {
-  /* width: 88px;
-  height: 21px; */
   font-style: normal;
   font-weight: var(--wight-600);
   font-size: var(--small-14);
   line-height: 150%;
   color: var(--greenForBtn);
 }
-.buySection {
-  padding: 12px 30px;
+
+.buySectionShow {
+  opacity: 1;
+  visibility: visible;
+}
+.buySectionHide {
+  opacity: 0;
+  visibility: hidden;
+}
+.buyButton {
+  box-sizing: border-box;
+  padding: 10px 20px;
+  gap: 10px;
+  width: 164px;
+  background: var(--greenForBtn);
+  border: 1px solid var(--greem);
+  border-radius: 5px;
 }
