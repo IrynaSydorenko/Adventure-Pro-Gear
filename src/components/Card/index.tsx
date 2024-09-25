@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Locale } from '@/i18n-config';
 import FollowinIcon from '@/../public/icons/Following.svg';
-import Reviews from '@/../public/icons/Reviews.svg';
 import Comercial from '@/../public/icons/Comercial.svg';
 import NotAvailable from '@/../public/images/soldout.png';
 import styles from './Card.module.css';
@@ -29,12 +28,14 @@ interface CardProps {
         ],
     };
     attrInd?: number;
+    avgRating?: number;
+    countReviews?: number;
     locale: Locale;
     screenOption?: string;
     /* onBuyClick: (productId: number) => void; */
 }
 
-const Card: React.FC<CardProps> = ({ product, attrInd = 1, locale, /* onBuyClick, */ screenOption = 'standart' }) => {
+const Card: React.FC<CardProps> = ({ product, attrInd = 1, locale, avgRating = 0, countReviews = 0,/* onBuyClick, */ screenOption = 'standart' }) => {
     const [newPrice, setNewPrice] = useState<number>(0);
     const [isAvailable, setIsAvailable] = useState(true);
     const [productName, setProductName] = useState<string>('');
@@ -57,7 +58,7 @@ const Card: React.FC<CardProps> = ({ product, attrInd = 1, locale, /* onBuyClick
     return (
         <section className={styles.cardWrapper} onMouseOver={handleMouseOver} onMouseLeave={handleMouseLeave}>
             <div className={styles.imageWrapper}>
-                <Image className={styles.productImage} src="https://dummyimage.com/164x164" width={164} height={160} alt={productName} />
+                <Image className={styles.productImage} src="https://dummyimage.com/180x180" width={164} height={160} alt={productName} />
                 <div className={styles.specialWrapper}>
                     {!isAvailable && <Image className={styles.saleOut} src={NotAvailable} alt='not available' width={105} height={49} />}
                     {product.basePrice > newPrice &&
@@ -75,8 +76,8 @@ const Card: React.FC<CardProps> = ({ product, attrInd = 1, locale, /* onBuyClick
                         {productName}
                     </h3>
                     <div className={styles.rating}>
-                        <RatingStars averageRating={4.5} />
-                        <ReviewCount reviewCount={12} />
+                        <RatingStars averageRating={avgRating} />
+                        <ReviewCount reviewCount={countReviews} />
                     </div>
                     {product.basePrice !== newPrice ?
                         (<div className={styles.price}>

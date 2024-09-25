@@ -73,14 +73,23 @@ export const getReviewsById = async (id: number) => {
   }
 };
 
-export const getAverageRatingById = async (id: number) => {
+export const getAverageRatingByProductId = async (productId:number) => {
   try {
-    const averageRating = await axiosInstance.get(`/api/public/products/reviews/${id}/average-rating`);
+    const averageRating = await axiosInstance.get(`/api/public/products/reviews/average-rating?productId=${productId}`);
     return averageRating;
   } catch (error) {
-    console.log('from getAverageRatingById');
+    console.log('from getAverageRatingByProductId');
   }
 };
+
+export const getAllReviews = async (productId:number)=>{
+  try {
+    const reviews = await axiosInstance.get(`api/public/products/reviews?productId=${productId}`)
+    return reviews
+  } catch (error) {
+    console.log('from getAllReviews')
+  }
+}
 
 export const signUpService = async (credentials: any) => {
   const { name, surname, email, password } = credentials;

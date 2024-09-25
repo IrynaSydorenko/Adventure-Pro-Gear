@@ -13,6 +13,12 @@ const nextConfig = {
         port: '',
         pathname: '/164x164',
       },
+      {
+        protocol: 'https',
+        hostname: 'dummyimage.com',
+        port: '',
+        pathname: '/180x180',
+      },
     ],
   },
 };
