@@ -9,6 +9,7 @@ import NotAvailable from '@/../public/images/soldout.png';
 import styles from './Card.module.css';
 import Button from '../Button';
 import RatingStars from '../RatingStars';
+import ReviewCount from '../ReviewCount';
 
 interface CardProps {
     product: {
@@ -75,10 +76,7 @@ const Card: React.FC<CardProps> = ({ product, attrInd = 1, locale, /* onBuyClick
                     </h3>
                     <div className={styles.rating}>
                         <RatingStars averageRating={4.5} />
-                        <div className={styles.reviews}>
-                            <Image src={Reviews} width={12} height={11} alt='reviews' />
-                            <span className={styles.text}>10</span>
-                        </div>
+                        <ReviewCount reviewCount={12} />
                     </div>
                     {product.basePrice !== newPrice ?
                         (<div className={styles.price}>
