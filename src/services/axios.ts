@@ -73,6 +73,15 @@ export const getReviewsById = async (id: number) => {
   }
 };
 
+export const getAverageRatingById = async (id: number) => {
+  try {
+    const averageRating = await axiosInstance.get(`/api/public/products/reviews/${id}/average-rating`);
+    return averageRating;
+  } catch (error) {
+    console.log('from getAverageRatingById');
+  }
+};
+
 export const signUpService = async (credentials: any) => {
   const { name, surname, email, password } = credentials;
   return await axiosInstance.post('/api/public/registration/register', {
