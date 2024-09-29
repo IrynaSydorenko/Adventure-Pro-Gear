@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/prefer-default-export, no-shadow
 export enum AppRoutes {
   HOME = '/',
   SIGN_UP = '/?auth=signup',
@@ -10,4 +11,5 @@ export enum AppRoutes {
   EDIT_DATA = '/edit_data',
   FAVOURITES = '/favourites',
   ORDERS = '/orders',
+  PRODUCTS = '/filtered-products',
 }

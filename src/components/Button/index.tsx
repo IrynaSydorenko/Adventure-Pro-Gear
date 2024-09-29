@@ -9,7 +9,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   onClick?: (event: any) => void;
   className?: string;
   type?: 'button' | 'submit' | 'reset' | undefined;
+  backgroundColor?: string;
   color?: string;
+  border?: string;
   icon?: React.ReactNode;
 }
 
@@ -18,14 +20,27 @@ const Button: React.FC<ButtonProps> = ({
   text,
   className = '',
   icon,
-  color = 'primary',
+  backgroundColor,
+  color = '',
+  border,
   type = 'button',
   ...props
 }) => {
+  const buttonStyle = {
+    backgroundColor,
+    color,
+    border,
+  };
   const buttonClassNames = clsx(styles.button, className, styles[color]);
 
   return (
-    <button className={buttonClassNames} onClick={onClick} type={type} {...props}>
+    <button
+      className={buttonClassNames}
+      onClick={onClick}
+      type={type}
+      style={buttonStyle}
+      {...props}
+    >
       {text}
       {icon}
     </button>

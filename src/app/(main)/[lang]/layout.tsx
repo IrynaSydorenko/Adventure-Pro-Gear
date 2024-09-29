@@ -8,10 +8,10 @@ import { NextPage } from 'next';
 import { getAllTranslations, getTranslation } from '@/dictionaries/dictionaries';
 import AuthProvider from '@/components/AuthProvider';
 import { Montserrat } from 'next/font/google';
-import { Locale } from '../../../i18n-config';
 import '@/app/styles/_normilize.css';
 import '@/app/styles/globals.css';
 import { getProducts } from '@/services/axios';
+import { Locale } from '../../../i18n-config';
 
 export const metadata: Metadata = {
   title: 'Adventure Pro Gear',

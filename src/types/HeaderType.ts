@@ -7,7 +7,11 @@ export interface HeaderProps {
     blog: string;
     contacts: string;
     personalAccount: string;
-    search: string;
+    search: {
+      placeholder: string;
+      unavailable: string;
+      showall: string;
+    };
     catalog: string;
     lang: string[];
   };

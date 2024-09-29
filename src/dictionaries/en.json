@@ -5,7 +5,11 @@
     "blog": "Blog",
     "contacts": "Contacts",
     "personalAccount": "Personal account",
-    "search": "Search",
+    "search": {
+      "placeholder": "Search",
+      "unavailable": "Nothing was found for your request. Try again.",
+      "showall": "Show all"
+    },
     "catalog": " Catalog of goods",
     "lang": ["Ukrainian", "English"]
   },
