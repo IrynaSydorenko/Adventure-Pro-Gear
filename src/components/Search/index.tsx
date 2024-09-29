@@ -11,7 +11,7 @@ import styles from './Search.module.css';
 import Button from '../Button';
 
 interface SearchProps {
-  search: string;
+  placeholder: string;
   unavailable: string;
   showall: string;
   products: any[];
@@ -26,9 +26,7 @@ interface Product {
   selfLink: string;
 }
 
-const Search: React.FC<SearchProps> = ({
-  search, products, unavailable, showall, locale
-}) => {
+const Search: React.FC<SearchProps> = ({ placeholder, products, unavailable, showall, locale }) => {
   const [value, setValue] = useState<string>('');
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
@@ -62,7 +60,8 @@ const Search: React.FC<SearchProps> = ({
         const filtered = products.filter(product =>
           (locale === 'uk-UA' ? product.productNameUa : product.productNameEn)
             .toLowerCase()
-            .startsWith(value.toLowerCase()));
+            .startsWith(value.toLowerCase())
+        );
         setFilteredProducts(filtered);
       } else {
         setFilteredProducts([]);
@@ -77,7 +76,7 @@ const Search: React.FC<SearchProps> = ({
     <div className={styles.search_box}>
       <input
         className={styles.search}
-        placeholder={search}
+        placeholder={placeholder}
         value={value}
         onChange={handlerOnChange}
         onKeyDown={handleKeyDown}
@@ -92,7 +91,7 @@ const Search: React.FC<SearchProps> = ({
         <ul className={styles.dropdown}>
           {filteredProducts.length > 0 ? (
             <>
-              {filteredProducts.slice(0, 5).map((product) => (
+              {filteredProducts.slice(0, 5).map(product => (
                 <button
                   className={styles.dropdown_li}
                   key={product.productId}
@@ -108,29 +107,23 @@ const Search: React.FC<SearchProps> = ({
                     <span className={styles.smallcard_name}>
                       {locale === 'uk-UA' ? product.productNameUa : product.productNameEn}
                     </span>
-                    <span className={styles.smallcard_price}>
-                      {product.basePrice}
-                      {' '}
-                      ₴
-                    </span>
+                    <span className={styles.smallcard_price}>{product.basePrice} ₴</span>
                   </div>
                 </button>
               ))}
-              <li
-                key='dropdown-button'
-                className={styles.dropdown_li_end}
-              >
+              <li key="dropdown-button" className={styles.dropdown_li_end}>
                 <Button
                   className={styles.dropdown_button}
                   text={showall}
-                  border='1px solid #1E5F72'
+                  border="1px solid #1E5F72"
                   onClick={() => router.push(`${AppRoutes.PRODUCTS}`)}
                 />
               </li>
-
             </>
           ) : (
-            <li className={styles.smallcard_noproduct} key="no-product-found">{unavailable}</li>
+            <li className={styles.smallcard_noproduct} key="no-product-found">
+              {unavailable}
+            </li>
           )}
         </ul>
       )}
