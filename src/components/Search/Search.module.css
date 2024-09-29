@@ -36,13 +36,14 @@
   margin: 60px 0;
   background-color: var(--white);
   color: var(--black);
-  border: 1px solid var(--mediumBlue);
+  /* border: 1px solid var(--mediumBlue); */
   border-radius: 4px;
   max-height: 700;
   min-width: 675px;
   overflow-y: auto;
   position: absolute;
   z-index: 1000;
+  box-sizing: border-box;
 }
 
 .dropdown_li {
@@ -52,11 +53,12 @@
   border: 2px solid transparent;
   transition: 0.5s;
   width: 100%;
+  background-color: var(--wightAuth);
 }
 
 .dropdown_li:hover {
   /* border: 4px solid #406074; */
-  box-shadow: inset 0px 0px 17px 2px #9bb3c1;
+  box-shadow: inset 0px 0px 17px 2px var(--shadow);
 }
 
 .smallcard_icon {
@@ -80,6 +82,7 @@
 .smallcard_noproduct {
   padding: 11.5px 24px;
   font-size: 18px;
+  background-color: var(--wightAuth);
 }
 
 .dropdown_li_end {
@@ -91,11 +94,11 @@
 .dropdown_button {
   font-size: 20px;
   background-color: white;
-  color: #1E5F72;
+  color: #1e5f72;
   border-radius: 8px;
   transition: 0.5s;
 }
 
 .dropdown_button:hover {
-  box-shadow: inset 0px 0px 10px 2px #9bb3c1;
+  box-shadow: inset 0px 0px 10px 2px var(--shadow);
 }
