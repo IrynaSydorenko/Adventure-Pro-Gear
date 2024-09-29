@@ -15,10 +15,10 @@ const ProductNavBar: React.FC<HeaderProps> = ({ translation, locale, products })
         <CatalogOfGoods catalog={translation.catalog} />
         <Search
           products={products}
-          unavailable={translation.unavailable}
-          showall={translation.showall}
+          unavailable={translation.search.unavailable}
+          showall={translation.search.showall}
           locale={locale}
-          search={translation.search}
+          placeholder={translation.search.placeholder}
         />
         <div className={styles.userInteractions}>
           <Likes />
