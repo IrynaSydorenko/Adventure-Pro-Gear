@@ -21,7 +21,7 @@ const Button: React.FC<ButtonProps> = ({
   className = '',
   icon,
   backgroundColor,
-  color,
+  color = '',
   border,
   type = 'button',
   ...props
@@ -31,14 +31,16 @@ const Button: React.FC<ButtonProps> = ({
     color,
     border,
   };
-  const buttonClassNames = clsx(styles.button, className);
+  const buttonClassNames = clsx(styles.button, className, styles[color]);
 
   return (
-    <button className={buttonClassNames}
-    onClick={onClick}
-    type={type}
-    style={buttonStyle}
-    {...props}>
+    <button
+      className={buttonClassNames}
+      onClick={onClick}
+      type={type}
+      style={buttonStyle}
+      {...props}
+    >
       {text}
       {icon}
     </button>
