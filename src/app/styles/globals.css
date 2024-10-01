@@ -9,7 +9,9 @@
   --large-28: 28px;
   --large-20: 20px;
   --medium-16: 16px;
+  --medium-18: 18px;
   --small-14: 14px;
+  --small-12: 12px;
   --large: 32px;
 
   /* colours */
@@ -37,4 +39,6 @@
   --disabled: #7d7d7d;
   --adminBorder: #d3d9d9;
   --adminDarkBlue: #3a4c50;
+  --sale: #c83c33;
+  --newMarker: #40898e;
 }

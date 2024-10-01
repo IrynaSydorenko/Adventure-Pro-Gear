@@ -14,7 +14,6 @@ const publicRoutes = [
   `${AppRoutes.SIGNIN}`,
   `${AppRoutes.SIGN_UP}`,
   `${AppRoutes.FORGOT_PASSWORD}`,
-  `${AppRoutes.PRODUCT}`,
   `/?auth=reset-password&token=*`,
   '/contacts/',
   '/about_us/',

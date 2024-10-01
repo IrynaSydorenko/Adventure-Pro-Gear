@@ -9,6 +9,5 @@ export enum AppRoutes {
   PERSONAL_ACCOUNT = '/personal_account',
   EDIT_DATA = '/edit_data',
   FAVOURITES = '/favourites',
-  ORDERS = '/orders',
-  PRODUCT = '/product/'
+  ORDERS = '/orders'
 }

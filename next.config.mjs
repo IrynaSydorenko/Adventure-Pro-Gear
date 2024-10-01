@@ -6,6 +6,7 @@ const nextConfig = {
   optimizeFonts: true,
   trailingSlash: true,
   images: {
+    //for component Image from 'next/image'
     remotePatterns: [
       {
         protocol: 'https',

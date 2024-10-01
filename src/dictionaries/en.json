@@ -78,5 +78,15 @@
   },
   "profile": {
     "menuData": ["Orders", "Edit Data", "Favourites", "Exit"]
+  },
+  "product":{
+    "card":{
+      "addToFollowing":"Log in to add item to your wish list",
+      "sale":"Sale",
+      "new":"New",
+      "available":"In stock",
+      "outOfStock":"Out of stock",
+      "buy":"Buy"
+    }
   }
 }
