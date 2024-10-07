@@ -1,7 +1,7 @@
 .reviews {
   display: none;
 
-  @media screen and (min-width: 744px) {
+  @media screen and (min-width: 644px) {
     display: flex;
     align-items: center;
     padding: 0px;

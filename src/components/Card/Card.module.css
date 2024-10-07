@@ -11,11 +11,11 @@
   box-shadow: none;
   transition: box-shadow 0.5s;
 
-  @media screen and (min-width: 744px) {
+  @media screen and (min-width: 644px) {
     width: 208px;
   }
 
-  @media screen and (min-width: 1920px) {
+  @media screen and (min-width: 1180px) {
     width: 205px;
     gap: 16px;
   }
@@ -29,7 +29,7 @@
 }
 
 .cardWrapper:hover .buySection {
-  @media screen and (min-width: 1920px) {
+  @media screen and (min-width: 1180px) {
     opacity: 1;
     visibility: visible;
     width: 100%;
@@ -37,14 +37,14 @@
 }
 
 .cardWrapper.big {
-  @media screen and (min-width: 744px) {
+  @media screen and (min-width: 644px) {
     width: 280px;
     padding: 16px;
   }
 }
 
 .cardWrapper.small {
-  @media screen and (min-width: 1920px) {
+  @media screen and (min-width: 1180px) {
     width: 180px;
   }
 }
@@ -65,26 +65,26 @@
   color: var(--wightAuth);
   outline: 1px solid lightgray;
 
-  @media screen and (min-width: 744px) {
+  @media screen and (min-width: 644px) {
     width: 192px;
     height: 192px;
   }
 
-  @media screen and (min-width: 1920px) {
+  @media screen and (min-width: 1180px) {
     width: 189px;
     height: 185px;
   }
 }
 
 .imageWrapper.small {
-  @media screen and (min-width: 1920px) {
+  @media screen and (min-width: 1180px) {
     width: 164px;
     height: 160px;
   }
 }
 
 .imageWrapper.big {
-  @media screen and (min-width: 744px) {
+  @media screen and (min-width: 644px) {
     width: 248px;
     height: 251px;
   }
@@ -112,14 +112,14 @@
   font-size: var(--small-12);
   line-height: 18;
 
-  @media screen and (min-width: 1920px) {
+  @media screen and (min-width: 1180px) {
     font-size: 11px;
     line-height: 16.5px;
   }
 }
 
 .specialWrapper.big {
-  @media screen and (min-width: 1920px) {
+  @media screen and (min-width: 1180px) {
     font-size: var(--small-12);
     line-height: 18;
   }
@@ -174,22 +174,22 @@
   letter-spacing: 0.04em;
   z-index: 2;
 
-  @media screen and (min-width: 744px) {
+  @media screen and (min-width: 644px) {
     width: 208px;
   }
 
-  @media screen and (min-width: 1920px) {
+  @media screen and (min-width: 1180px) {
     width: 226px;
   }
 }
 
 .addToFavorite.big {
-  @media screen and (min-width: 744px) {
+  @media screen and (min-width: 644px) {
     bottom: 40px;
     right: -16px;
   }
 
-  @media screen and (min-width: 1920px) {
+  @media screen and (min-width: 1180px) {
     bottom: 34px;
   }
 }
@@ -223,7 +223,7 @@
   padding: 0px;
   gap: 8px;
 
-  @media screen and (min-width: 1920px) {
+  @media screen and (min-width: 1180px) {
     gap: 16px;
   }
 }
@@ -235,7 +235,7 @@
   line-height: 150%;
   color: var(--darkBlue);
 
-  @media screen and (min-width: 1920px) {
+  @media screen and (min-width: 1180px) {
     font-size: var(--small-14);
   }
 }
@@ -294,7 +294,7 @@
   font-size: var(--small-14);
   line-height: 150%;
 
-  @media screen and (min-width: 1920px) {
+  @media screen and (min-width: 1180px) {
     font-weight: var(--medium);
     font-size: var(--small-12);
   }
@@ -325,7 +325,7 @@
   line-height: 150%;
   color: var(--greenForBtn);
 
-  @media screen and (min-width: 744px) {
+  @media screen and (min-width: 644px) {
     font-weight: var(--wight-600);
     font-size: var(--small-14);
   }
@@ -340,7 +340,7 @@
   visibility: visible;
   width: 100%;
 
-  @media screen and (min-width: 1920px) {
+  @media screen and (min-width: 1180px) {
     opacity: 0;
     visibility: hidden;
   }
