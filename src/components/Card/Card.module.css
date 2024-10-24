@@ -1,0 +1,364 @@
+.cardWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px;
+  gap: 8px;
+  background: var(--wightAuth);
+  border-radius: 5px;
+  width: 156px;
+  box-sizing: border-box;
+  box-shadow: none;
+  transition: box-shadow 0.5s;
+
+  @media screen and (min-width: 644px) {
+    width: 208px;
+  }
+
+  @media screen and (min-width: 1180px) {
+    width: 205px;
+    gap: 16px;
+  }
+}
+
+.cardWrapper:hover {
+  box-shadow:
+    0px -1px 20px rgba(30, 95, 114, 0.2),
+    -9px 4px 20px rgba(50, 109, 126, 0.2),
+    10px 9px 20px rgba(69, 151, 175, 0.2);
+}
+
+.cardWrapper:hover .buySection {
+  @media screen and (min-width: 1180px) {
+    opacity: 1;
+    visibility: visible;
+    width: 100%;
+  }
+}
+
+.cardWrapper.big {
+  @media screen and (min-width: 644px) {
+    width: 280px;
+    padding: 16px;
+  }
+}
+
+.cardWrapper.small {
+  @media screen and (min-width: 1180px) {
+    width: 180px;
+  }
+}
+
+.cardWrapper * {
+  box-sizing: inherit;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 140px;
+  height: 141px;
+  font-style: normal;
+  font-weight: var(--medium);
+  font-size: var(--small-12);
+  line-height: 150%;
+  letter-spacing: 0.04em;
+  color: var(--wightAuth);
+  outline: 1px solid lightgray;
+
+  @media screen and (min-width: 644px) {
+    width: 192px;
+    height: 192px;
+  }
+
+  @media screen and (min-width: 1180px) {
+    width: 189px;
+    height: 185px;
+  }
+}
+
+.imageWrapper.small {
+  @media screen and (min-width: 1180px) {
+    width: 164px;
+    height: 160px;
+  }
+}
+
+.imageWrapper.big {
+  @media screen and (min-width: 644px) {
+    width: 248px;
+    height: 251px;
+  }
+}
+
+.imageWrapper.outStock {
+  filter: grayscale(100%);
+}
+
+.specialWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 4px;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 62px;
+  height: 46px;
+  z-index: 2;
+
+  font-weight: var(--medium);
+  font-size: var(--small-12);
+  line-height: 18;
+
+  @media screen and (min-width: 1180px) {
+    font-size: 11px;
+    line-height: 16.5px;
+  }
+}
+
+.specialWrapper.big {
+  @media screen and (min-width: 1180px) {
+    font-size: var(--small-12);
+    line-height: 18;
+  }
+}
+
+.saleOut {
+  padding-left: 8px;
+  padding-top: 8px;
+}
+
+.sale {
+  padding: 2px 4px;
+  width: 43px;
+  height: 21px;
+  background: var(--sale);
+  border-radius: 5px;
+  text-align: center;
+}
+
+.new {
+  padding: 2px 4px;
+  width: 62px;
+  height: 21px;
+  background: var(--newMarker);
+  border-radius: 5px;
+  text-align: center;
+}
+
+.following {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  padding: 3px 2px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.addToFavorite {
+  position: absolute;
+  width: 176px;
+  bottom: 30px;
+  right: -8px;
+  padding: 10px 8px;
+  border-radius: 5px;
+  background: var(--darkBlue);
+  color: var(--wightAuth);
+  font-weight: var(--medium);
+  font-size: var(--small-12);
+  line-height: 150%;
+  letter-spacing: 0.04em;
+  z-index: 2;
+
+  @media screen and (min-width: 644px) {
+    width: 208px;
+  }
+
+  @media screen and (min-width: 1180px) {
+    width: 226px;
+  }
+}
+
+.addToFavorite.big {
+  @media screen and (min-width: 644px) {
+    bottom: 40px;
+    right: -16px;
+  }
+
+  @media screen and (min-width: 1180px) {
+    bottom: 34px;
+  }
+}
+
+.addToFavorite::after {
+  position: absolute;
+  content: '';
+  width: 16px;
+  height: 7px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('../../../public/icons/Polygon.svg');
+  right: 12px;
+  bottom: -5px;
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0px;
+  gap: 8px;
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0px;
+  gap: 8px;
+
+  @media screen and (min-width: 1180px) {
+    gap: 16px;
+  }
+}
+
+.productName {
+  font-style: normal;
+  font-weight: var(--wight-600);
+  font-size: var(--medium-16);
+  line-height: 150%;
+  color: var(--darkBlue);
+
+  @media screen and (min-width: 1180px) {
+    font-size: var(--small-14);
+  }
+}
+
+.productName.big {
+  font-size: var(--medium-16);
+}
+
+.rating {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 24px;
+
+  width: 100%;
+  height: 20px;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+
+  width: 100%;
+  height: 59px;
+}
+
+.oldPrice {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 4px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: var(--small-14);
+  line-height: 150%;
+  text-decoration-line: line-through;
+  color: var(--black-900);
+}
+
+.deviation {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 6px;
+  gap: 10px;
+
+  background: var(--sale);
+  border-radius: 5px;
+
+  font-weight: var(--wight-600);
+  font-size: var(--small-14);
+  line-height: 150%;
+
+  @media screen and (min-width: 1180px) {
+    font-weight: var(--medium);
+    font-size: var(--small-12);
+  }
+}
+
+.deviation.big {
+  font-weight: var(--wight-600);
+  font-size: var(--small-14);
+}
+
+.newPrice {
+  font-style: normal;
+  font-weight: var(--wight-600);
+  font-size: var(--large-20);
+  line-height: 150%;
+
+  color: var(--darkBlue);
+}
+
+.newPrice.big {
+  font-size: 24px;
+}
+
+.available {
+  font-style: normal;
+  font-weight: var(--medium);
+  font-size: var(--small-12);
+  line-height: 150%;
+  color: var(--greenForBtn);
+
+  @media screen and (min-width: 644px) {
+    font-weight: var(--wight-600);
+    font-size: var(--small-14);
+  }
+}
+
+.available.big {
+  font-size: var(--medium-16);
+}
+
+.buySection {
+  opacity: 1;
+  visibility: visible;
+  width: 100%;
+
+  @media screen and (min-width: 1180px) {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.buyButton {
+  padding: 10px 20px;
+  gap: 10px;
+  width: 100%;
+  background: var(--greenForBtn);
+  border: 1px solid var(--greem);
+  border-radius: 5px;
+
+  font-weight: var(--medium);
+  font-size: var(--medium-18);
+  line-height: 150%;
+}
+
+.buyButton.big {
+  font-size: var(--large-20);
+}

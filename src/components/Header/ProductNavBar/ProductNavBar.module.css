@@ -1,0 +1,38 @@
+.background {
+  color: white;
+}
+
+.container {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.productNavBarChildren {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.userInteractions {
+  display: flex;
+  flex-direction: row;
+  min-width: 96px;
+  justify-content: space-between;
+  align-self: center;
+}
+
+/* .overlay {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.3);
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.userInteractions:last-child:hover .overlay {
+  display: block;
+} */

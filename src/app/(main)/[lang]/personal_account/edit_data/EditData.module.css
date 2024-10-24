@@ -1,0 +1,137 @@
+.editDataForm {
+  margin-left: 20px;
+  max-width: 100%;
+  background-color: var(--wightAuth);
+  padding: 15px 45px 32px 45px;
+  color: var(--black-900);
+}
+
+.formHeader {
+  display: flex;
+  align-self: flex-start;
+  font-weight: var(--wight-600);
+  font-size: var(--large-28);
+  color: var(--black-900);
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+.personalDataContainerWithHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.personalDataHeder {
+  margin-bottom: -8px;
+}
+
+.personalDataContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 40px;
+}
+
+.personalData > div > input {
+  min-width: 335px;
+  margin-top: 24px;
+}
+
+.mailingContainet {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+}
+
+.spam {
+  font-size: var(--large-20);
+  display: flex;
+  align-self: flex-start;
+}
+
+.subscriptionContainer {
+  display: flex;
+}
+
+.subscription {
+  margin-top: 16px;
+  margin-bottom: 32px;
+  margin-right: 32px;
+}
+
+.subscriptionContainer > div > label::before {
+  border-color: var(--black-600);
+  border-radius: 10px;
+  margin-right: 8px;
+}
+
+.subscriptionContainer > div > input[type='checkbox']:checked + label::before {
+  content: '';
+}
+
+.subscriptionContainer > div:first-of-type {
+  margin-right: 24px;
+}
+
+.EditPassword {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.EditPassword > div > input {
+  min-width: 335px;
+  margin-top: 24px;
+}
+
+.EditPassword > div > input + img {
+  top: 34px;
+}
+
+.EditPassword input:last-of-type {
+  margin-bottom: 32px;
+}
+
+.deleteAccount {
+  color: var(--erro-100);
+}
+
+.EditEmailContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  gap: 40px;
+}
+
+.editEmail > div > input {
+  min-width: 335px;
+  margin-top: 24px;
+}
+
+.editEmail > div > input + img {
+  top: 11px;
+}
+
+.emailChangeInfo {
+  font-size: 14px;
+  margin-top: 24px;
+}
+
+.submitButton {
+  border-radius: 5px;
+  max-width: 248px;
+  padding: 9px;
+}

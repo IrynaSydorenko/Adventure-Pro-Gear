@@ -1,0 +1,52 @@
+.header {
+  background-color: var(--darkBlue);
+  color: var(--white);
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.h1 {
+  font-size: 30px;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
+
+.navList {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  align-items: center;
+}
+
+.navItem {
+  padding-right: 30px;
+  padding-left: 30px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.navItem > a {
+  text-decoration: none;
+  color: var(--white);
+}
+
+.navItem > a:hover {
+  color: var(--lightYellow);
+}
+
+.globusIcon {
+  background-color: var(--darkBlue);
+  order: 2;
+  padding-left: 8px;
+}

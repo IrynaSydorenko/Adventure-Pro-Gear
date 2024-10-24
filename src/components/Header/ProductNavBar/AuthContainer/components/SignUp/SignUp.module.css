@@ -1,0 +1,65 @@
+.formContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.h4 {
+  align-self: start;
+  color: var(--greenForBtn);
+  line-height: 48px;
+  font-weight: 700;
+  font-size: 32px;
+  margin-bottom: -8px;
+}
+
+.submitPolicy {
+  margin-bottom: 32px;
+}
+
+.checkboxRegistration {
+  font-size: 16px;
+}
+
+.submitPolicy > a {
+  color: var(--primaryBlue);
+}
+
+.submitRegistration {
+  margin-top: 0;
+  margin-bottom: 29px;
+}
+
+.loginLink {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 27px;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--black);
+}
+
+.toastMessage {
+  background-color: var(--wightAuth);
+}
+
+.toastBody {
+  color: var(--black);
+  font-family: '__Montserrat_7dfeba';
+}
+
+.toastBody > div > div > p > a {
+  color: var(--primaryBlue);
+}
+
+.toastErrorMessage {
+  background-color: var(--wightAuth);
+}
+
+@media screen and (max-width: 768px) {
+  .submitPolicy {
+    font-size: var(--small-14);
+  }
+  .checkboxRegistration {
+    font-size: var(--small-14);
+  }
+}

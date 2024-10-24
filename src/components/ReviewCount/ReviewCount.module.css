@@ -1,0 +1,20 @@
+.reviews {
+  display: none;
+
+  @media screen and (min-width: 644px) {
+    display: flex;
+    align-items: center;
+    padding: 0px;
+    gap: 2px;
+    width: 32px;
+    height: 18px;
+
+    .text {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 150%;
+      letter-spacing: 0.04em;
+      color: var(--black-900);
+    }
+  }
+}

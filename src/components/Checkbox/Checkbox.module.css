@@ -1,0 +1,41 @@
+.checkboxContainer{
+  display: flex;
+  align-self: start;
+  align-items: center;
+  margin-bottom: 32px;
+  margin-top: 16px;
+  
+}
+
+.checkboxContainer input[type='checkbox']{
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkboxContainer label{
+  cursor: pointer;
+  display: flex;
+}
+  
+.checkboxContainer label::before{
+   content: "";
+   width: 1em;
+   height: 1em;
+   border: 1px solid var(--primaryBlue);
+   margin-right: 5.5px;
+   border-radius: 2px;
+}
+
+.checkboxContainer input[type='checkbox']:hover + label::before {
+  background-color: lightgray;
+}
+
+.checkboxContainer input[type='checkbox']:checked + label::before {
+  content: '\002714';
+  background-color: var(--primaryBlue);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+}

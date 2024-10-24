@@ -1,0 +1,44 @@
+/*colors*/
+:root {
+  /* font weight */
+  --medium: 500;
+  --wight-600: 600;
+  --large: 700;
+
+  /* font size */
+  --large-28: 28px;
+  --large-20: 20px;
+  --medium-16: 16px;
+  --medium-18: 18px;
+  --small-14: 14px;
+  --small-12: 12px;
+  --large: 32px;
+
+  /* colours */
+  --white: #fff;
+  --wight: #f4ffff;
+  --wightAuth: #f5ffff;
+  --label: #e6e6e6;
+  --veryLightGray: #cccccc;
+  --lightGray: #b3b3b3;
+  --gray-300: #b8b8b8;
+  --gray: #999999;
+  --darkerGray: #666666;
+  --darkGray: #333333;
+  --black-900: #353535;
+  --black: #000;
+  --lightYellow: #ffecce;
+  --yellow: #ffdba4;
+  --yellowForStars: #ffc670;
+  --greem: #1e5f72;
+  --greenForBtn: #1e5f72;
+  --primaryBlue: #376b8e;
+  --mediumBlue: #224256;
+  --darkBlue: #152a38;
+  --erro-100: #ac0000;
+  --disabled: #7d7d7d;
+  --adminBorder: #d3d9d9;
+  --adminDarkBlue: #3a4c50;
+  --sale: #c83c33;
+  --newMarker: #40898e;
+}

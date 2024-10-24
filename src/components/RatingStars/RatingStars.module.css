@@ -1,0 +1,25 @@
+.stars {
+  display: flex;
+  align-items: center;
+  padding: 0px;
+  gap: 2px;
+
+  width: 108px;
+}
+.stars.big {
+  width: 136px;
+  gap: 4px;
+}
+
+.half {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.half.before {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

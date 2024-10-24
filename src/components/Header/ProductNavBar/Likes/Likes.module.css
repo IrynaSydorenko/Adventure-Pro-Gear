@@ -1,0 +1,8 @@
+.like {
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.like > img {
+  padding: 8px;
+}

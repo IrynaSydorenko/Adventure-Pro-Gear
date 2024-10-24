@@ -1,0 +1,65 @@
+.formContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.form input[type='password'] {
+  margin-bottom: 0;
+}
+
+.form > input[type='submit'] {
+  display: flex;
+  justify-content: center;
+  color: var(--white);
+  padding: 16px;
+  background-color: var(--primaryBlue);
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.h4 {
+  align-self: start;
+  color: var(--greenForBtn);
+  font-weight: 700;
+  font-size: 32px;
+  margin-bottom: 24px;
+}
+
+.restorePasswordLink {
+  color: var(--primaryBlue);
+  display: flex;
+  align-self: end;
+  margin-top: 8px;
+}
+
+.registerLink {
+  margin-top: 29px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 27px;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--black);
+}
+
+.checkboxSignIn {
+  font-size: var(--medium-16);
+}
+
+.signInToastBody {
+  color: var(--black);
+  font-family: '__Montserrat_7dfeba';
+}
+
+.signInToastErrorMessage {
+  background-color: var(--wightAuth);
+}
+
+@media screen and (max-width: 768px) {
+  .checkboxSignIn {
+    font-size: var(--small-14);
+  }
+}
